@@ -11,6 +11,7 @@ var direction: Vector2
 var target: KinematicBody2D
 
 onready var to_player: RayCast2D = $ToPlayer
+onready var health_bar: TextureProgress = $HealthBar
 
 func get_player_as_target() -> void:
 	var player_group: Array = get_tree().get_nodes_in_group("player")
@@ -22,6 +23,9 @@ func get_player_as_target() -> void:
 
 func _ready() -> void:
 	get_player_as_target()
+	max_health = 3
+	health_bar.max_value = max_health
+	._ready()
 
 func _process(delta: float) -> void:
 	._process(delta)
@@ -40,10 +44,13 @@ func _process(delta: float) -> void:
 			pass
 	else:
 		get_player_as_target()
+	
+	health_bar.value = health
 
 func _physics_process(delta: float) -> void:
 	._physics_process(delta)
 	velocity = direction * MOVEMENT_SPEED
 
 func hurt(dir: Vector2, damage: int) -> void:
+	$FlashPlayer.play("flash")
 	.hurt(dir, damage)

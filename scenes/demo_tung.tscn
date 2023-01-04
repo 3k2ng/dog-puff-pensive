@@ -1,11 +1,18 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://tilesets/test_autotile.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sprites/test_sprites/enemy.png" type="Texture" id=3]
 [ext_resource path="res://scripts/enemies/basic_enemy.gd" type="Script" id=4]
+[ext_resource path="res://sprites/test_sprites/redbox.tres" type="Texture" id=5]
 [ext_resource path="res://scripts/game_field.gd" type="Script" id=6]
 [ext_resource path="res://scripts/melee_box.gd" type="Script" id=7]
+[ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=8]
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 8 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 4, 6 )
@@ -41,7 +48,7 @@ tracks/1/keys = {
 "values": [ 0.0, 20.0, -45.0, 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("MeleeBox/HitBox:disabled")
+tracks/2/path = NodePath("MeleeBox/Shape:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -51,6 +58,37 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, false, true ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
 }
 
 [node name="Game" type="Node"]
@@ -71,10 +109,14 @@ __meta__ = {
 position = Vector2( 64, 64 )
 
 [node name="TestEnemy" type="KinematicBody2D" parent="Field" groups=["enemy"]]
+material = SubResource( 8 )
 position = Vector2( 576, 64 )
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 4 )
 
 [node name="Enemy" type="Sprite" parent="Field/TestEnemy"]
+use_parent_material = true
 position = Vector2( 0, -2 )
 texture = ExtResource( 3 )
 __meta__ = {
@@ -92,10 +134,24 @@ __meta__ = {
 [node name="MeleeBox" type="Area2D" parent="Field/TestEnemy"]
 script = ExtResource( 7 )
 
-[node name="HitBox" type="CollisionShape2D" parent="Field/TestEnemy/MeleeBox"]
+[node name="Shape" type="CollisionShape2D" parent="Field/TestEnemy/MeleeBox"]
 position = Vector2( 8, 0 )
 shape = SubResource( 5 )
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Field/TestEnemy"]
 anims/melee_attack = SubResource( 6 )
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="Field/TestEnemy"]
+anims/RESET = SubResource( 9 )
+anims/flash = SubResource( 10 )
+
+[node name="HealthBar" type="TextureProgress" parent="Field/TestEnemy"]
+margin_left = -8.0
+margin_top = -12.0
+margin_right = -4.0
+margin_bottom = -8.0
+rect_scale = Vector2( 4, 1 )
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 5 )
+tint_under = Color( 0, 0, 0, 1 )
