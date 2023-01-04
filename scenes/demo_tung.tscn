@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://tilesets/test_autotile.tres" type="TileSet" id=1]
 [ext_resource path="res://sprites/test_sprites/player.png" type="Texture" id=2]
@@ -6,12 +6,56 @@
 [ext_resource path="res://scripts/enemies/basic_enemy.gd" type="Script" id=4]
 [ext_resource path="res://scripts/mouse_puppet.gd" type="Script" id=5]
 [ext_resource path="res://scripts/game_field.gd" type="Script" id=6]
+[ext_resource path="res://scripts/melee_box.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 4, 6 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 4, 6 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 2, 6 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "melee_attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Enemy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -2 ), Vector2( 2, -2 ), Vector2( -4, -2 ), Vector2( 0, -2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Enemy:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 20.0, -45.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MeleeBox/HitBox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, false, true ]
+}
 
 [node name="Game" type="Node"]
 
@@ -62,3 +106,14 @@ __meta__ = {
 }
 
 [node name="ToPlayer" type="RayCast2D" parent="Field/TestEnemy"]
+
+[node name="MeleeBox" type="Area2D" parent="Field/TestEnemy"]
+position = Vector2( -8, 0 )
+script = ExtResource( 7 )
+
+[node name="HitBox" type="CollisionShape2D" parent="Field/TestEnemy/MeleeBox"]
+shape = SubResource( 5 )
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Field/TestEnemy"]
+anims/melee_attack = SubResource( 6 )

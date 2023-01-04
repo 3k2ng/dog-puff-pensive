@@ -1,7 +1,10 @@
 extends "res://scripts/enemies/enemy.gd"
 
 const MOVEMENT_SPEED = 32
+
 const DETECTION_RANGE = 80 # 5 blocks
+const ATTACK_RANGE = 10
+
 
 var direction: Vector2
 
@@ -28,6 +31,8 @@ func _process(delta: float) -> void:
 			# no player detected
 			direction = Vector2.ZERO
 			pass
+		elif to_player.cast_to.length() < ATTACK_RANGE:
+			$AnimationPlayer.play("melee_attack")
 		else:
 			# yes player detected
 			direction = to_player.cast_to.normalized()
