@@ -12,7 +12,7 @@ enum {
 const MOVEMENT_SPEED = 32
 
 const DETECTION_RANGE = 160 # 10 blocks
-const ATTACK_RANGE = 16
+const ATTACK_RANGE = 20
 const CLOSEST_DIST = 1 # closest distance needed to consider arrived at last know player location
 
 const STUN_TIME = 0.1
