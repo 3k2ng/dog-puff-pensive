@@ -2,6 +2,7 @@ extends "res://scripts/enemies/enemy.gd"
 
 enum {
 	IDLE,
+	HIT,
 	CHASE,
 	ATTACK
 }
@@ -11,12 +12,15 @@ const MOVEMENT_SPEED = 32
 const DETECTION_RANGE = 160 # 10 blocks
 const ATTACK_RANGE = 16
 
+const STUN_TIME = 0.1
 
 var direction: Vector2
 
 var target: KinematicBody2D
 
 var state: int
+
+var stun_timer: float
 
 onready var to_player: RayCast2D = $ToPlayer
 onready var health_bar: TextureProgress = $HealthBar
@@ -38,6 +42,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	._process(delta)
+	
+	health_bar.value = health
+	
+	if state == HIT:
+		if stun_timer > 0:
+			stun_timer -= delta
+			return
+		else:
+			state = IDLE
 	
 	if target:
 		to_player.cast_to = target.position - position
@@ -63,17 +76,19 @@ func _process(delta: float) -> void:
 			$MeleeBox.rotation = Vector2.RIGHT.angle_to(to_player.cast_to)
 			direction = to_player.cast_to.normalized()
 			sprite.play("chase")
-	
-	health_bar.value = health
 
 func _physics_process(delta: float) -> void:
 	._physics_process(delta)
-	velocity = direction * MOVEMENT_SPEED
-	if velocity.x < 0:
-		sprite.flip_h = true
-	elif velocity.x > 0:
-		sprite.flip_h = false
+	if state != HIT:
+		velocity = direction * MOVEMENT_SPEED
+		if velocity.x < 0:
+			sprite.flip_h = true
+		elif velocity.x > 0:
+			sprite.flip_h = false
 
 func hurt(dir: Vector2, damage: int) -> void:
 	$FlashPlayer.play("flash")
+	state = HIT
+	stun_timer = STUN_TIME
+	velocity = dir.normalized() * 32
 	.hurt(dir, damage)
