@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://sprites/enemies/chocolate bar attack.png" type="Texture" id=1]
 [ext_resource path="res://sprites/enemies/chocolate bar idle.png" type="Texture" id=2]
@@ -409,6 +409,8 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+
 [sub_resource type="AnimationNodeStateMachine" id=51]
 states/chase/node = SubResource( 53 )
 states/chase/position = Vector2( 678, 64 )
@@ -420,7 +422,7 @@ states/melee_attack/node = SubResource( 59 )
 states/melee_attack/position = Vector2( 445, 149 )
 states/notice/node = SubResource( 54 )
 states/notice/position = Vector2( 250, 64 )
-transitions = [ "idle", "notice", SubResource( 55 ), "notice", "chase", SubResource( 56 ), "chase", "confused", SubResource( 60 ), "chase", "melee_attack", SubResource( 61 ), "melee_attack", "idle", SubResource( 62 ), "confused", "idle", SubResource( 63 ), "melee_attack", "chase", SubResource( 64 ) ]
+transitions = [ "idle", "notice", SubResource( 55 ), "notice", "chase", SubResource( 56 ), "chase", "confused", SubResource( 60 ), "chase", "melee_attack", SubResource( 61 ), "melee_attack", "idle", SubResource( 62 ), "confused", "idle", SubResource( 63 ), "melee_attack", "chase", SubResource( 64 ), "confused", "chase", SubResource( 66 ) ]
 start_node = "idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=52]
