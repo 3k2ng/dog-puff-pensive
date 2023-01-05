@@ -1,14 +1,22 @@
 extends "res://scripts/enemies/enemy.gd"
 
+enum {
+	IDLE,
+	CHASE,
+	ATTACK
+}
+
 const MOVEMENT_SPEED = 32
 
-const DETECTION_RANGE = 80 # 5 blocks
-const ATTACK_RANGE = 20
+const DETECTION_RANGE = 160 # 10 blocks
+const ATTACK_RANGE = 16
 
 
 var direction: Vector2
 
 var target: KinematicBody2D
+
+var state: int
 
 onready var to_player: RayCast2D = $ToPlayer
 onready var health_bar: TextureProgress = $HealthBar
@@ -30,26 +38,31 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	._process(delta)
-	if $AnimationPlayer.is_playing():
-		return
+	
 	if target:
 		to_player.cast_to = target.position - position
-		if to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
+		if $AnimationPlayer.is_playing() or to_player.cast_to.length() < ATTACK_RANGE:
+			state = ATTACK
+		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
 			# no player detected
-			direction = Vector2.ZERO
-			sprite.play("default")
-			pass
-		elif to_player.cast_to.length() < ATTACK_RANGE:
-			direction = Vector2.ZERO
-			$AnimationPlayer.play("melee_attack")
+			state = IDLE
 		else:
 			# yes player detected
+			state = CHASE
+	else:
+		get_player_as_target()
+	
+	match state:
+		IDLE:
+			direction = Vector2.ZERO
+			sprite.play("default")
+		ATTACK:
+			direction = Vector2.ZERO
+			$AnimationPlayer.play("melee_attack")
+		CHASE:
 			$MeleeBox.rotation = Vector2.RIGHT.angle_to(to_player.cast_to)
 			direction = to_player.cast_to.normalized()
 			sprite.play("chase")
-			pass
-	else:
-		get_player_as_target()
 	
 	health_bar.value = health
 
