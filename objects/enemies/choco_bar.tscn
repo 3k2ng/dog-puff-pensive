@@ -148,6 +148,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0, 11 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.35 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "splash"
+} ]
+}
 
 [sub_resource type="Animation" id=9]
 length = 0.001
@@ -191,6 +205,8 @@ script = ExtResource( 6 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
+animation = "attack"
+frame = 7
 __meta__ = {
 "_edit_lock_": true
 }

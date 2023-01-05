@@ -1,5 +1,7 @@
 extends "res://scripts/enemies/enemy.gd"
 
+const SPLASH: PackedScene = preload("res://objects/splash.tscn")
+
 enum {
 	IDLE,
 	HIT,
@@ -11,10 +13,12 @@ const MOVEMENT_SPEED = 32
 
 const DETECTION_RANGE = 160 # 10 blocks
 const ATTACK_RANGE = 16
+const CLOSEST_DIST = 1 # closest distance needed to consider arrived at last know player location
 
 const STUN_TIME = 0.1
 
 var direction: Vector2
+var last_known_location: Vector2 # location of player last time seen
 
 var target: KinematicBody2D
 
@@ -57,10 +61,11 @@ func _process(delta: float) -> void:
 		if $AnimationPlayer.is_playing() or to_player.cast_to.length() < ATTACK_RANGE:
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
-			# no player detected
-			state = IDLE
+			if position.distance_to(last_known_location) < 1:
+				state = IDLE
 		else:
 			# yes player detected
+			last_known_location = target.position
 			state = CHASE
 	else:
 		get_player_as_target()
@@ -73,8 +78,8 @@ func _process(delta: float) -> void:
 			direction = Vector2.ZERO
 			$AnimationPlayer.play("melee_attack")
 		CHASE:
-			$MeleeBox.rotation = Vector2.RIGHT.angle_to(to_player.cast_to)
-			direction = to_player.cast_to.normalized()
+			direction = position.direction_to(last_known_location).normalized()
+			$MeleeBox.rotation = Vector2.RIGHT.angle_to(direction)
 			sprite.play("chase")
 
 func _physics_process(delta: float) -> void:
@@ -92,3 +97,8 @@ func hurt(dir: Vector2, damage: int) -> void:
 	stun_timer = STUN_TIME
 	velocity = dir.normalized() * 32
 	.hurt(dir, damage)
+
+func splash() -> void:
+	var new_splash = SPLASH.instance()
+	new_splash.position = $MeleeBox/Shape.global_position
+	SignalBus.emit_signal("spawn_object", new_splash)
