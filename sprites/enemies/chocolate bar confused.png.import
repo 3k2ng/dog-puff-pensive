@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dog run.png-e21967f4640a95fcb0d7b7dfb1989603.stex"
+path="res://.import/chocolate bar confused.png-c9eafa332f1122b2bbabb520d90e4dd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/dog/dog run.png"
-dest_files=[ "res://.import/dog run.png-e21967f4640a95fcb0d7b7dfb1989603.stex" ]
+source_file="res://sprites/enemies/chocolate bar confused.png"
+dest_files=[ "res://.import/chocolate bar confused.png-c9eafa332f1122b2bbabb520d90e4dd8.stex" ]
 
 [params]
 
