@@ -165,37 +165,37 @@ animations = [ {
 "frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
 "loop": true,
 "name": "attack",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
 "loop": true,
 "name": "chase",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
 "loop": true,
 "name": "confused",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [ SubResource( 67 ) ],
 "loop": true,
 "name": "dead",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [ SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [ SubResource( 65 ) ],
 "loop": true,
 "name": "hurt",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
 "loop": true,
 "name": "notice",
-"speed": 5.0
+"speed": 12.0
 } ]
 
 [sub_resource type="CircleShape2D" id=30]
@@ -509,7 +509,6 @@ graph_offset = Vector2( -6, -172 )
 
 [node name="ChocoBar" type="KinematicBody2D" groups=["enemy"]]
 material = SubResource( 8 )
-position = Vector2( 576, 64 )
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 6 )
@@ -518,7 +517,7 @@ script = ExtResource( 6 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
-animation = "hurt"
+animation = "notice"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -545,6 +544,7 @@ margin_top = -20.0
 margin_right = -4.0
 margin_bottom = -16.0
 rect_scale = Vector2( 4, 1 )
+value = 100.0
 texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 4 )
 tint_under = Color( 0, 0, 0, 1 )
