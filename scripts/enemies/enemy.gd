@@ -8,7 +8,7 @@ func _ready() -> void:
 	health = max_health
 
 func _process(delta: float) -> void:
-	if health < 0:
+	if health <= 0:
 		_die()
 
 func _physics_process(delta: float) -> void:
