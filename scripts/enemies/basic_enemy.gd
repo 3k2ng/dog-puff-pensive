@@ -21,10 +21,9 @@ var direction: Vector2
 var last_known_location: Vector2 # location of player last time seen
 
 var target: KinematicBody2D
-
 var state: int
-
 var stun_timer: float
+var dead: bool
 
 onready var to_player: RayCast2D = $ToPlayer
 onready var health_bar: TextureProgress = $HealthBar
@@ -39,6 +38,11 @@ func get_player_as_target() -> void:
 		to_player.add_exception(target)
 		to_player.enabled = true
 
+func _die() -> void:
+	dead = true
+	velocity = Vector2.ZERO
+	anim_playback.travel("dead")
+
 func _ready() -> void:
 	get_player_as_target()
 	max_health = 3
@@ -47,13 +51,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	._process(delta)
-	
 	health_bar.value = health
+	
+	if dead:
+		return
 	
 	if state == HIT:
 		if stun_timer > 0:
 			stun_timer -= delta
-			anim_sprite.play("hit")
+			anim_playback.travel("hurt")
 			return
 		else:
 			state = IDLE

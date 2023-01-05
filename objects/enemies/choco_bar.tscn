@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://sprites/enemies/chocolate bar attack.png" type="Texture" id=1]
 [ext_resource path="res://sprites/enemies/chocolate bar idle.png" type="Texture" id=2]
@@ -120,6 +120,10 @@ region = Rect2( 64, 64, 32, 32 )
 atlas = ExtResource( 9 )
 region = Rect2( 0, 96, 32, 32 )
 
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 28, 28, 28 )
+
 [sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 28, 28 )
@@ -173,6 +177,11 @@ animations = [ {
 "name": "confused",
 "speed": 5.0
 }, {
+"frames": [ SubResource( 67 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
 "name": "default",
@@ -180,7 +189,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 65 ) ],
 "loop": true,
-"name": "hit",
+"name": "hurt",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
@@ -239,6 +248,54 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 9 ]
+}
+
+[sub_resource type="Animation" id=69]
+resource_name = "dead"
+length = 0.1
+tracks/0/type = "method"
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "dead", false ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=68]
+resource_name = "hurt"
+length = 0.1
+tracks/0/type = "method"
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "hurt", false ],
+"method": "play"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeleeBox/Shape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=47]
@@ -379,6 +436,12 @@ animation = "chase"
 [sub_resource type="AnimationNodeAnimation" id=58]
 animation = "confused"
 
+[sub_resource type="AnimationNodeAnimation" id=70]
+animation = "dead"
+
+[sub_resource type="AnimationNodeAnimation" id=71]
+animation = "hurt"
+
 [sub_resource type="AnimationNodeAnimation" id=50]
 animation = "idle"
 
@@ -411,19 +474,36 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=66]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=73]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=74]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=75]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=76]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=77]
+
 [sub_resource type="AnimationNodeStateMachine" id=51]
 states/chase/node = SubResource( 53 )
 states/chase/position = Vector2( 678, 64 )
 states/confused/node = SubResource( 58 )
 states/confused/position = Vector2( 678, 149 )
+states/dead/node = SubResource( 70 )
+states/dead/position = Vector2( 250, -79 )
+states/hurt/node = SubResource( 71 )
+states/hurt/position = Vector2( 678, -79 )
 states/idle/node = SubResource( 50 )
 states/idle/position = Vector2( 250, 244 )
 states/melee_attack/node = SubResource( 59 )
-states/melee_attack/position = Vector2( 445, 149 )
+states/melee_attack/position = Vector2( 1119, 244 )
 states/notice/node = SubResource( 54 )
 states/notice/position = Vector2( 250, 64 )
-transitions = [ "idle", "notice", SubResource( 55 ), "notice", "chase", SubResource( 56 ), "chase", "confused", SubResource( 60 ), "chase", "melee_attack", SubResource( 61 ), "melee_attack", "idle", SubResource( 62 ), "confused", "idle", SubResource( 63 ), "melee_attack", "chase", SubResource( 64 ), "confused", "chase", SubResource( 66 ) ]
+transitions = [ "idle", "notice", SubResource( 55 ), "notice", "chase", SubResource( 56 ), "chase", "confused", SubResource( 60 ), "chase", "melee_attack", SubResource( 61 ), "melee_attack", "idle", SubResource( 62 ), "confused", "idle", SubResource( 63 ), "melee_attack", "chase", SubResource( 64 ), "confused", "chase", SubResource( 66 ), "idle", "hurt", SubResource( 72 ), "hurt", "chase", SubResource( 73 ), "chase", "hurt", SubResource( 74 ), "hurt", "idle", SubResource( 75 ), "hurt", "dead", SubResource( 76 ), "melee_attack", "hurt", SubResource( 77 ) ]
 start_node = "idle"
+graph_offset = Vector2( -6, -172 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=52]
 
@@ -438,7 +518,7 @@ script = ExtResource( 6 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
-animation = "hit"
+animation = "hurt"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -472,6 +552,8 @@ tint_under = Color( 0, 0, 0, 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/chase = SubResource( 48 )
 anims/confused = SubResource( 57 )
+anims/dead = SubResource( 69 )
+anims/hurt = SubResource( 68 )
 anims/idle = SubResource( 47 )
 anims/melee_attack = SubResource( 6 )
 anims/notice = SubResource( 49 )
