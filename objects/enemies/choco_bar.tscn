@@ -12,6 +12,7 @@
 [ext_resource path="res://sprites/enemies/chocolate bar hurt.png" type="Texture" id=10]
 
 [sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
 shader = ExtResource( 7 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
@@ -517,7 +518,7 @@ script = ExtResource( 6 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
-animation = "notice"
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }

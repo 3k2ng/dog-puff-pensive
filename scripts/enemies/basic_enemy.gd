@@ -13,7 +13,7 @@ const MOVEMENT_SPEED = 32
 
 const DETECTION_RANGE = 160 # 10 blocks
 const ATTACK_RANGE = 20
-const CLOSEST_DIST = 1 # closest distance needed to consider arrived at last know player location
+const CLOSEST_DIST = 16 # closest distance needed to consider arrived at last know player location
 
 const STUN_TIME = 0.1
 
@@ -42,6 +42,8 @@ func _die() -> void:
 	dead = true
 	velocity = Vector2.ZERO
 	anim_playback.travel("dead")
+	health_bar.visible = false
+	$Shape.disabled = true
 
 func _ready() -> void:
 	get_player_as_target()
@@ -65,11 +67,14 @@ func _process(delta: float) -> void:
 			state = IDLE
 	
 	if target:
+		for e in get_tree().get_nodes_in_group("enemy"):
+			to_player.add_exception(e)
+			pass
 		to_player.cast_to = target.position - position
 		if anim_playback.get_current_node() == "melee_attack" or (to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding()):
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
-			if position.distance_to(last_known_location) < 1:
+			if position.distance_to(last_known_location) < CLOSEST_DIST:
 				anim_playback.travel("confused")
 				state = IDLE
 		else:
