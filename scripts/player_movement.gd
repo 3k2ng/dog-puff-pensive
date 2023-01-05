@@ -30,11 +30,11 @@ func _physics_process(_delta):
 		$PlayerAnimation.play("idle") 
 
 
-
 func damage_taken(direction: Vector2, damage: int):
 	health = health - damage 
 	velocity = direction.normalized() * 20
 	dead()
+
 
 func dead():
 	if health <= 0:
