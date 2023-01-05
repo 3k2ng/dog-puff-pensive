@@ -11,7 +11,7 @@ func _ready():
 func if_body_entered(body: Node):
 	if body.is_in_group("enemy"):
 		print("enemy is hit")
-		$body.hurt()
+		body.hurt(Vector2.RIGHT.rotated(rotation), 1)
 	
 
 func melee_input():

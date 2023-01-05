@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://tilesets/test_autotile.tres" type="TileSet" id=1]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/enemies/choco_bar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/game_field.gd" type="Script" id=6]
 
