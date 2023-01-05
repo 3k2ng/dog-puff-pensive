@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 	
 	if target:
 		to_player.cast_to = target.position - position
-		if $AnimationPlayer.current_animation == "melee_attack" or (to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding()):
+		if anim_playback.get_current_node() == "melee_attack" or (to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding()):
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
 			if position.distance_to(last_known_location) < 1:
