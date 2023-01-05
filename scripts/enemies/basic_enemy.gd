@@ -28,7 +28,8 @@ var stun_timer: float
 
 onready var to_player: RayCast2D = $ToPlayer
 onready var health_bar: TextureProgress = $HealthBar
-onready var sprite: AnimatedSprite = $Sprite
+onready var anim_sprite: AnimatedSprite = $Sprite
+onready var anim_playback = $AnimationTree.get("parameters/playback")
 
 func get_player_as_target() -> void:
 	var player_group: Array = get_tree().get_nodes_in_group("player")
@@ -52,44 +53,47 @@ func _process(delta: float) -> void:
 	if state == HIT:
 		if stun_timer > 0:
 			stun_timer -= delta
+			anim_sprite.play("hit")
 			return
 		else:
 			state = IDLE
 	
 	if target:
 		to_player.cast_to = target.position - position
-		if $AnimationPlayer.is_playing() or to_player.cast_to.length() < ATTACK_RANGE:
+		if $AnimationPlayer.current_animation == "melee_attack" or (to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding()):
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
 			if position.distance_to(last_known_location) < 1:
+				anim_playback.travel("confused")
 				state = IDLE
 		else:
 			# yes player detected
 			last_known_location = target.position
+			anim_playback.travel("notice")
 			state = CHASE
 	else:
 		get_player_as_target()
 	
 	match state:
 		IDLE:
+			anim_playback.travel("idle")
 			direction = Vector2.ZERO
-			sprite.play("default")
 		ATTACK:
+			anim_playback.travel("melee_attack")
 			direction = Vector2.ZERO
-			$AnimationPlayer.play("melee_attack")
 		CHASE:
+			anim_playback.travel("chase")
 			direction = position.direction_to(last_known_location).normalized()
 			$MeleeBox.rotation = Vector2.RIGHT.angle_to(direction)
-			sprite.play("chase")
 
 func _physics_process(delta: float) -> void:
 	._physics_process(delta)
 	if state != HIT:
 		velocity = direction * MOVEMENT_SPEED
 		if velocity.x < 0:
-			sprite.flip_h = true
+			anim_sprite.flip_h = true
 		elif velocity.x > 0:
-			sprite.flip_h = false
+			anim_sprite.flip_h = false
 
 func hurt(dir: Vector2, damage: int) -> void:
 	$FlashPlayer.play("flash")

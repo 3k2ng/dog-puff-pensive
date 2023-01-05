@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://sprites/enemies/chocolate bar attack.png" type="Texture" id=1]
 [ext_resource path="res://sprites/enemies/chocolate bar idle.png" type="Texture" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://scripts/melee_box.gd" type="Script" id=5]
 [ext_resource path="res://scripts/enemies/basic_enemy.gd" type="Script" id=6]
 [ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=7]
+[ext_resource path="res://sprites/enemies/chocolate bar notice.png" type="Texture" id=8]
+[ext_resource path="res://sprites/enemies/chocolate bar confused.png" type="Texture" id=9]
+[ext_resource path="res://sprites/enemies/chocolate bar hurt.png" type="Texture" id=10]
 
 [sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 7 )
@@ -77,6 +80,46 @@ region = Rect2( 0, 28, 28, 28 )
 atlas = ExtResource( 3 )
 region = Rect2( 28, 28, 28, 28 )
 
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 9 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 9 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 9 )
+region = Rect2( 32, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 96, 32, 32 )
+
 [sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 28, 28 )
@@ -84,6 +127,34 @@ region = Rect2( 0, 0, 28, 28 )
 [sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 28, 28, 28 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 10 )
+region = Rect2( 28, 0, 28, 28 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 64, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=29]
 animations = [ {
@@ -97,9 +168,24 @@ animations = [ {
 "name": "chase",
 "speed": 5.0
 }, {
+"frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
+"loop": true,
+"name": "confused",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
 "name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 65 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
+"loop": true,
+"name": "notice",
 "speed": 5.0
 } ]
 
@@ -108,6 +194,71 @@ radius = 7.0
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 4, 8 )
+
+[sub_resource type="Animation" id=48]
+resource_name = "chase"
+length = 0.1
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "chase", false ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=57]
+resource_name = "confused"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "confused" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 9 ]
+}
+
+[sub_resource type="Animation" id=47]
+resource_name = "idle"
+length = 0.1
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "default", false ],
+"method": "play"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "melee_attack"
@@ -163,6 +314,34 @@ tracks/3/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=49]
+resource_name = "notice"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "notice" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 5 ]
+}
+
 [sub_resource type="Animation" id=9]
 length = 0.001
 tracks/0/type = "value"
@@ -194,6 +373,58 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=53]
+animation = "chase"
+
+[sub_resource type="AnimationNodeAnimation" id=58]
+animation = "confused"
+
+[sub_resource type="AnimationNodeAnimation" id=50]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=59]
+animation = "melee_attack"
+
+[sub_resource type="AnimationNodeAnimation" id=54]
+animation = "notice"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+priority = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=64]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=51]
+states/chase/node = SubResource( 53 )
+states/chase/position = Vector2( 678, 64 )
+states/confused/node = SubResource( 58 )
+states/confused/position = Vector2( 678, 149 )
+states/idle/node = SubResource( 50 )
+states/idle/position = Vector2( 250, 244 )
+states/melee_attack/node = SubResource( 59 )
+states/melee_attack/position = Vector2( 445, 149 )
+states/notice/node = SubResource( 54 )
+states/notice/position = Vector2( 250, 64 )
+transitions = [ "idle", "notice", SubResource( 55 ), "notice", "chase", SubResource( 56 ), "chase", "confused", SubResource( 60 ), "chase", "melee_attack", SubResource( 61 ), "melee_attack", "idle", SubResource( 62 ), "confused", "idle", SubResource( 63 ), "melee_attack", "chase", SubResource( 64 ) ]
+start_node = "idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=52]
+
 [node name="ChocoBar" type="KinematicBody2D" groups=["enemy"]]
 material = SubResource( 8 )
 position = Vector2( 576, 64 )
@@ -205,8 +436,7 @@ script = ExtResource( 6 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
-animation = "attack"
-frame = 7
+animation = "hit"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -227,13 +457,6 @@ position = Vector2( 12, 0 )
 shape = SubResource( 5 )
 disabled = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/melee_attack = SubResource( 6 )
-
-[node name="FlashPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 9 )
-anims/flash = SubResource( 10 )
-
 [node name="HealthBar" type="TextureProgress" parent="."]
 margin_left = -8.0
 margin_top = -20.0
@@ -243,3 +466,20 @@ rect_scale = Vector2( 4, 1 )
 texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 4 )
 tint_under = Color( 0, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/chase = SubResource( 48 )
+anims/confused = SubResource( 57 )
+anims/idle = SubResource( 47 )
+anims/melee_attack = SubResource( 6 )
+anims/notice = SubResource( 49 )
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 9 )
+anims/flash = SubResource( 10 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 51 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 52 )
