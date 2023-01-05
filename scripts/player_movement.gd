@@ -1,11 +1,13 @@
 extends KinematicBody2D
-
+var max_health = 5 
+var health
 var velocity = Vector2()
 export var move_speed = 100 
+var is_dead
 
 func _ready():
-	pass
-	
+	health = max_health
+	is_dead = false
 
 func _physics_process(_delta):
 	
@@ -29,4 +31,14 @@ func _physics_process(_delta):
 
 
 
+func damage_taken(direction: Vector2, damage: int):
+	health = health - damage 
+	velocity = direction.normalized() * 20
+	dead()
 
+func dead():
+	if health <= 0:
+		is_dead = true
+		velocity = Vector2.ZERO
+	else:
+		is_dead = false
