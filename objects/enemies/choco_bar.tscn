@@ -540,6 +540,7 @@ shape = SubResource( 5 )
 disabled = true
 
 [node name="HealthBar" type="TextureProgress" parent="."]
+visible = false
 margin_left = -8.0
 margin_top = -20.0
 margin_right = -4.0
