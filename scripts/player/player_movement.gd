@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 
 func damage_taken(dir: Vector2, damage: int):
 	$FlashPlayer.play("flash")
-	$AnimationPlayer.play("dog_hurt")
+	anim_playback.travel("dog_hurt")
 	stun_timer = STUN_TIME
 	velocity = dir.normalized() * MOVEMENT_SPEED * 2
 	play_sound(GETTING_HIT_SOUND, true)

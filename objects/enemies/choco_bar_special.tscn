@@ -544,7 +544,6 @@ script = ExtResource( 4 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
-frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
