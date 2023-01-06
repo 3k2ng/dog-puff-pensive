@@ -7,17 +7,12 @@ var is_hit
 var hit_time 
 
 
-
-
-
-
 func _ready():
 	health = max_health
 	is_hit = false
 	hit_time = 0
 
 func _physics_process(_delta):
-	print(is_hit)
 	if is_hit == true:
 		velocity = move_and_slide(velocity)
 		if hit_time == 5:
@@ -61,11 +56,10 @@ func _physics_process(_delta):
 		
 
 func damage_taken(direction: Vector2, damage: int):
+	$FlashPlayer.play("on_hit")
 	health = health - damage 
 	is_hit = true
 	velocity = direction.normalized() * 250
 	print("hit")
 
 
-
-	

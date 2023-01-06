@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/player_movement.gd" type="Script" id=1]
 [ext_resource path="res://scripts/player_melee.gd" type="Script" id=2]
@@ -9,6 +9,12 @@
 [ext_resource path="res://sprites/dog/dog idle.png" type="Texture" id=7]
 [ext_resource path="res://sprites/dog/dog up run.png" type="Texture" id=8]
 [ext_resource path="res://sprites/dog/dog up roll.png" type="Texture" id=9]
+[ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=10]
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 10 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 6.0
@@ -678,9 +684,80 @@ tracks/6/keys = {
 "values": [ Vector2( 23, -2 ) ]
 }
 
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 33, 22 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/flash_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:material:shader_param/flash_modifier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "on_hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
 [node name="Player" type="KinematicBody2D"]
+material = SubResource( 15 )
 position = Vector2( 33, 22 )
 script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "puppy man"
+}
 
 [node name="physicsBox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
@@ -696,6 +773,7 @@ anims/dog_run_up = SubResource( 14 )
 anims/idle = SubResource( 12 )
 
 [node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
 texture = ExtResource( 4 )
 
 [node name="MeleeArea" type="Area2D" parent="."]
@@ -715,3 +793,7 @@ hframes = 5
 [node name="BoneAnimation" type="AnimationPlayer" parent="MeleeArea"]
 anims/RESET = SubResource( 10 )
 anims/bone_melee = SubResource( 9 )
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 16 )
+anims/on_hit = SubResource( 17 )
