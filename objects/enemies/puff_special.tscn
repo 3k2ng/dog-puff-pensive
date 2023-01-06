@@ -220,7 +220,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.8, 0.9 ),
+"times": PoolRealArray( 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -455,7 +455,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
 frames = SubResource( 11 )
-frame = 8
+frame = 3
 __meta__ = {
 "_edit_lock_": true
 }
