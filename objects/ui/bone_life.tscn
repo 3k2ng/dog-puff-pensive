@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/ui/health bone.png" type="Texture" id=1]
+
+[node name="Bone" type="TextureRect"]
+margin_right = 20.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )

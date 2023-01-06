@@ -21,7 +21,7 @@ onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var anim_playback = $AnimationTree.get("parameters/playback")
 
 func _ready() -> void:
-	pass
+	PlayerInfo.init_health()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("dodge_roll") and roll_timer <= 0:
@@ -71,6 +71,7 @@ func damage_taken(dir: Vector2, damage: int):
 	stun_timer = STUN_TIME
 	velocity = dir.normalized() * MOVEMENT_SPEED * 2
 	play_sound(GETTING_HIT_SOUND, true)
+	PlayerInfo.current_health -= 1
 
 func play_sound(sfx: AudioStream, overriding: bool) -> void:
 	if overriding or not $MeleeAudio.playing:
