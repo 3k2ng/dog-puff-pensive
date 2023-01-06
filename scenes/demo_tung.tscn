@@ -182,6 +182,26 @@ collision_mask = 7
 format = 1
 script = ExtResource( 3 )
 
+[node name="Door10" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 7
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 4653062, 1, 0, 4653063, 1, 0, 4653064, 1, 0, 4653065, 1, 0, 4653066, 1, 0, 4653067, 1, 0, 4653068, 1, 0, 4653069, 1, 0, 4718598, 1, 0, 4718599, 1, 0, 4718600, 1, 0, 4718601, 1, 0, 4718602, 1, 0, 4718603, 1, 0, 4718604, 1, 0, 4718605, 1, 0 )
+script = ExtResource( 3 )
+id = "10th"
+
+[node name="Door9" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 7
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 3866630, 1, 0, 3866631, 1, 0, 3866632, 1, 0, 3866633, 1, 0, 3866634, 1, 0, 3866635, 1, 0, 3866636, 1, 0, 3866637, 1, 0, 3932166, 1, 0, 3932167, 1, 0, 3932168, 1, 0, 3932169, 1, 0, 3932170, 1, 0, 3932171, 1, 0, 3932172, 1, 0, 3932173, 1, 0 )
+script = ExtResource( 3 )
+id = "9th"
+
 [node name="Door" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
