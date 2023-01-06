@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://tilesets/tile autotile.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
@@ -60,6 +60,12 @@ shader = ExtResource( 9 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = ExtResource( 9 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+
 [node name="Game" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -103,7 +109,11 @@ position = Vector2( 160, -128 )
 
 [node name="SPuff" parent="Field" instance=ExtResource( 11 )]
 material = SubResource( 13 )
-position = Vector2( 160, 296 )
+position = Vector2( 40, 344 )
+
+[node name="SPuff2" parent="Field" instance=ExtResource( 11 )]
+material = SubResource( 14 )
+position = Vector2( 280, 344 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
