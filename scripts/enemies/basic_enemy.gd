@@ -47,7 +47,7 @@ func _die() -> void:
 
 func _ready() -> void:
 	get_player_as_target()
-	max_health = 3
+	max_health = 4
 	health_bar.max_value = max_health
 	._ready()
 
