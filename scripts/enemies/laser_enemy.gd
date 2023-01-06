@@ -141,7 +141,7 @@ func splash() -> void:
 	SignalBus.emit_signal("spawn_object", new_explosion)
 	queue_free()
 
-func hurt(dir: Vector2, damage: int) -> void:
+func hurt(dir: Vector2, _damage: int) -> void:
 	$FlashPlayer.play("flash")
 	play_sound(HURT_SOUND, true)
 	state = HIT

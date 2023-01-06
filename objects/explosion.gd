@@ -15,7 +15,7 @@ func on_body_entered(body: Node) -> void:
 	elif body.is_in_group("button"):
 		body.activate()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if $Timer.is_stopped():
 		$Shape.disabled = true
 	if $Shape.disabled and $Audio.playing:

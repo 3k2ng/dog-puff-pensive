@@ -18,7 +18,7 @@ func _ready():
 	casted = false
 	$AnimationPlayer.play("fade")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if $Lifetime.is_stopped():
 		queue_free()
 	if not casted and len(raycast_array) > 0:
