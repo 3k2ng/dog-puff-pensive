@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/macaron-hurt.ogg-d57a5e51972c19389ad7c3e94807e3ae.oggstr"
+
+[deps]
+
+source_file="res://sfxs/macaron-hurt.ogg"
+dest_files=[ "res://.import/macaron-hurt.ogg-d57a5e51972c19389ad7c3e94807e3ae.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

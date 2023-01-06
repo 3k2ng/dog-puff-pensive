@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/macaron-slam.ogg-b3885e49c1b05cee268bd1e7563ac465.oggstr"
+
+[deps]
+
+source_file="res://sfxs/macaron-slam.ogg"
+dest_files=[ "res://.import/macaron-slam.ogg-b3885e49c1b05cee268bd1e7563ac465.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
