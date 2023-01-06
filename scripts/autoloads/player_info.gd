@@ -11,3 +11,4 @@ var is_dead: bool
 func init_health() -> void:
 	current_health = MAX_HEALTH
 	current_coin = 0
+	is_dead = false
