@@ -1,9 +1,8 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://sprites/enemies/chocolate bar attack.png" type="Texture" id=1]
 [ext_resource path="res://sprites/enemies/chocolate bar idle.png" type="Texture" id=2]
 [ext_resource path="res://sprites/enemies/chocolate bar chase.png" type="Texture" id=3]
-[ext_resource path="res://sprites/test_sprites/redbox.tres" type="Texture" id=4]
 [ext_resource path="res://scripts/melee_box.gd" type="Script" id=5]
 [ext_resource path="res://scripts/enemies/basic_enemy.gd" type="Script" id=6]
 [ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=7]
@@ -205,12 +204,12 @@ radius = 7.0
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 4, 8 )
 
-[sub_resource type="Animation" id=48]
+[sub_resource type="Animation" id=78]
 resource_name = "chase"
-length = 0.1
+length = 0.4
 loop = true
-tracks/0/type = "method"
-tracks/0/path = NodePath("Sprite")
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -218,10 +217,20 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "chase", false ],
-"method": "play"
-} ]
+"update": 1,
+"values": [ "chase" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 3 ]
 }
 
 [sub_resource type="Animation" id=57]
@@ -301,10 +310,10 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=47]
 resource_name = "idle"
-length = 0.1
+length = 0.4
 loop = true
-tracks/0/type = "method"
-tracks/0/path = NodePath("Sprite")
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -312,10 +321,20 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "default", false ],
-"method": "play"
-} ]
+"update": 1,
+"values": [ "default" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -504,7 +523,7 @@ states/notice/node = SubResource( 54 )
 states/notice/position = Vector2( 250, 64 )
 transitions = [ "idle", "notice", SubResource( 55 ), "notice", "chase", SubResource( 56 ), "chase", "confused", SubResource( 60 ), "chase", "melee_attack", SubResource( 61 ), "melee_attack", "idle", SubResource( 62 ), "confused", "idle", SubResource( 63 ), "melee_attack", "chase", SubResource( 64 ), "confused", "chase", SubResource( 66 ), "idle", "hurt", SubResource( 72 ), "hurt", "chase", SubResource( 73 ), "chase", "hurt", SubResource( 74 ), "hurt", "idle", SubResource( 75 ), "hurt", "dead", SubResource( 76 ), "melee_attack", "hurt", SubResource( 77 ) ]
 start_node = "idle"
-graph_offset = Vector2( -6, -172 )
+graph_offset = Vector2( 11, -53 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=52]
 
@@ -518,7 +537,7 @@ script = ExtResource( 6 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
-animation = "attack"
+animation = "chase"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -541,20 +560,8 @@ position = Vector2( 12, 0 )
 shape = SubResource( 5 )
 disabled = true
 
-[node name="HealthBar" type="TextureProgress" parent="."]
-visible = false
-margin_left = -8.0
-margin_top = -20.0
-margin_right = -4.0
-margin_bottom = -16.0
-rect_scale = Vector2( 4, 1 )
-value = 100.0
-texture_under = ExtResource( 4 )
-texture_progress = ExtResource( 4 )
-tint_under = Color( 0, 0, 0, 1 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/chase = SubResource( 48 )
+anims/chase = SubResource( 78 )
 anims/confused = SubResource( 57 )
 anims/dead = SubResource( 69 )
 anims/hurt = SubResource( 68 )

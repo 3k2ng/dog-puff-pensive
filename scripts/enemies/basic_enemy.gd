@@ -33,7 +33,6 @@ var attack_timer: float
 var dead: bool
 
 onready var to_player: RayCast2D = $ToPlayer
-onready var health_bar: TextureProgress = $HealthBar
 onready var anim_sprite: AnimatedSprite = $Sprite
 onready var anim_playback = $AnimationTree.get("parameters/playback")
 
@@ -49,18 +48,15 @@ func _die() -> void:
 	dead = true
 	velocity = Vector2.ZERO
 	anim_playback.travel("dead")
-	health_bar.visible = false
 	$Shape.disabled = true
 
 func _ready() -> void:
 	get_player_as_target()
 	max_health = 4
-	health_bar.max_value = max_health
 	._ready()
 
 func _process(delta: float) -> void:
 	._process(delta)
-	health_bar.value = health
 	
 	if dead:
 		return

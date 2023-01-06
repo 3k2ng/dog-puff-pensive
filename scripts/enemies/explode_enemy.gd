@@ -33,7 +33,6 @@ var state: int
 var stun_timer: float
 
 onready var to_player: RayCast2D = $ToPlayer
-onready var health_bar: TextureProgress = $HealthBar
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var anim_playback = $AnimationTree.get("parameters/playback")
 onready var trail: Particles2D = $Trail
