@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://scripts/enemies/macaron.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemies/macaron/macaron slam.png" type="Texture" id=2]
@@ -7,81 +7,13 @@
 [ext_resource path="res://scripts/melee_box.gd" type="Script" id=5]
 [ext_resource path="res://sprites/enemies/macaron/macaron hurt.png" type="Texture" id=6]
 [ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=7]
+[ext_resource path="res://sprites/enemies/macaron/macaron idle.png" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
 shader = ExtResource( 7 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
-
-[sub_resource type="AtlasTexture" id=86]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=87]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=88]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=89]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 48, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=90]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 48, 48, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=91]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 96, 48, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=92]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 96, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=93]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 48, 96, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=94]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 96, 96, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=81]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=82]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=83]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=84]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 0, 48, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=85]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 48, 48, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=95]
 atlas = ExtResource( 4 )
@@ -119,19 +51,82 @@ region = Rect2( 48, 96, 48, 48 )
 atlas = ExtResource( 4 )
 region = Rect2( 96, 96, 48, 48 )
 
+[sub_resource type="AtlasTexture" id=110]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=111]
+atlas = ExtResource( 8 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=112]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=113]
+atlas = ExtResource( 8 )
+region = Rect2( 48, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=82]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=86]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=87]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=88]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=89]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=90]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=91]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=92]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 96, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=93]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 96, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=94]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 96, 48, 48 )
+
 [sub_resource type="SpriteFrames" id=104]
 animations = [ {
-"frames": [ SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ) ],
+"frames": [ SubResource( 95 ), SubResource( 96 ), SubResource( 97 ), SubResource( 98 ), SubResource( 99 ), SubResource( 100 ), SubResource( 101 ), SubResource( 102 ), SubResource( 103 ) ],
 "loop": true,
-"name": "attack",
+"name": "spawn",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "dead",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 81 ) ],
+"frames": [ SubResource( 110 ), SubResource( 111 ), SubResource( 112 ), SubResource( 113 ) ],
 "loop": true,
 "name": "default",
 "speed": 12.0
@@ -141,9 +136,14 @@ animations = [ {
 "name": "hurt",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 95 ), SubResource( 96 ), SubResource( 97 ), SubResource( 98 ), SubResource( 99 ), SubResource( 100 ), SubResource( 101 ), SubResource( 102 ), SubResource( 103 ) ],
+"frames": [ SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ) ],
 "loop": true,
-"name": "spawn",
+"name": "attack",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "dead",
 "speed": 12.0
 } ]
 
@@ -214,8 +214,9 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=47]
 resource_name = "idle"
-length = 0.1
+length = 0.333333
 loop = true
+step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:animation")
 tracks/0/interp = 1
@@ -235,10 +236,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.333333 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 0, 3 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -299,7 +300,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=105]
 resource_name = "spawn"
 length = 0.666667
-loop = true
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:animation")
@@ -392,6 +392,7 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=72]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=75]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=76]
 
@@ -406,9 +407,9 @@ switch_mode = 2
 states/dead/node = SubResource( 70 )
 states/dead/position = Vector2( 492, -46.5556 )
 states/hurt/node = SubResource( 71 )
-states/hurt/position = Vector2( 678.296, -46.3333 )
+states/hurt/position = Vector2( 679.366, -46.2593 )
 states/idle/node = SubResource( 50 )
-states/idle/position = Vector2( 679.111, 64 )
+states/idle/position = Vector2( 679.767, 63.0123 )
 states/melee_attack/node = SubResource( 59 )
 states/melee_attack/position = Vector2( 870, 55.4444 )
 states/spawn/node = SubResource( 106 )
@@ -429,8 +430,6 @@ script = ExtResource( 1 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 104 )
-animation = "hurt"
-frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
@@ -468,6 +467,10 @@ anims/flash = SubResource( 10 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 109 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 52 )
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Spawn_Position" type="Node2D" parent="."]
+position = Vector2( 15, 11 )

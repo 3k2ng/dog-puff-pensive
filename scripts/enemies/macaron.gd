@@ -14,16 +14,19 @@ enum {
 }
 
 const DETECTION_RANGE = 160 # 10 blocks
-const ATTACK_RANGE = 40
+const ATTACK_RANGE = 80
 
 const STUN_TIME = 0.2
 const ATTACK_CD = 1
+const SPAWN_CD = 0.75
 
 var target: KinematicBody2D
 var state: int
 var stun_timer: float
 var attack_timer: float
+var spawn_timer: float
 var dead: bool
+var can_spawn: bool
 
 onready var to_player: RayCast2D = $ToPlayer
 onready var anim_sprite: AnimatedSprite = $Sprite
@@ -45,6 +48,7 @@ func _die() -> void:
 func _ready() -> void:
 	get_player_as_target()
 	max_health = 6
+	can_spawn = true;
 	._ready()
 
 func _process(delta: float) -> void:
@@ -57,12 +61,19 @@ func _process(delta: float) -> void:
 		if stun_timer > 0:
 			stun_timer -= delta
 			anim_playback.travel("hurt")
+			can_spawn = true;
 			return
 		else:
 			state = IDLE
+			# enable_spawn()
 	
 	if attack_timer > 0:
 		attack_timer -= delta
+
+	if spawn_timer > 0:
+		spawn_timer -= delta
+		# if spawn_timer <= 0:
+		# 	enable_spawn()
 	
 	if target:
 		to_player.clear_exceptions()
@@ -70,7 +81,7 @@ func _process(delta: float) -> void:
 		for e in get_tree().get_nodes_in_group("enemy"):
 			to_player.add_exception(e)
 		to_player.cast_to = target.position - position
-		if anim_playback.get_current_node() == "melee_attack" or (attack_timer <= 0 and to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding()):
+		if anim_playback.get_current_node() == "melee_attack" or (attack_timer <= 0 and to_player.cast_to.length() < ATTACK_RANGE):
 			if attack_timer <= 0:
 				play_sound(STOMPING_SOUND, true)
 				attack_timer = ATTACK_CD
@@ -78,6 +89,11 @@ func _process(delta: float) -> void:
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
 			anim_playback.travel("confused")
 			state = IDLE
+			# enable_spawn()
+		elif spawn_timer <= 0:
+			# yes player detected
+			spawn_timer = SPAWN_CD
+			state = CHASE
 	else:
 		get_player_as_target()
 	
@@ -86,6 +102,8 @@ func _process(delta: float) -> void:
 			anim_playback.travel("idle")
 		ATTACK:
 			anim_playback.travel("melee_attack")
+		CHASE:
+			anim_playback.travel("spawn")
 
 func hurt(dir: Vector2, damage: int) -> void:
 	$FlashPlayer.play("flash")
@@ -99,11 +117,18 @@ func splash() -> void:
 	new_splash.position = $MeleeBox/Shape.global_position
 	SignalBus.emit_signal("spawn_object", new_splash)
 
-func shoot() -> void:
+func spawn() -> void:
+	# if not can_spawn:
+	# 	return
 	var new_puff = PUFF.instance()
-	new_puff.position = $MeleeBox/Shape.global_position
-	new_puff.state = 1 # LAUNCH
+	new_puff.position = $Spawn_Position.global_position
+	# new_puff.state = 0 # LAUNCH
 	new_puff.collision_layer = 2
 	new_puff.collision_mask = 2
 	new_puff.direction = to_player.cast_to.normalized()
 	SignalBus.emit_signal("spawn_object", new_puff)
+	anim_playback.travel("idle")
+	# can_spawn = false;
+
+# func enable_spawn():
+# 	can_spawn = true;
