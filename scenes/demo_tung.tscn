@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://tilesets/tile autotile.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://objects/enemies/choco_bar_special.tscn" type="PackedScene" id=11]
 [ext_resource path="res://objects/props/button.tscn" type="PackedScene" id=12]
 [ext_resource path="res://objects/enemies/puff_special.tscn" type="PackedScene" id=13]
+[ext_resource path="res://sprites/props/flag.png" type="Texture" id=14]
+[ext_resource path="res://scenes/flag.gd" type="Script" id=15]
 
 [sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
@@ -163,6 +165,33 @@ resource_local_to_scene = true
 shader = ExtResource( 9 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 14 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 14 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=44]
+animations = [ {
+"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=45]
+radius = 2.0
 
 [node name="Game" type="Node"]
 
@@ -532,6 +561,20 @@ id = "h_6th"
 position = Vector2( 608, 1120 )
 id = "h_6th"
 
+[node name="Flag" type="Area2D" parent="Field"]
+position = Vector2( 160, 1248 )
+scale = Vector2( 2, 2 )
+collision_layer = 7
+collision_mask = 7
+script = ExtResource( 15 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Field/Flag"]
+frames = SubResource( 44 )
+offset = Vector2( -4, -7 )
+
+[node name="Shape" type="CollisionShape2D" parent="Field/Flag"]
+shape = SubResource( 45 )
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Health" type="HBoxContainer" parent="UI"]
@@ -551,3 +594,5 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[connection signal="body_entered" from="Field/Flag" to="Field/Flag" method="_on_Flag_body_entered"]
