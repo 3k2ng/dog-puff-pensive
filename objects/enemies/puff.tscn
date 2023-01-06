@@ -35,7 +35,7 @@ region = Rect2( 28, 28, 28, 28 )
 atlas = ExtResource( 4 )
 region = Rect2( 0, 56, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 28, 28 )
 
@@ -130,7 +130,7 @@ animations = [ {
 "name": "chase",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 31 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "default",
 "speed": 12.0
@@ -320,7 +320,7 @@ tracks/1/keys = {
 "values": [ 0, 4 ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=55]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/flash_modifier")
@@ -446,7 +446,7 @@ anims/launch = SubResource( 40 )
 anims/notice = SubResource( 41 )
 
 [node name="FlashPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 31 )
+anims/RESET = SubResource( 55 )
 anims/flash = SubResource( 32 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

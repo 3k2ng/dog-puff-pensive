@@ -61,9 +61,7 @@ func _process(delta: float) -> void:
 		if to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding():
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
-			if position.distance_to(last_known_location) < CLOSEST_DIST:
-				anim_playback.travel("confused")
-				state = IDLE
+			state = IDLE
 		else:
 			# yes player detected
 			last_known_location = target.position
