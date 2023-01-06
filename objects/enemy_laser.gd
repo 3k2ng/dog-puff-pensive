@@ -14,7 +14,7 @@ var casted: bool
 func _ready():
 	add_point(Vector2.ZERO)
 	raycast_array = []
-	gen_raycast(direction, RAY_COUNT, RAY_WIDTH, get_tree().get_nodes_in_group("enemy"))
+	gen_raycast(direction, RAY_COUNT, RAY_WIDTH)
 	casted = false
 	$AnimationPlayer.play("fade")
 
@@ -31,6 +31,8 @@ func _process(delta: float) -> void:
 			
 			if collision[0].is_in_group("player"):
 				collision[0].damage_taken(direction.normalized(), 1)
+			if collision[0].is_in_group("enemy"):
+				collision[0].hurt(direction.normalized(), 1)
 			casted = true
 
 func gen_raycast(dir: Vector2, ray_count: int, ray_width: float, exception: Array = []) -> void:
@@ -45,6 +47,7 @@ func gen_raycast(dir: Vector2, ray_count: int, ray_width: float, exception: Arra
 		new_ray.enabled = true
 		new_ray.position = right_vector * cur_width
 		new_ray.cast_to = dir.normalized() * MAX_LENGTH
+		new_ray.collision_mask = 2
 		for body in exception:
 			new_ray.add_exception(body)
 		add_child(new_ray)
