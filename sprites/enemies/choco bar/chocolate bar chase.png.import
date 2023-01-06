@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chocolate bar confused.png-c9eafa332f1122b2bbabb520d90e4dd8.stex"
+path="res://.import/chocolate bar chase.png-4fa42abab25f4a27c29511392fdb87ee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/chocolate bar confused.png"
-dest_files=[ "res://.import/chocolate bar confused.png-c9eafa332f1122b2bbabb520d90e4dd8.stex" ]
+source_file="res://sprites/enemies/choco bar/chocolate bar chase.png"
+dest_files=[ "res://.import/chocolate bar chase.png-4fa42abab25f4a27c29511392fdb87ee.stex" ]
 
 [params]
 
