@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://tilesets/tile autotile.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://scenes/flag.gd" type="Script" id=15]
 [ext_resource path="res://objects/props/coin.tscn" type="PackedScene" id=16]
 [ext_resource path="res://musics/overworld theme loop.wav" type="AudioStream" id=17]
+[ext_resource path="res://objects/enemies/macaron.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
@@ -250,6 +251,12 @@ shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
 [sub_resource type="ShaderMaterial" id=55]
+resource_local_to_scene = true
+shader = ExtResource( 9 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id=56]
 resource_local_to_scene = true
 shader = ExtResource( 9 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
@@ -695,6 +702,11 @@ position = Vector2( 800, 288 )
 
 [node name="Coin3" parent="Field" instance=ExtResource( 16 )]
 position = Vector2( 480, 1248 )
+
+[node name="Macaron" parent="Field" groups=["id"] instance=ExtResource( 18 )]
+material = SubResource( 56 )
+position = Vector2( 160, 1056 )
+id = "10th"
 
 [node name="UI" type="CanvasLayer" parent="."]
 

@@ -3,8 +3,8 @@ extends "res://scripts/enemies/enemy.gd"
 const SPLASH: PackedScene = preload("res://objects/macaron_splash.tscn")
 const PUFF: PackedScene = preload("res://objects/enemies/puff.tscn")
 
-const HURT_SOUND: AudioStreamOGGVorbis = preload("res://sfxs/macaron-hurt.ogg")
-const STOMPING_SOUND: AudioStreamOGGVorbis = preload("res://sfxs/macaron-slam.ogg")
+const HURT_SOUND: AudioStreamSample = preload("res://sfxs/01-macaron_hurt.wav")
+const STOMPING_SOUND: AudioStreamSample = preload("res://sfxs/02-macaron_slam.wav")
 
 enum {
 	IDLE,

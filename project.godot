@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="Dog Puff Pensive"
+run/main_scene="res://scenes/title_screen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
