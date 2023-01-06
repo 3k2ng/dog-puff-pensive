@@ -1,6 +1,4 @@
 extends KinematicBody2D
-var max_health = 5 
-var health
 var velocity = Vector2()
 export var move_speed = 100 
 var is_hit
@@ -8,9 +6,11 @@ var hit_time
 
 
 func _ready():
-	health = max_health
+	player_info.health = player_info.max_health
 	is_hit = false
 	hit_time = 0
+	
+	
 
 func _physics_process(_delta):
 	if is_hit == true:
@@ -57,9 +57,8 @@ func _physics_process(_delta):
 
 func damage_taken(direction: Vector2, damage: int):
 	$FlashPlayer.play("on_hit")
-	health = health - damage 
+	player_info.health = player_info.health - damage 
 	is_hit = true
 	velocity = direction.normalized() * 250
-	print("hit")
 
 
