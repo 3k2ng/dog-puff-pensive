@@ -5,6 +5,11 @@ var velocity = Vector2()
 export var move_speed = 100 
 var is_dead
 
+
+
+
+
+
 func _ready():
 	health = max_health
 	is_dead = false
@@ -15,7 +20,7 @@ func _physics_process(_delta):
 	if $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
 		velocity = move_and_slide(Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * move_speed)
 	else:
-		velocity = move_and_slide(velocity)
+		velocity = move_and_slide(velocity.normalized() * (move_speed*1.25))
 	if Input.is_action_just_pressed("dodge_roll"):
 		if velocity.x < 0:
 			$Sprite.flip_h = true
@@ -26,11 +31,13 @@ func _physics_process(_delta):
 		elif velocity.y >= 0:
 			$PlayerAnimation.play("dodge_roll")
 		
-	elif velocity.x > 0 and velocity.y == 0 and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
+	elif velocity.x > 0 and velocity.y >= 0 and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
 		$Sprite.flip_h = false
 		$PlayerAnimation.play("dog_run")
-	elif velocity.x < 0 and velocity.y == 0 and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
+	elif velocity.x < 0 and velocity.y >= 0 and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
 		$Sprite.flip_h = true
+		$PlayerAnimation.play("dog_run")
+	elif velocity.y > 0 and velocity.x == 0 and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
 		$PlayerAnimation.play("dog_run")
 	elif velocity == Vector2.ZERO and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
 		$PlayerAnimation.play("idle") 
@@ -46,7 +53,7 @@ func _physics_process(_delta):
 func damage_taken(direction: Vector2, damage: int):
 	health = health - damage 
 	velocity = direction.normalized() * 20
-	dead()
+	print(health)
 
 
 func dead():
