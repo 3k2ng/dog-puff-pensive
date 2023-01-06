@@ -40,7 +40,6 @@ func get_player_as_target() -> void:
 	if len(player_group) > 0:
 		target = get_tree().get_nodes_in_group("player")[0]
 		# activate raycast
-		to_player.add_exception(target)
 		to_player.enabled = true
 
 func _process(delta: float) -> void:
@@ -59,9 +58,10 @@ func _process(delta: float) -> void:
 		return
 	
 	if target:
+		to_player.clear_exceptions()
+		to_player.add_exception(target)
 		for e in get_tree().get_nodes_in_group("enemy"):
 			to_player.add_exception(e)
-			pass
 		to_player.cast_to = target.position - position
 		if to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding():
 			play_sound(EXPLODING_SOUND, false)

@@ -71,6 +71,7 @@ func _process(delta: float) -> void:
 		attack_timer -= delta
 	
 	if target:
+		to_player.clear_exceptions()
 		to_player.add_exception(target)
 		for e in get_tree().get_nodes_in_group("enemy"):
 			to_player.add_exception(e)

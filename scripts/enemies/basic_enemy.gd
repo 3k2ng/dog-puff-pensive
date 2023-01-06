@@ -39,7 +39,6 @@ func get_player_as_target() -> void:
 	if len(player_group) > 0:
 		target = get_tree().get_nodes_in_group("player")[0]
 		# activate raycast
-		to_player.add_exception(target)
 		to_player.enabled = true
 
 func _die() -> void:
@@ -71,9 +70,10 @@ func _process(delta: float) -> void:
 		attack_timer -= delta
 	
 	if target:
+		to_player.clear_exceptions()
+		to_player.add_exception(target)
 		for e in get_tree().get_nodes_in_group("enemy"):
 			to_player.add_exception(e)
-			pass
 		to_player.cast_to = target.position - position
 		if anim_playback.get_current_node() == "melee_attack" or (attack_timer <= 0 and (to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding())):
 			if attack_timer <= 0:
