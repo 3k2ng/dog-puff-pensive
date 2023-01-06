@@ -17,7 +17,7 @@ enum {
 }
 
 const MOVEMENT_SPEED = 64
-const LAUNCH_SPEED = 128
+const LAUNCH_SPEED = 96.0
 
 const DETECTION_RANGE = 160 # 10 blocks
 const ATTACK_RANGE = 20
