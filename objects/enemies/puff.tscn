@@ -455,6 +455,7 @@ __meta__ = {
 }
 
 [node name="ToPlayer" type="RayCast2D" parent="."]
+collision_mask = 3
 __meta__ = {
 "_edit_lock_": true
 }

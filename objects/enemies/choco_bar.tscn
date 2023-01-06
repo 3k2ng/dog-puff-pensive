@@ -537,7 +537,7 @@ script = ExtResource( 6 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
-animation = "chase"
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
@@ -549,6 +549,7 @@ __meta__ = {
 }
 
 [node name="ToPlayer" type="RayCast2D" parent="."]
+collision_mask = 3
 
 [node name="MeleeBox" type="Area2D" parent="."]
 collision_layer = 2
