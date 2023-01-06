@@ -17,13 +17,17 @@ var velocity: Vector2
 var stun_timer: float
 var roll_timer: float
 
+
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var anim_playback = $AnimationTree.get("parameters/playback")
 
 func _ready() -> void:
 	PlayerInfo.init_health()
+	PlayerInfo.init_death()
 
 func _process(delta: float) -> void:
+	if PlayerInfo.is_dead:
+		return
 	if Input.is_action_just_pressed("dodge_roll") and roll_timer <= 0:
 		roll_timer = ROLL_TIME
 		play_sound(ROLLING_SOUND, true)
@@ -72,8 +76,19 @@ func damage_taken(dir: Vector2, damage: int):
 	velocity = dir.normalized() * MOVEMENT_SPEED * 2
 	play_sound(GETTING_HIT_SOUND, true)
 	PlayerInfo.current_health -= 1
+	die()
+	print(PlayerInfo.current_health)
+	
 
 func play_sound(sfx: AudioStream, overriding: bool) -> void:
 	if overriding or not $MeleeAudio.playing:
 		$Audio.stream = sfx
 		$Audio.play()
+
+func die():
+	if PlayerInfo.current_health <= 0:
+		PlayerInfo.is_dead = true
+		velocity = Vector2.ZERO
+		get_tree().change_scene("res://scenes/game_over.tscn")
+		
+	
