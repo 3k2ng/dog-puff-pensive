@@ -15,9 +15,9 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
 scale_random = 0.4
+color = Color( 0.258824, 0.156863, 0.0980392, 1 )
 
 [node name="Splash" type="Particles2D"]
-modulate = Color( 0.258824, 0.156863, 0.0980392, 1 )
 emitting = false
 amount = 16
 lifetime = 0.8

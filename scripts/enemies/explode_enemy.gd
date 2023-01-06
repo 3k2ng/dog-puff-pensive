@@ -31,6 +31,7 @@ onready var to_player: RayCast2D = $ToPlayer
 onready var health_bar: TextureProgress = $HealthBar
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var anim_playback = $AnimationTree.get("parameters/playback")
+onready var trail: Particles2D = $Trail
 
 func get_player_as_target() -> void:
 	var player_group: Array = get_tree().get_nodes_in_group("player")
@@ -48,6 +49,7 @@ func _process(delta: float) -> void:
 			return
 		else:
 			state = LAUNCH
+			trail.emitting = true
 			anim_playback.travel("launch")
 	
 	if state == LAUNCH:
