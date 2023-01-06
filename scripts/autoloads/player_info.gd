@@ -1,7 +1,7 @@
 extends Node
 
-const MAX_HEALTH : int = 30
-const MAX_COIN : int = 4
+const MAX_HEALTH : int = 4
+const MAX_COIN : int = 3
 
 var current_health : int
 var current_coin : int
