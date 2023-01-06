@@ -2,7 +2,7 @@ tool
 extends StaticBody2D
 
 export var activated: bool
-export var id: int
+export var id: String
 
 func _process(delta: float) -> void:
 	if activated:

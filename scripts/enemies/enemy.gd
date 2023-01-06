@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+export var id: String
+
 var max_health: int
 var health: int
 var velocity: Vector2
