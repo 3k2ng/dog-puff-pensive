@@ -19,7 +19,7 @@ func _physics_process(_delta):
 		else:
 			$Sprite.flip_h = false
 		$PlayerAnimation.play("dodge_roll")
-
+		
 	elif velocity.x > 0 and velocity.y == 0 and $PlayerAnimation.current_animation != "dodge_roll":
 		$Sprite.flip_h = false
 		$PlayerAnimation.play("dog_run")
@@ -28,7 +28,21 @@ func _physics_process(_delta):
 		$PlayerAnimation.play("dog_run")
 	elif velocity == Vector2.ZERO and $PlayerAnimation.current_animation != "dodge_roll":
 		$PlayerAnimation.play("idle") 
-
+	elif velocity.y < 0 and $PlayerAnimation.current_animation != "dodge_roll":
+		if velocity.x < 0:
+			$Sprite.flip_h = true
+		else:
+			$Sprite.flip_h = false
+		$Sprite.flip_v = false
+		$PlayerAnimation.play("dog_run_up")
+	elif velocity.y > 0 and $PlayerAnimation.current_animation != "dodge_roll":
+		if velocity.x < 0:
+			$Sprite.flip_h = true
+		else:
+			$Sprite.flip_h = false
+		$Sprite.flip_v = true
+		$PlayerAnimation.play("dog_run_up")
+		
 
 func damage_taken(direction: Vector2, damage: int):
 	health = health - damage 
