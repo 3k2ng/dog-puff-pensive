@@ -2,7 +2,9 @@ extends "res://scripts/enemies/enemy.gd"
 
 const SPLASH: PackedScene = preload("res://objects/splash.tscn")
 const EXPLOSION: PackedScene = preload("res://objects/explosion.tscn")
+const LASER: PackedScene = preload("res://objects/enemy_laser.tscn")
 
+const EXPLOSION_SOUND = preload("res://sfxs/07-puff explode.wav")
 const EXPLODING_SOUND: AudioStreamSample = preload("res://sfxs/08-puff fuse.wav")
 const HURT_SOUND: AudioStreamSample = preload("res://sfxs/09-puff hurt.wav")
 const NOTICE_SOUND: AudioStreamSample = preload("res://sfxs/10-puff noticing.wav")
@@ -20,15 +22,18 @@ const MOVEMENT_SPEED = 64
 const LAUNCH_SPEED = 96.0
 
 const DETECTION_RANGE = 160 # 10 blocks
-const ATTACK_RANGE = 16
+const ATTACK_RANGE = 160
 
 const STUN_TIME = 0.2
+const ATTACK_CD = 2
 
 var direction: Vector2
+var laser_direction: Vector2
 
 var target: KinematicBody2D
 var state: int
 var stun_timer: float
+var attack_timer: float
 
 onready var to_player: RayCast2D = $ToPlayer
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
@@ -59,6 +64,9 @@ func _process(delta: float) -> void:
 		collision_mask = 2
 		return
 	
+	if attack_timer > 0:
+		attack_timer -= delta
+	
 	if target:
 		to_player.clear_exceptions()
 		to_player.add_exception(target)
@@ -66,7 +74,10 @@ func _process(delta: float) -> void:
 			to_player.add_exception(e)
 		to_player.cast_to = target.position - position
 		if to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding():
-			play_sound(EXPLODING_SOUND, false)
+			if attack_timer <= 0:
+				play_sound(EXPLODING_SOUND, true)
+				anim_playback.travel("explode")
+				attack_timer = ATTACK_CD
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
 			state = IDLE
@@ -84,7 +95,6 @@ func _process(delta: float) -> void:
 			anim_playback.travel("idle")
 			direction = Vector2.ZERO
 		ATTACK:
-			anim_playback.travel("explode")
 			direction = Vector2.ZERO
 		CHASE:
 			anim_playback.travel("chase")
@@ -115,6 +125,13 @@ func _physics_process(delta: float) -> void:
 func _ready() -> void:
 	get_player_as_target()
 
+func laser() -> void:
+	play_sound(EXPLOSION_SOUND, true)
+	var new_laser = LASER.instance()
+	new_laser.position = global_position + laser_direction.normalized() * 8
+	new_laser.direction = laser_direction.normalized()
+	SignalBus.emit_signal("spawn_object", new_laser)
+
 func splash() -> void:
 	var new_splash = SPLASH.instance()
 	new_splash.position = global_position
@@ -131,3 +148,6 @@ func hurt(dir: Vector2, _damage: int) -> void:
 	stun_timer = STUN_TIME
 	velocity = Vector2.ZERO
 	direction = dir.normalized()
+
+func update_laser_aim() -> void:
+	laser_direction = to_player.cast_to.normalized()

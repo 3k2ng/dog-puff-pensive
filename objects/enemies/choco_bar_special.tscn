@@ -1,10 +1,10 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://sprites/enemies/choco bar/chocolate bar attack.png" type="Texture" id=1]
 [ext_resource path="res://sprites/enemies/choco bar/chocolate bar idle.png" type="Texture" id=2]
 [ext_resource path="res://sprites/enemies/choco bar/chocolate bar chase.png" type="Texture" id=3]
+[ext_resource path="res://scripts/enemies/single_shot_enemy.gd" type="Script" id=4]
 [ext_resource path="res://scripts/melee_box.gd" type="Script" id=5]
-[ext_resource path="res://scripts/enemies/basic_enemy.gd" type="Script" id=6]
 [ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=7]
 [ext_resource path="res://sprites/enemies/choco bar/chocolate bar notice.png" type="Texture" id=8]
 [ext_resource path="res://sprites/enemies/choco bar/chocolate bar confused.png" type="Texture" id=9]
@@ -383,11 +383,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.35 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "splash"
+}, {
+"args": [  ],
+"method": "shoot"
 } ]
 }
 
@@ -506,9 +509,13 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=77]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=79]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=80]
+
 [sub_resource type="AnimationNodeStateMachine" id=51]
 states/chase/node = SubResource( 53 )
-states/chase/position = Vector2( 678, 64 )
+states/chase/position = Vector2( 678, 28 )
 states/confused/node = SubResource( 58 )
 states/confused/position = Vector2( 678, 149 )
 states/dead/node = SubResource( 70 )
@@ -518,25 +525,26 @@ states/hurt/position = Vector2( 678, -79 )
 states/idle/node = SubResource( 50 )
 states/idle/position = Vector2( 250, 244 )
 states/melee_attack/node = SubResource( 59 )
-states/melee_attack/position = Vector2( 1119, 244 )
+states/melee_attack/position = Vector2( 1140, 149 )
 states/notice/node = SubResource( 54 )
-states/notice/position = Vector2( 250, 64 )
-transitions = [ "idle", "notice", SubResource( 55 ), "notice", "chase", SubResource( 56 ), "chase", "confused", SubResource( 60 ), "chase", "melee_attack", SubResource( 61 ), "melee_attack", "idle", SubResource( 62 ), "confused", "idle", SubResource( 63 ), "melee_attack", "chase", SubResource( 64 ), "confused", "chase", SubResource( 66 ), "idle", "hurt", SubResource( 72 ), "hurt", "chase", SubResource( 73 ), "chase", "hurt", SubResource( 74 ), "hurt", "idle", SubResource( 75 ), "hurt", "dead", SubResource( 76 ), "melee_attack", "hurt", SubResource( 77 ) ]
+states/notice/position = Vector2( 250, 22 )
+transitions = [ "idle", "notice", SubResource( 55 ), "notice", "chase", SubResource( 56 ), "chase", "confused", SubResource( 60 ), "chase", "melee_attack", SubResource( 61 ), "melee_attack", "idle", SubResource( 62 ), "confused", "idle", SubResource( 63 ), "melee_attack", "chase", SubResource( 64 ), "confused", "chase", SubResource( 66 ), "idle", "hurt", SubResource( 72 ), "hurt", "chase", SubResource( 73 ), "chase", "hurt", SubResource( 74 ), "hurt", "idle", SubResource( 75 ), "hurt", "dead", SubResource( 76 ), "melee_attack", "hurt", SubResource( 77 ), "notice", "melee_attack", SubResource( 79 ), "idle", "melee_attack", SubResource( 80 ) ]
 start_node = "idle"
-graph_offset = Vector2( 11, -53 )
+graph_offset = Vector2( 7, -184 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=52]
 
-[node name="ChocoBar" type="KinematicBody2D" groups=["enemy"]]
+[node name="SChocoBar" type="KinematicBody2D" groups=["enemy"]]
 material = SubResource( 8 )
 collision_layer = 6
 collision_mask = 6
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }

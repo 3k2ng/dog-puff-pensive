@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/props/button.png" type="Texture" id=1]
+[ext_resource path="res://scripts/props/button.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=15]
+radius = 6.0
+
+[node name="Button" type="StaticBody2D" groups=["button"]]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 15 )

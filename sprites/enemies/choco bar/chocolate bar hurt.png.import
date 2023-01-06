@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chocolate bar hurt.png-99c33d6213f0dc897f7c1cb152119204.stex"
+path="res://.import/chocolate bar hurt.png-261241c3b6c2fc1e1d92af37b22ba132.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/chocolate bar hurt.png"
-dest_files=[ "res://.import/chocolate bar hurt.png-99c33d6213f0dc897f7c1cb152119204.stex" ]
+source_file="res://sprites/enemies/choco bar/chocolate bar hurt.png"
+dest_files=[ "res://.import/chocolate bar hurt.png-261241c3b6c2fc1e1d92af37b22ba132.stex" ]
 
 [params]
 

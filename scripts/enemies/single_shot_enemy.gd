@@ -1,6 +1,7 @@
 extends "res://scripts/enemies/enemy.gd"
 
 const SPLASH: PackedScene = preload("res://objects/splash.tscn")
+const PUFF: PackedScene = preload("res://objects/enemies/puff.tscn")
 
 const HURT_SOUND: AudioStreamSample = preload("res://sfxs/01-chocolate hurt.wav")
 const NOTICE_SOUND: AudioStreamSample = preload("res://sfxs/02-chocolate noticing.wav")
@@ -14,13 +15,13 @@ enum {
 	ATTACK
 }
 
-const MOVEMENT_SPEED = 32
+const MOVEMENT_SPEED = 16
 
 const DETECTION_RANGE = 160 # 10 blocks
-const ATTACK_RANGE = 20
+const ATTACK_RANGE = 160
 
 const STUN_TIME = 0.1
-const ATTACK_CD = 1
+const ATTACK_CD = 2
 
 var direction: Vector2
 
@@ -49,7 +50,7 @@ func _die() -> void:
 
 func _ready() -> void:
 	get_player_as_target()
-	max_health = 4
+	max_health = 6
 	._ready()
 
 func _process(delta: float) -> void:
@@ -75,7 +76,7 @@ func _process(delta: float) -> void:
 		for e in get_tree().get_nodes_in_group("enemy"):
 			to_player.add_exception(e)
 		to_player.cast_to = target.position - position
-		if anim_playback.get_current_node() == "melee_attack" or (attack_timer <= 0 and (to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding())):
+		if anim_playback.get_current_node() == "melee_attack" or (attack_timer <= 0 and to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding()):
 			if attack_timer <= 0:
 				play_sound(STOMPING_SOUND, true)
 				attack_timer = ATTACK_CD
@@ -126,3 +127,12 @@ func splash() -> void:
 	var new_splash = SPLASH.instance()
 	new_splash.position = $MeleeBox/Shape.global_position
 	SignalBus.emit_signal("spawn_object", new_splash)
+
+func shoot() -> void:
+	var new_puff = PUFF.instance()
+	new_puff.position = $MeleeBox/Shape.global_position
+	new_puff.state = 2 # LAUNCH
+	new_puff.collision_layer = 2
+	new_puff.collision_mask = 2
+	new_puff.direction = to_player.cast_to.normalized()
+	SignalBus.emit_signal("spawn_object", new_puff)
