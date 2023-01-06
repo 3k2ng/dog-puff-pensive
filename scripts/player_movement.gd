@@ -1,64 +1,78 @@
 extends KinematicBody2D
-var velocity = Vector2()
-export var move_speed = 100 
-var is_hit
-var hit_time 
 
+const GETTING_HIT_SOUND: AudioStreamSample = preload("res://sfxs/05-getting hit.wav")
+const ROLLING_SOUND: AudioStreamSample = preload("res://sfxs/12-rolling.wav")
 
-func _ready():
-	player_info.health = player_info.max_health
-	is_hit = false
-	hit_time = 0
+const MOVEMENT_SPEED: float = 64.0
+const ROLLING_SPEED: float = 128.0
+
+const STUN_TIME: float = 0.2
+const ROLL_TIME: float = 0.5
+
+var is_facing_up: bool
+
+var direction: Vector2
+var velocity: Vector2
+
+var stun_timer: float
+var roll_timer: float
+
+onready var anim_sprite: AnimatedSprite = $AnimatedSprite
+onready var anim_playback = $AnimationTree.get("parameters/playback")
+
+func _ready() -> void:
+	pass
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("dodge_roll") and roll_timer <= 0:
+		roll_timer = ROLL_TIME
+		play_sound(ROLLING_SOUND, true)
 	
-	
-
-func _physics_process(_delta):
-	if is_hit == true:
-		velocity = move_and_slide(velocity)
-		if hit_time == 5:
-			is_hit = false
-		hit_time = hit_time + 1
-	else:
-		
-		hit_time = 0 
-		$MeleeArea.melee_input()
-		if $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
-			velocity = move_and_slide(Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * move_speed)
+	if roll_timer > 0:
+		roll_timer -= delta
+		if is_facing_up:
+			anim_playback.travel("roll_up")
 		else:
-			velocity = move_and_slide(velocity.normalized() * (move_speed*1.25))
-		if Input.is_action_just_pressed("dodge_roll"):
-			if velocity.x < 0:
-				$Sprite.flip_h = true
-			else:
-				$Sprite.flip_h = false
-			if velocity.y < 0:
-				$PlayerAnimation.play("dodge_roll_up")
-			elif velocity.y >= 0:
-				$PlayerAnimation.play("dodge_roll")
-			
-		elif velocity.x > 0 and velocity.y >= 0 and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
-			$Sprite.flip_h = false
-			$PlayerAnimation.play("dog_run")
-		elif velocity.x < 0 and velocity.y >= 0 and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
-			$Sprite.flip_h = true
-			$PlayerAnimation.play("dog_run")
-		elif velocity.y > 0 and velocity.x == 0 and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
-			$PlayerAnimation.play("dog_run")
-		elif velocity == Vector2.ZERO and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
-			$PlayerAnimation.play("idle") 
-		elif velocity.y < 0 and $PlayerAnimation.current_animation != "dodge_roll" and $PlayerAnimation.current_animation != "dodge_roll_up":
-			if velocity.x < 0:
-				$Sprite.flip_h = true
-			else:
-				$Sprite.flip_h = false
-			$Sprite.flip_v = false
-			$PlayerAnimation.play("dog_run_up")
+			anim_playback.travel("roll_side")
+	else:
+		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 		
+		if direction.x > 0:
+			anim_sprite.flip_h = false
+		elif direction.x < 0:
+			anim_sprite.flip_h = true
+		
+		if direction.length() > 0:
+			if direction.y < -sqrt(0.5):
+				is_facing_up = true
+			else:
+				is_facing_up = false
+			if is_facing_up:
+				anim_playback.travel("run_up")
+			else:
+				anim_playback.travel("run_side")
+		else:
+			if is_facing_up:
+				anim_playback.travel("idle_up")
+			else:
+				anim_playback.travel("idle")
 
-func damage_taken(direction: Vector2, damage: int):
-	$FlashPlayer.play("on_hit")
-	player_info.health = player_info.health - damage 
-	is_hit = true
-	velocity = direction.normalized() * 250
+func _physics_process(delta: float) -> void:
+	if stun_timer > 0:
+		stun_timer -= delta
+	elif roll_timer <= 0:
+		velocity = direction * MOVEMENT_SPEED
+	else:
+		velocity = direction * ROLLING_SPEED
+	move_and_slide(velocity)
 
+func damage_taken(dir: Vector2, damage: int):
+	$FlashPlayer.play("flash")
+	stun_timer = STUN_TIME
+	velocity = dir.normalized() * MOVEMENT_SPEED * 2
+	play_sound(GETTING_HIT_SOUND, true)
 
+func play_sound(sfx: AudioStream, overriding: bool) -> void:
+	if overriding or not $MeleeAudio.playing:
+		$Audio.stream = sfx
+		$Audio.play()

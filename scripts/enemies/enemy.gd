@@ -20,7 +20,7 @@ func _die() -> void:
 func hurt(dir: Vector2, damage: int) -> void:
 	health -= damage
 
-func play_sound(sfx: AudioStreamSample, override: bool) -> void:
+func play_sound(sfx: AudioStream, override: bool) -> void:
 	if override or not $Audio.playing:
 		$Audio.stream = sfx
 		$Audio.play()
