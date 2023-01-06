@@ -16,7 +16,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SignalBus="*res://scripts/autoloads/signal_bus.gd"
-PlayerInfo="*res://scripts/player_info.gd"
+PlayerInfo="*res://scripts/autoloads/player_info.gd"
 
 [display]
 
