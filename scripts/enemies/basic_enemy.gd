@@ -18,13 +18,11 @@ const MOVEMENT_SPEED = 32
 
 const DETECTION_RANGE = 160 # 10 blocks
 const ATTACK_RANGE = 20
-const CLOSEST_DIST = 16 # closest distance needed to consider arrived at last know player location
 
 const STUN_TIME = 0.1
 const ATTACK_CD = 1
 
 var direction: Vector2
-var last_known_location: Vector2 # location of player last time seen
 
 var target: KinematicBody2D
 var state: int
@@ -83,12 +81,10 @@ func _process(delta: float) -> void:
 				attack_timer = ATTACK_CD
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
-			if position.distance_to(last_known_location) < CLOSEST_DIST:
-				anim_playback.travel("confused")
-				state = IDLE
+			anim_playback.travel("confused")
+			state = IDLE
 		else:
 			# yes player detected
-			last_known_location = target.position
 			anim_playback.travel("notice")
 			if state != CHASE:
 				play_sound(NOTICE_SOUND, false)
@@ -106,7 +102,7 @@ func _process(delta: float) -> void:
 		CHASE:
 			anim_playback.travel("chase")
 			play_sound(SHOUTING_SOUND, false)
-			direction = position.direction_to(last_known_location).normalized()
+			direction = to_player.cast_to.normalized()
 			$MeleeBox.rotation = Vector2.RIGHT.angle_to(direction)
 
 func _physics_process(delta: float) -> void:

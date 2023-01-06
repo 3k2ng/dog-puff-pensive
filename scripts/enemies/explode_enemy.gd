@@ -21,12 +21,10 @@ const LAUNCH_SPEED = 128
 
 const DETECTION_RANGE = 160 # 10 blocks
 const ATTACK_RANGE = 20
-const CLOSEST_DIST = 16 # closest distance needed to consider arrived at last know player location
 
 const STUN_TIME = 0.2
 
 var direction: Vector2
-var last_known_location: Vector2 # location of player last time seen
 
 var target: KinematicBody2D
 var state: int
@@ -72,7 +70,6 @@ func _process(delta: float) -> void:
 			state = IDLE
 		else:
 			# yes player detected
-			last_known_location = target.position
 			anim_playback.travel("notice")
 			if state != CHASE:
 				play_sound(NOTICE_SOUND, false)
@@ -90,7 +87,7 @@ func _process(delta: float) -> void:
 		CHASE:
 			anim_playback.travel("chase")
 			play_sound(SHOUTING_SOUND, false)
-			direction = position.direction_to(last_known_location).normalized()
+			direction = to_player.cast_to.normalized()
 
 func _physics_process(delta: float) -> void:
 	if state == LAUNCH:
