@@ -90,7 +90,7 @@ func die():
 	if PlayerInfo.current_health <= 0:
 		PlayerInfo.is_dead = true
 		velocity = Vector2.ZERO
-		yield(get_tree().create_timer(0.3), "timeout")
+		yield(get_tree().create_timer(0.6), "timeout")
 		get_tree().change_scene("res://scenes/game_over.tscn")
 		
 	
