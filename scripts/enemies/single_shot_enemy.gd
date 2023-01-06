@@ -50,7 +50,7 @@ func _die() -> void:
 
 func _ready() -> void:
 	get_player_as_target()
-	max_health = 8
+	max_health = 6
 	._ready()
 
 func _process(delta: float) -> void:
@@ -132,5 +132,7 @@ func shoot() -> void:
 	var new_puff = PUFF.instance()
 	new_puff.position = $MeleeBox/Shape.global_position
 	new_puff.state = 2 # LAUNCH
+	new_puff.collision_layer = 2
+	new_puff.collision_mask = 2
 	new_puff.direction = to_player.cast_to.normalized()
 	SignalBus.emit_signal("spawn_object", new_puff)

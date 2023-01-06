@@ -55,6 +55,8 @@ func _process(delta: float) -> void:
 	
 	if state == LAUNCH:
 		play_sound(SHOUTING_SOUND, false)
+		collision_layer = 2
+		collision_mask = 2
 		return
 	
 	if target:

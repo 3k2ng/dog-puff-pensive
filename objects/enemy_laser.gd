@@ -31,8 +31,10 @@ func _process(delta: float) -> void:
 			
 			if collision[0].is_in_group("player"):
 				collision[0].damage_taken(direction.normalized(), 1)
-			if collision[0].is_in_group("enemy"):
+			elif collision[0].is_in_group("enemy"):
 				collision[0].hurt(direction.normalized(), 1)
+			elif collision[0].is_in_group("button"):
+				collision[0].activate()
 			casted = true
 
 func gen_raycast(dir: Vector2, ray_count: int, ray_width: float, exception: Array = []) -> void:

@@ -12,6 +12,8 @@ func on_body_entered(body: Node) -> void:
 		body.damage_taken((body.position - position).normalized(), 1)
 	elif body.is_in_group("enemy"):
 		body.hurt((body.position - position).normalized(), 1)
+	elif body.is_in_group("button"):
+		body.activate()
 
 func _process(delta: float) -> void:
 	if $Timer.is_stopped():

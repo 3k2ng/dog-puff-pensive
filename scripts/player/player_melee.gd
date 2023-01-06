@@ -13,6 +13,9 @@ func _body_entered(body: Node) -> void:
 	if body.is_in_group("enemy"):
 		body.hurt(Vector2.RIGHT.rotated(rotation), 1)
 		play_sound(HITTING_SOUND, true)
+	if body.is_in_group("button"):
+		body.activate()
+		play_sound(HITTING_SOUND, true)
 	
 
 func _process(delta: float) -> void:

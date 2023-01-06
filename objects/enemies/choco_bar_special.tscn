@@ -536,14 +536,15 @@ graph_offset = Vector2( 7, -184 )
 
 [node name="SChocoBar" type="KinematicBody2D" groups=["enemy"]]
 material = SubResource( 8 )
-collision_layer = 2
-collision_mask = 2
+collision_layer = 6
+collision_mask = 6
 script = ExtResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
