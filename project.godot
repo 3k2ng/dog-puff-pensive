@@ -24,6 +24,8 @@ window/size/width=320
 window/size/height=180
 window/size/test_width=1280
 window/size/test_height=720
+mouse_cursor/custom_image="res://sprites/ui/mouse cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2( 15, 15 )
 window/stretch/mode="viewport"
 
 [gui]
