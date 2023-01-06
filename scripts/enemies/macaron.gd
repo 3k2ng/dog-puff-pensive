@@ -3,8 +3,8 @@ extends "res://scripts/enemies/enemy.gd"
 const SPLASH: PackedScene = preload("res://objects/macaron_splash.tscn")
 const PUFF: PackedScene = preload("res://objects/enemies/puff.tscn")
 
-const HURT_SOUND: AudioStreamSample = preload("res://sfxs/macaron-hurt.ogg")
-const STOMPING_SOUND: AudioStreamSample = preload("res://sfxs/04-macaron-slam.ogg")
+const HURT_SOUND: AudioStreamOGGVorbis = preload("res://sfxs/macaron-hurt.ogg")
+const STOMPING_SOUND: AudioStreamOGGVorbis = preload("res://sfxs/macaron-slam.ogg")
 
 enum {
 	IDLE,
@@ -78,12 +78,6 @@ func _process(delta: float) -> void:
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
 			anim_playback.travel("confused")
 			state = IDLE
-		else:
-			# yes player detected
-			anim_playback.travel("notice")
-			if state != CHASE:
-				play_sound(NOTICE_SOUND, false)
-			state = CHASE
 	else:
 		get_player_as_target()
 	
@@ -92,27 +86,12 @@ func _process(delta: float) -> void:
 			anim_playback.travel("idle")
 		ATTACK:
 			anim_playback.travel("melee_attack")
-		CHASE:
-			anim_playback.travel("spawn")
-			play_sound(SHOUTING_SOUND, false)
-			direction = to_player.cast_to.normalized()
-			$MeleeBox.rotation = Vector2.RIGHT.angle_to(direction)
-
-func _physics_process(delta: float) -> void:
-	._physics_process(delta)
-	if state != HIT:
-		velocity = direction * MOVEMENT_SPEED
-		if velocity.x < 0:
-			anim_sprite.flip_h = true
-		elif velocity.x > 0:
-			anim_sprite.flip_h = false
 
 func hurt(dir: Vector2, damage: int) -> void:
 	$FlashPlayer.play("flash")
 	play_sound(HURT_SOUND, true)
 	state = HIT
 	stun_timer = STUN_TIME
-	velocity = dir.normalized() * 32
 	.hurt(dir, damage)
 
 func splash() -> void:

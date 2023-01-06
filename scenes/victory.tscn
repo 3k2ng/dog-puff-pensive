@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scenes/game_over.gd" type="Script" id=1]
+[ext_resource path="res://scenes/victory.gd" type="Script" id=1]
 [ext_resource path="res://fonts/TypefaceMarioWorldPixelFilledRegular-rgVMx.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://sprites/test_sprites/reeses puff.png" type="Texture" id=4]
+[ext_resource path="res://musics/reese's puffs rap.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=2]
 size = 8
@@ -35,6 +36,15 @@ text = "Press Enter (start) to Retry"
 align = 1
 autowrap = true
 
+[node name="Coins" type="Label" parent="Background"]
+margin_top = 136.0
+margin_right = 320.0
+margin_bottom = 174.0
+custom_fonts/font = SubResource( 2 )
+text = "You got 0 coins"
+align = 1
+autowrap = true
+
 [node name="GameOver" type="Label" parent="Background"]
 margin_left = 56.0
 margin_top = 40.0
@@ -43,3 +53,6 @@ margin_bottom = 80.0
 custom_fonts/font = SubResource( 1 )
 text = "VICTORY"
 align = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )

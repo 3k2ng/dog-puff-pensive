@@ -23,7 +23,6 @@ onready var anim_playback = $AnimationTree.get("parameters/playback")
 
 func _ready() -> void:
 	PlayerInfo.init_health()
-	PlayerInfo.init_death()
 
 func _process(delta: float) -> void:
 	if PlayerInfo.is_dead:
