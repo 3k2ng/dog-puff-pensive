@@ -3,6 +3,11 @@ extends "res://scripts/enemies/enemy.gd"
 const SPLASH: PackedScene = preload("res://objects/splash.tscn")
 const EXPLOSION: PackedScene = preload("res://objects/explosion.tscn")
 
+const EXPLODING_SOUND: AudioStreamSample = preload("res://sfxs/08-puff fuse.wav")
+const HURT_SOUND: AudioStreamSample = preload("res://sfxs/09-puff hurt.wav")
+const NOTICE_SOUND: AudioStreamSample = preload("res://sfxs/10-puff noticing.wav")
+const SHOUTING_SOUND: AudioStreamSample = preload("res://sfxs/11-puff shouting.wav")
+
 enum {
 	IDLE,
 	HIT,
@@ -53,6 +58,7 @@ func _process(delta: float) -> void:
 			anim_playback.travel("launch")
 	
 	if state == LAUNCH:
+		play_sound(SHOUTING_SOUND, false)
 		return
 	
 	if target:
@@ -61,6 +67,7 @@ func _process(delta: float) -> void:
 			pass
 		to_player.cast_to = target.position - position
 		if to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding():
+			play_sound(EXPLODING_SOUND, false)
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
 			state = IDLE
@@ -68,6 +75,8 @@ func _process(delta: float) -> void:
 			# yes player detected
 			last_known_location = target.position
 			anim_playback.travel("notice")
+			if state != CHASE:
+				play_sound(NOTICE_SOUND, false)
 			state = CHASE
 	else:
 		get_player_as_target()
@@ -81,6 +90,7 @@ func _process(delta: float) -> void:
 			direction = Vector2.ZERO
 		CHASE:
 			anim_playback.travel("chase")
+			play_sound(SHOUTING_SOUND, false)
 			direction = position.direction_to(last_known_location).normalized()
 
 func _physics_process(delta: float) -> void:
@@ -113,6 +123,7 @@ func splash() -> void:
 
 func hurt(dir: Vector2, damage: int) -> void:
 	$FlashPlayer.play("flash")
+	play_sound(HURT_SOUND, true)
 	state = HIT
 	stun_timer = STUN_TIME
 	velocity = Vector2.ZERO

@@ -2,6 +2,11 @@ extends "res://scripts/enemies/enemy.gd"
 
 const SPLASH: PackedScene = preload("res://objects/splash.tscn")
 
+const HURT_SOUND: AudioStreamSample = preload("res://sfxs/01-chocolate hurt.wav")
+const NOTICE_SOUND: AudioStreamSample = preload("res://sfxs/02-chocolate noticing.wav")
+const SHOUTING_SOUND: AudioStreamSample = preload("res://sfxs/03-chocolate shouting.wav")
+const STOMPING_SOUND: AudioStreamSample = preload("res://sfxs/04-chocolate stomping.wav")
+
 enum {
 	IDLE,
 	HIT,
@@ -16,6 +21,7 @@ const ATTACK_RANGE = 20
 const CLOSEST_DIST = 16 # closest distance needed to consider arrived at last know player location
 
 const STUN_TIME = 0.1
+const ATTACK_CD = 1
 
 var direction: Vector2
 var last_known_location: Vector2 # location of player last time seen
@@ -23,6 +29,7 @@ var last_known_location: Vector2 # location of player last time seen
 var target: KinematicBody2D
 var state: int
 var stun_timer: float
+var attack_timer: float
 var dead: bool
 
 onready var to_player: RayCast2D = $ToPlayer
@@ -66,12 +73,18 @@ func _process(delta: float) -> void:
 		else:
 			state = IDLE
 	
+	if attack_timer > 0:
+		attack_timer -= delta
+	
 	if target:
 		for e in get_tree().get_nodes_in_group("enemy"):
 			to_player.add_exception(e)
 			pass
 		to_player.cast_to = target.position - position
-		if anim_playback.get_current_node() == "melee_attack" or (to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding()):
+		if anim_playback.get_current_node() == "melee_attack" or (attack_timer <= 0 and (to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding())):
+			if attack_timer <= 0:
+				play_sound(STOMPING_SOUND, true)
+				attack_timer = ATTACK_CD
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
 			if position.distance_to(last_known_location) < CLOSEST_DIST:
@@ -81,6 +94,8 @@ func _process(delta: float) -> void:
 			# yes player detected
 			last_known_location = target.position
 			anim_playback.travel("notice")
+			if state != CHASE:
+				play_sound(NOTICE_SOUND, false)
 			state = CHASE
 	else:
 		get_player_as_target()
@@ -94,6 +109,7 @@ func _process(delta: float) -> void:
 			direction = Vector2.ZERO
 		CHASE:
 			anim_playback.travel("chase")
+			play_sound(SHOUTING_SOUND, false)
 			direction = position.direction_to(last_known_location).normalized()
 			$MeleeBox.rotation = Vector2.RIGHT.angle_to(direction)
 
@@ -108,6 +124,7 @@ func _physics_process(delta: float) -> void:
 
 func hurt(dir: Vector2, damage: int) -> void:
 	$FlashPlayer.play("flash")
+	play_sound(HURT_SOUND, true)
 	state = HIT
 	stun_timer = STUN_TIME
 	velocity = dir.normalized() * 32

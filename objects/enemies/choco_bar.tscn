@@ -320,7 +320,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "melee_attack"
-length = 0.6
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("MeleeBox/Shape:disabled")
 tracks/0/interp = 1
@@ -328,7 +328,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.35, 0.5 ),
+"times": PoolRealArray( 0, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -340,7 +340,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6 ),
+"times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ "attack", "default" ]
@@ -518,7 +518,7 @@ script = ExtResource( 6 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
-frame = 1
+animation = "attack"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -569,3 +569,5 @@ tree_root = SubResource( 51 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 52 )
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
