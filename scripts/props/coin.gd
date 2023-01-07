@@ -4,6 +4,7 @@ const PICKUP_SOUND: AudioStreamSample = preload("res://sfxs/pickup.wav")
 
 func _ready():
 	$AnimatedSprite.play("default")
+	PlayerInfo.current_coin = 0
 
 func _on_Coin_body_entered(body):
 	$AnimatedSprite.play("collect")
