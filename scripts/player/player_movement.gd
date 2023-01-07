@@ -67,9 +67,9 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * MOVEMENT_SPEED
 	else:
 		velocity = direction * ROLLING_SPEED
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 
-func damage_taken(dir: Vector2, damage: int):
+func damage_taken(dir: Vector2, _damage: int):
 	$FlashPlayer.play("flash")
 	anim_playback.travel("dog_hurt")
 	stun_timer = STUN_TIME
@@ -90,6 +90,6 @@ func die():
 		PlayerInfo.is_dead = true
 		velocity = Vector2.ZERO
 		yield(get_tree().create_timer(0.6), "timeout")
-		get_tree().change_scene("res://scenes/game_over.tscn")
+		var _success = get_tree().change_scene("res://scenes/game_over.tscn")
 		
 	

@@ -6,8 +6,8 @@ const HITTING_SOUND: AudioStreamSample = preload("res://sfxs/06-hitting.wav")
 var alt_side: bool
 
 func _ready():
-	self.connect("body_entered", self, "_body_entered")
-	$MeleePlayer.connect("animation_finished", self, "_swing_finish")
+	var _success = self.connect("body_entered", self, "_body_entered")
+	_success = $MeleePlayer.connect("animation_finished", self, "_swing_finish")
 
 func _body_entered(body: Node) -> void:
 	if body.is_in_group("enemy"):
@@ -18,7 +18,7 @@ func _body_entered(body: Node) -> void:
 		play_sound(HITTING_SOUND, true)
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.get_connected_joypads().size() > 0:
 		rotation = Vector2.RIGHT.angle_to(Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down").normalized())
 	else: 

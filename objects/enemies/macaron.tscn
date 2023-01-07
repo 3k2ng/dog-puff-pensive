@@ -4,10 +4,11 @@
 [ext_resource path="res://sprites/enemies/macaron/macaron slam.png" type="Texture" id=2]
 [ext_resource path="res://sprites/enemies/macaron/macaron corpse.png" type="Texture" id=3]
 [ext_resource path="res://sprites/enemies/macaron/macaron spawn puff.png" type="Texture" id=4]
-[ext_resource path="res://scripts/melee_box.gd" type="Script" id=5]
+[ext_resource path="res://scripts/player/melee_box.gd" type="Script" id=5]
 [ext_resource path="res://sprites/enemies/macaron/macaron hurt.png" type="Texture" id=6]
 [ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=7]
 [ext_resource path="res://sprites/enemies/macaron/macaron idle.png" type="Texture" id=8]
+
 
 [sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true

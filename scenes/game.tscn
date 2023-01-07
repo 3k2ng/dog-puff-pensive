@@ -5,16 +5,16 @@
 [ext_resource path="res://scripts/props/id_door.gd" type="Script" id=3]
 [ext_resource path="res://objects/enemies/choco_bar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/ui/ui_health.gd" type="Script" id=5]
-[ext_resource path="res://scripts/game_field.gd" type="Script" id=6]
+[ext_resource path="res://scripts/management/game_field.gd" type="Script" id=6]
 [ext_resource path="res://objects/ui/bone_life.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scripts/room_camera.gd" type="Script" id=8]
+[ext_resource path="res://scripts/management/room_camera.gd" type="Script" id=8]
 [ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=9]
 [ext_resource path="res://objects/enemies/puff.tscn" type="PackedScene" id=10]
 [ext_resource path="res://objects/enemies/choco_bar_special.tscn" type="PackedScene" id=11]
 [ext_resource path="res://objects/props/button.tscn" type="PackedScene" id=12]
 [ext_resource path="res://objects/enemies/puff_special.tscn" type="PackedScene" id=13]
 [ext_resource path="res://sprites/props/flag.png" type="Texture" id=14]
-[ext_resource path="res://scenes/flag.gd" type="Script" id=15]
+[ext_resource path="res://scripts/management/flag.gd" type="Script" id=15]
 [ext_resource path="res://objects/props/coin.tscn" type="PackedScene" id=16]
 [ext_resource path="res://musics/overworld theme loop.wav" type="AudioStream" id=17]
 [ext_resource path="res://objects/enemies/macaron.tscn" type="PackedScene" id=18]
@@ -190,11 +190,11 @@ animations = [ {
 "frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 12.0
 } ]
 
-[sub_resource type="CircleShape2D" id=45]
-radius = 2.0
+[sub_resource type="RectangleShape2D" id=57]
+extents = Vector2( 9.5, 5.5 )
 
 [sub_resource type="ShaderMaterial" id=46]
 resource_local_to_scene = true
@@ -632,17 +632,19 @@ id = "h_6th"
 
 [node name="Flag" type="Area2D" parent="Field"]
 position = Vector2( 160, 1248 )
-scale = Vector2( 2, 2 )
 collision_layer = 7
 collision_mask = 7
 script = ExtResource( 15 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Field/Flag"]
 frames = SubResource( 44 )
+frame = 2
+playing = true
 offset = Vector2( -4, -7 )
 
 [node name="Shape" type="CollisionShape2D" parent="Field/Flag"]
-shape = SubResource( 45 )
+position = Vector2( -0.5, 0.5 )
+shape = SubResource( 57 )
 
 [node name="Puff9" parent="Field" groups=["id"] instance=ExtResource( 10 )]
 material = SubResource( 46 )

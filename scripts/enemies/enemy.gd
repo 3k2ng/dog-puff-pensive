@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 		_die()
 
 func _physics_process(_delta: float) -> void:
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 
 func _die() -> void:
 	pass

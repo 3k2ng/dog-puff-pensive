@@ -4,7 +4,7 @@ extends StaticBody2D
 export var activated: bool
 export var id: String
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if activated:
 		collision_layer = 0
 		collision_mask = 0

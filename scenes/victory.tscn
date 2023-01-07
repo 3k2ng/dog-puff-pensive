@@ -1,10 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scenes/victory.gd" type="Script" id=1]
+[ext_resource path="res://scripts/management/victory.gd" type="Script" id=1]
 [ext_resource path="res://fonts/TypefaceMarioWorldPixelFilledRegular-rgVMx.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://sprites/test_sprites/reeses puff.png" type="Texture" id=4]
 [ext_resource path="res://musics/reese's puffs rap.wav" type="AudioStream" id=5]
+
 
 [sub_resource type="DynamicFont" id=2]
 size = 8

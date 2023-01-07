@@ -44,7 +44,7 @@ func gen_raycast(dir: Vector2, ray_count: int, ray_width: float, exception: Arra
 	raycast_array.clear()
 	var right_vector = dir.rotated(PI / 2).normalized()
 	for i in range(ray_count):
-		var cur_width = ray_width * (i - ray_count / 2) / float(ray_count - 1)
+		var cur_width = ray_width * (i - ray_count / 2.0) / float(ray_count - 1)
 		var new_ray = RayCast2D.new()
 		new_ray.enabled = true
 		new_ray.position = right_vector * cur_width

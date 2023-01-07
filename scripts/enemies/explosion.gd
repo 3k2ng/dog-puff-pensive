@@ -3,7 +3,7 @@ extends Area2D
 const EXPLOSION_SOUND = preload("res://sfxs/07-puff explode.wav")
 
 func _ready() -> void:
-	self.connect("body_entered", self, "on_body_entered")
+	var _success = self.connect("body_entered", self, "on_body_entered")
 	$Audio.stream = EXPLOSION_SOUND
 	$Audio.play()
 
