@@ -18,6 +18,10 @@
 [ext_resource path="res://objects/props/coin.tscn" type="PackedScene" id=16]
 [ext_resource path="res://musics/overworld theme loop.wav" type="AudioStream" id=17]
 [ext_resource path="res://objects/enemies/macaron.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scripts/management/pause_menu.gd" type="Script" id=20]
+[ext_resource path="res://scripts/ui/volume_slider.gd" type="Script" id=21]
+[ext_resource path="res://fonts/basic ui pixel font.tres" type="Font" id=22]
+
 
 [sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
@@ -690,6 +694,119 @@ __meta__ = {
 }
 
 [node name="Bone" parent="UI/Health" instance=ExtResource( 7 )]
+
+[node name="Pause Menu" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 21 )
+
+[node name="Background" type="ColorRect" parent="Pause Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.784314 )
+
+[node name="Restart" type="Button" parent="Pause Menu"]
+anchor_right = 1.0
+margin_left = 80.0
+margin_top = 100.0
+margin_right = -80.0
+margin_bottom = 130.0
+custom_fonts/font = ExtResource( 22 )
+text = "Restart [r] (back)"
+
+[node name="Quit" type="Button" parent="Pause Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 140.0
+margin_right = -100.0
+margin_bottom = -10.0
+custom_fonts/font = ExtResource( 22 )
+text = "Quit"
+
+[node name="Volumes" type="Control" parent="Pause Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 30.0
+margin_right = -50.0
+margin_bottom = -80.0
+
+[node name="Master" type="Control" parent="Pause Menu/Volumes"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -50.0
+
+[node name="Label" type="Label" parent="Pause Menu/Volumes/Master"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -140.0
+custom_fonts/font = ExtResource( 22 )
+text = "Master"
+align = 1
+valign = 1
+
+[node name="Volume" type="HSlider" parent="Pause Menu/Volumes/Master"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 70.0
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource( 20 )
+bus_name = "Master"
+
+[node name="Music" type="Control" parent="Pause Menu/Volumes"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 25.0
+margin_bottom = -25.0
+
+[node name="Label" type="Label" parent="Pause Menu/Volumes/Music"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -140.0
+custom_fonts/font = ExtResource( 22 )
+text = "Music"
+align = 1
+valign = 1
+
+[node name="Volume" type="HSlider" parent="Pause Menu/Volumes/Music"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 70.0
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource( 20 )
+bus_name = "Music"
+
+[node name="Sfx" type="Control" parent="Pause Menu/Volumes"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 45.0
+margin_bottom = -5.0
+
+[node name="Label" type="Label" parent="Pause Menu/Volumes/Sfx"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -140.0
+custom_fonts/font = ExtResource( 22 )
+text = "Sfx"
+align = 1
+valign = 1
+
+[node name="Volume" type="HSlider" parent="Pause Menu/Volumes/Sfx"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 70.0
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource( 20 )
+bus_name = "Sfx"
 
 [node name="Camera" type="Camera2D" parent="."]
 offset = Vector2( 160, 90 )
