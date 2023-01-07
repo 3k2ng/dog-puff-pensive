@@ -24,6 +24,7 @@ const STUN_TIME = 0.1
 const ATTACK_CD = 2
 
 var direction: Vector2
+var shoot_direction: Vector2
 
 var target: KinematicBody2D
 var state: int
@@ -130,9 +131,12 @@ func splash() -> void:
 
 func shoot() -> void:
 	var new_puff = PUFF.instance()
-	new_puff.position = $MeleeBox/Shape.global_position
+	new_puff.position = position + shoot_direction * 16
 	new_puff.state = 2 # LAUNCH
 	new_puff.collision_layer = 2
 	new_puff.collision_mask = 2
-	new_puff.direction = to_player.cast_to.normalized()
+	new_puff.direction = shoot_direction
 	SignalBus.emit_signal("spawn_object", new_puff)
+
+func update_shoot_aim() -> void:
+	shoot_direction = to_player.cast_to.normalized()

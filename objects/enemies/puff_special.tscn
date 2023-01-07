@@ -156,7 +156,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=24]
-radius = 4.0
+radius = 5.0
 
 [sub_resource type="Animation" id=37]
 resource_name = "chase"
@@ -455,7 +455,6 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
 frames = SubResource( 11 )
-frame = 1
 __meta__ = {
 "_edit_lock_": true
 }

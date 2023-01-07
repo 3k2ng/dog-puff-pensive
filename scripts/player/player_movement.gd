@@ -7,7 +7,7 @@ const MOVEMENT_SPEED: float = 64.0
 const ROLLING_SPEED: float = 128.0
 
 const STUN_TIME: float = 0.2
-const ROLL_TIME: float = 0.5
+const ROLL_TIME: float = 0.75
 
 var is_facing_up: bool
 
@@ -76,8 +76,8 @@ func damage_taken(dir: Vector2, _damage: int):
 	velocity = dir.normalized() * MOVEMENT_SPEED * 2
 	play_sound(GETTING_HIT_SOUND, true)
 	PlayerInfo.current_health -= 1
-	die()
-	print(PlayerInfo.current_health)
+	if PlayerInfo.current_health <= 0:
+		die()
 	
 
 func play_sound(sfx: AudioStream, overriding: bool) -> void:
@@ -86,10 +86,7 @@ func play_sound(sfx: AudioStream, overriding: bool) -> void:
 		$Audio.play()
 
 func die():
-	if PlayerInfo.current_health <= 0:
-		PlayerInfo.is_dead = true
-		velocity = Vector2.ZERO
-		yield(get_tree().create_timer(0.6), "timeout")
-		var _success = get_tree().change_scene("res://scenes/game_over.tscn")
-		
-	
+	PlayerInfo.is_dead = true
+	velocity = Vector2.ZERO
+	yield(get_tree().create_timer(0.6), "timeout")
+	get_tree().change_scene("res://scenes/game_over.tscn")
