@@ -4,7 +4,7 @@ onready var _bus := AudioServer.get_bus_index("Master")
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
-		get_tree().change_scene("res://scenes/demo_tung.tscn")
+		get_tree().change_scene("res://scenes/game.tscn")
 
 
 func _ready():
