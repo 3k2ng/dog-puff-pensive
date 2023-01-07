@@ -622,11 +622,7 @@ script = ExtResource( 15 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Field/Flag"]
 frames = SubResource( 44 )
-<<<<<<< Updated upstream
 frame = 1
-=======
-frame = 2
->>>>>>> Stashed changes
 playing = true
 offset = Vector2( -4, -7 )
 

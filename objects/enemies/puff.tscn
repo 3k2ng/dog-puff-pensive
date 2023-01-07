@@ -448,11 +448,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
 frames = SubResource( 11 )
-<<<<<<< Updated upstream
 frame = 4
-=======
-frame = 9
->>>>>>> Stashed changes
 __meta__ = {
 "_edit_lock_": true
 }
