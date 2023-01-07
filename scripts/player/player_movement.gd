@@ -70,6 +70,8 @@ func _physics_process(delta: float) -> void:
 	velocity = move_and_slide(velocity)
 
 func damage_taken(dir: Vector2, _damage: int):
+	if PlayerInfo.current_health <= 0:
+		return
 	$FlashPlayer.play("flash")
 	anim_playback.travel("dog_hurt")
 	stun_timer = STUN_TIME
