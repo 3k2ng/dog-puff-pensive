@@ -2,7 +2,6 @@
 
 [ext_resource path="res://scripts/enemies/splash.gd" type="Script" id=1]
 
-
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
 emission_sphere_radius = 4.0

@@ -638,7 +638,7 @@ script = ExtResource( 15 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Field/Flag"]
 frames = SubResource( 44 )
-frame = 3
+frame = 1
 playing = true
 offset = Vector2( -4, -7 )
 
@@ -734,5 +734,6 @@ __meta__ = {
 stream = ExtResource( 17 )
 volume_db = -8.0
 autoplay = true
+bus = "Music"
 
 [connection signal="body_entered" from="Field/Flag" to="Field/Flag" method="_on_Flag_body_entered"]

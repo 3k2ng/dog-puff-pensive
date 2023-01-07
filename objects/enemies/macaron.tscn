@@ -9,7 +9,6 @@
 [ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=7]
 [ext_resource path="res://sprites/enemies/macaron/macaron idle.png" type="Texture" id=8]
 
-
 [sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
 shader = ExtResource( 7 )
@@ -474,6 +473,7 @@ active = true
 parameters/playback = SubResource( 52 )
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
+bus = "Sfx"
 
 [node name="Spawn_Position" type="Node2D" parent="."]
 position = Vector2( 15, 11 )

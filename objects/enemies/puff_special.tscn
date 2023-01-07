@@ -497,3 +497,4 @@ local_coords = false
 process_material = SubResource( 56 )
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
+bus = "Sfx"

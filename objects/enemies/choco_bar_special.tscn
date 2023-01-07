@@ -10,7 +10,6 @@
 [ext_resource path="res://sprites/enemies/choco bar/chocolate bar confused.png" type="Texture" id=9]
 [ext_resource path="res://sprites/enemies/choco bar/chocolate bar hurt.png" type="Texture" id=10]
 
-
 [sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
 shader = ExtResource( 7 )
@@ -588,3 +587,5 @@ active = true
 parameters/playback = SubResource( 52 )
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
+volume_db = 6.0
+bus = "Sfx"

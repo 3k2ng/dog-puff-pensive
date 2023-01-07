@@ -448,6 +448,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
 frames = SubResource( 11 )
+frame = 4
 __meta__ = {
 "_edit_lock_": true
 }
@@ -489,3 +490,4 @@ local_coords = false
 process_material = SubResource( 56 )
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
+bus = "Sfx"

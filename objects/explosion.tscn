@@ -2,7 +2,6 @@
 
 [ext_resource path="res://scripts/enemies/explosion.gd" type="Script" id=1]
 
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
 
@@ -20,3 +19,4 @@ one_shot = true
 autostart = true
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
+bus = "Sfx"

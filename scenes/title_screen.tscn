@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://sprites/ui/reeses_puff.png" type="Texture" id=1]
 [ext_resource path="res://fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://fonts/TypefaceMarioWorldPixelFilledRegular-rgVMx.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/management/title_screen.gd" type="Script" id=4]
 [ext_resource path="res://musics/plok-prev.mp3" type="AudioStream" id=5]
+[ext_resource path="res://scripts/ui/volume_slider.gd" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -28,7 +29,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect5" type="TextureRect" parent="."]
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect5" type="TextureRect" parent="Control"]
 modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
 margin_left = 33.0
 margin_top = 42.0
@@ -41,7 +46,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect6" type="TextureRect" parent="."]
+[node name="TextureRect6" type="TextureRect" parent="Control"]
 modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
 margin_left = 180.0
 margin_top = 44.0
@@ -50,7 +55,7 @@ margin_bottom = 84.0
 rect_rotation = -43.0232
 texture = ExtResource( 1 )
 
-[node name="TextureRect12" type="TextureRect" parent="."]
+[node name="TextureRect12" type="TextureRect" parent="Control"]
 modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
 margin_left = 135.0
 margin_top = 26.0
@@ -60,7 +65,7 @@ rect_rotation = 53.524
 rect_scale = Vector2( 1.15106, 1.1846 )
 texture = ExtResource( 1 )
 
-[node name="TextureRect14" type="TextureRect" parent="."]
+[node name="TextureRect14" type="TextureRect" parent="Control"]
 modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
 margin_left = 62.0
 margin_top = 66.0
@@ -69,7 +74,120 @@ margin_bottom = 106.0
 rect_rotation = -43.0232
 texture = ExtResource( 1 )
 
-[node name="Reese\'s" type="Label" parent="."]
+[node name="TextureRect7" type="TextureRect" parent="Control"]
+modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
+margin_left = 252.0
+margin_top = 84.0
+margin_right = 292.0
+margin_bottom = 124.0
+rect_rotation = 53.524
+rect_scale = Vector2( 1.15106, 1.1846 )
+texture = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
+margin_left = 294.0
+margin_top = 108.0
+margin_right = 334.0
+margin_bottom = 148.0
+rect_rotation = 53.524
+texture = ExtResource( 1 )
+
+[node name="TextureRect13" type="TextureRect" parent="Control"]
+modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
+margin_left = 297.0
+margin_top = 69.0
+margin_right = 337.0
+margin_bottom = 109.0
+rect_rotation = 53.524
+texture = ExtResource( 1 )
+
+[node name="TextureRect4" type="TextureRect" parent="Control"]
+modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
+margin_left = 155.0
+margin_top = 115.0
+margin_right = 195.0
+margin_bottom = 155.0
+rect_rotation = -43.0232
+texture = ExtResource( 1 )
+
+[node name="TextureRect8" type="TextureRect" parent="Control"]
+modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
+margin_left = 11.0
+margin_top = 13.0
+margin_right = 51.0
+margin_bottom = 53.0
+rect_rotation = -43.0232
+texture = ExtResource( 1 )
+
+[node name="TextureRect16" type="TextureRect" parent="Control"]
+modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
+margin_left = 81.0
+margin_top = 13.0
+margin_right = 121.0
+margin_bottom = 53.0
+rect_rotation = -43.0232
+texture = ExtResource( 1 )
+
+[node name="TextureRect10" type="TextureRect" parent="Control"]
+modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
+margin_left = 185.0
+margin_top = 156.0
+margin_right = 225.0
+margin_bottom = 196.0
+rect_rotation = -43.0232
+texture = ExtResource( 1 )
+
+[node name="TextureRect11" type="TextureRect" parent="Control"]
+modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
+margin_left = 11.0
+margin_top = 139.0
+margin_right = 51.0
+margin_bottom = 179.0
+rect_rotation = -43.0232
+texture = ExtResource( 1 )
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
+margin_left = 114.0
+margin_top = 129.0
+margin_right = 154.0
+margin_bottom = 169.0
+rect_rotation = 53.524
+rect_scale = Vector2( 1.15106, 1.1846 )
+texture = ExtResource( 1 )
+
+[node name="TextureRect15" type="TextureRect" parent="Control"]
+modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
+margin_left = 259.0
+margin_top = 130.0
+margin_right = 299.0
+margin_bottom = 170.0
+rect_rotation = 53.524
+rect_scale = Vector2( 1.15106, 1.1846 )
+texture = ExtResource( 1 )
+
+[node name="TextureRect9" type="TextureRect" parent="Control"]
+modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
+margin_left = 224.0
+margin_top = 5.99999
+margin_right = 264.0
+margin_bottom = 46.0
+rect_rotation = 53.524
+rect_scale = Vector2( 1.15106, 1.1846 )
+texture = ExtResource( 1 )
+
+[node name="TextureRect3" type="TextureRect" parent="Control"]
+modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
+margin_left = 295.0
+margin_top = 23.0
+margin_right = 335.0
+margin_bottom = 63.0
+rect_rotation = 53.524
+rect_scale = Vector2( 1.15106, 1.1846 )
+texture = ExtResource( 1 )
+
+[node name="Title" type="Label" parent="."]
 margin_left = 74.0
 margin_top = 37.0
 margin_right = 238.0
@@ -83,17 +201,7 @@ custom_constants/shadow_as_outline = 1
 custom_fonts/font = SubResource( 1 )
 text = "REESE'S PUP"
 
-[node name="TextureRect7" type="TextureRect" parent="."]
-modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
-margin_left = 252.0
-margin_top = 84.0
-margin_right = 292.0
-margin_bottom = 124.0
-rect_rotation = 53.524
-rect_scale = Vector2( 1.15106, 1.1846 )
-texture = ExtResource( 1 )
-
-[node name="Retry" type="Label" parent="."]
+[node name="Start instructions" type="Label" parent="."]
 margin_left = 49.0
 margin_top = 90.0
 margin_right = 275.0
@@ -105,133 +213,94 @@ custom_constants/shadow_as_outline = 1
 custom_fonts/font = SubResource( 2 )
 text = "Press Enter (start) to Begin"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
-margin_left = 294.0
-margin_top = 108.0
-margin_right = 334.0
-margin_bottom = 148.0
-rect_rotation = 53.524
-texture = ExtResource( 1 )
+[node name="Volumes" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 110.0
+margin_right = -50.0
 
-[node name="TextureRect13" type="TextureRect" parent="."]
-modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
-margin_left = 297.0
-margin_top = 69.0
-margin_right = 337.0
-margin_bottom = 109.0
-rect_rotation = 53.524
-texture = ExtResource( 1 )
+[node name="Master" type="Control" parent="Volumes"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -50.0
 
-[node name="TextureRect4" type="TextureRect" parent="."]
-modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
-margin_left = 155.0
-margin_top = 115.0
-margin_right = 195.0
-margin_bottom = 155.0
-rect_rotation = -43.0232
-texture = ExtResource( 1 )
-
-[node name="TextureRect8" type="TextureRect" parent="."]
-modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
-margin_left = 11.0
-margin_top = 13.0
-margin_right = 51.0
-margin_bottom = 53.0
-rect_rotation = -43.0232
-texture = ExtResource( 1 )
-
-[node name="TextureRect16" type="TextureRect" parent="."]
-modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
-margin_left = 81.0
-margin_top = 13.0
-margin_right = 121.0
-margin_bottom = 53.0
-rect_rotation = -43.0232
-texture = ExtResource( 1 )
-
-[node name="TextureRect10" type="TextureRect" parent="."]
-modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
-margin_left = 185.0
-margin_top = 156.0
-margin_right = 225.0
-margin_bottom = 196.0
-rect_rotation = -43.0232
-texture = ExtResource( 1 )
-
-[node name="TextureRect11" type="TextureRect" parent="."]
-modulate = Color( 0.772549, 0.490196, 0.333333, 1 )
-margin_left = 11.0
-margin_top = 139.0
-margin_right = 51.0
-margin_bottom = 179.0
-rect_rotation = -43.0232
-texture = ExtResource( 1 )
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
-margin_left = 114.0
-margin_top = 129.0
-margin_right = 154.0
-margin_bottom = 169.0
-rect_rotation = 53.524
-rect_scale = Vector2( 1.15106, 1.1846 )
-texture = ExtResource( 1 )
-
-[node name="TextureRect15" type="TextureRect" parent="."]
-modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
-margin_left = 259.0
-margin_top = 130.0
-margin_right = 299.0
-margin_bottom = 170.0
-rect_rotation = 53.524
-rect_scale = Vector2( 1.15106, 1.1846 )
-texture = ExtResource( 1 )
-
-[node name="TextureRect9" type="TextureRect" parent="."]
-modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
-margin_left = 224.0
-margin_top = 5.99999
-margin_right = 264.0
-margin_bottom = 46.0
-rect_rotation = 53.524
-rect_scale = Vector2( 1.15106, 1.1846 )
-texture = ExtResource( 1 )
-
-[node name="TextureRect3" type="TextureRect" parent="."]
-modulate = Color( 0.87451, 0.705882, 0.505882, 1 )
-margin_left = 295.0
-margin_top = 23.0
-margin_right = 335.0
-margin_bottom = 63.0
-rect_rotation = 53.524
-rect_scale = Vector2( 1.15106, 1.1846 )
-texture = ExtResource( 1 )
-
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="Volumes/Master"]
 modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 100.0
-margin_top = 147.0
-margin_right = -100.0
-margin_bottom = -31.0
+margin_right = -140.0
 custom_fonts/font = SubResource( 3 )
-text = "Volume"
+text = "Master"
 align = 1
 valign = 1
 
-[node name="Volume" type="HSlider" parent="."]
+[node name="Volume" type="HSlider" parent="Volumes/Master"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 60.0
-margin_top = 130.0
-margin_right = -60.0
-margin_bottom = -40.0
+margin_left = 70.0
 max_value = 1.0
 step = 0.05
-value = 0.8
+value = 0.5
+script = ExtResource( 6 )
+bus_name = "Master"
+
+[node name="Music" type="Control" parent="Volumes"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 25.0
+margin_bottom = -25.0
+
+[node name="Label" type="Label" parent="Volumes/Music"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -140.0
+custom_fonts/font = SubResource( 3 )
+text = "Music"
+align = 1
+valign = 1
+
+[node name="Volume" type="HSlider" parent="Volumes/Music"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 70.0
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource( 6 )
+bus_name = "Music"
+
+[node name="Sfx" type="Control" parent="Volumes"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 45.0
+margin_bottom = -5.0
+
+[node name="Label" type="Label" parent="Volumes/Sfx"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -140.0
+custom_fonts/font = SubResource( 3 )
+text = "Sfx"
+align = 1
+valign = 1
+
+[node name="Volume" type="HSlider" parent="Volumes/Sfx"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 70.0
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource( 6 )
+bus_name = "Sfx"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 autoplay = true
+bus = "Music"
