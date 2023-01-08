@@ -1,4 +1,4 @@
-[gd_scene load_steps=138 format=2]
+[gd_scene load_steps=142 format=2]
 
 [ext_resource path="res://sprites/dog/dog up idle.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player/player_movement.gd" type="Script" id=2]
@@ -699,6 +699,61 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=148]
+resource_name = "follow up swing"
+length = 0.416667
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "swing" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.333333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Shape2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0833333, 0.166667, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_swing_start"
+} ]
+}
+
 [sub_resource type="Animation" id=115]
 resource_name = "idle"
 length = 0.0833333
@@ -788,7 +843,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=57]
 resource_name = "swing"
-length = 0.333333
+length = 0.25
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
@@ -809,10 +864,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
+"times": PoolRealArray( 0, 0.166667 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 1, 4 ]
+"values": [ 2, 4 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Shape2:disabled")
@@ -821,10 +876,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true, false, true ]
+"values": [ false, true ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath(".")
@@ -841,6 +896,9 @@ tracks/3/keys = {
 } ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=149]
+animation = "follow up swing"
+
 [sub_resource type="AnimationNodeAnimation" id=118]
 animation = "idle"
 
@@ -854,10 +912,10 @@ animation = "recovery"
 animation = "swing"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=122]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=123]
+advance_condition = "swing"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=124]
+disabled = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=125]
 switch_mode = 2
@@ -871,17 +929,30 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=150]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=151]
+advance_condition = "swing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=152]
+advance_condition = "swing"
+
 [sub_resource type="AnimationNodeStateMachine" id=128]
+"states/follow up swing/node" = SubResource( 149 )
+"states/follow up swing/position" = Vector2( 1099.66, -19 )
 states/idle/node = SubResource( 118 )
-states/idle/position = Vector2( 867, 218.556 )
+states/idle/position = Vector2( 838.85, 211.519 )
 "states/post swing hang/node" = SubResource( 119 )
 "states/post swing hang/position" = Vector2( 1100.33, 83.6667 )
 states/recovery/node = SubResource( 120 )
-states/recovery/position = Vector2( 1115.67, 217.667 )
+states/recovery/position = Vector2( 1099.22, 210.679 )
 states/swing/node = SubResource( 121 )
 states/swing/position = Vector2( 851.667, 82.3333 )
-transitions = [ "idle", "swing", SubResource( 122 ), "recovery", "swing", SubResource( 123 ), "post swing hang", "swing", SubResource( 124 ), "swing", "post swing hang", SubResource( 125 ), "post swing hang", "recovery", SubResource( 126 ), "recovery", "idle", SubResource( 127 ) ]
+transitions = [ "idle", "swing", SubResource( 122 ), "post swing hang", "swing", SubResource( 124 ), "swing", "post swing hang", SubResource( 125 ), "post swing hang", "recovery", SubResource( 126 ), "recovery", "idle", SubResource( 127 ), "follow up swing", "post swing hang", SubResource( 150 ), "post swing hang", "follow up swing", SubResource( 151 ), "recovery", "swing", SubResource( 152 ) ]
 start_node = "idle"
+graph_offset = Vector2( 108, -169 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=129]
 
@@ -1076,6 +1147,7 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
+input_buffer_time = 0.15
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="MeleeBox"]
 frames = SubResource( 55 )
@@ -1087,6 +1159,7 @@ disabled = true
 
 [node name="MeleePlayer" type="AnimationPlayer" parent="MeleeBox"]
 anims/RESET = SubResource( 58 )
+"anims/follow up swing" = SubResource( 148 )
 anims/idle = SubResource( 115 )
 "anims/post swing hang" = SubResource( 116 )
 anims/recovery = SubResource( 117 )
@@ -1097,6 +1170,7 @@ tree_root = SubResource( 128 )
 anim_player = NodePath("../MeleePlayer")
 active = true
 parameters/playback = SubResource( 129 )
+parameters/conditions/swing = false
 
 [node name="MeleeAudio" type="AudioStreamPlayer2D" parent="MeleeBox"]
 bus = "Sfx"
