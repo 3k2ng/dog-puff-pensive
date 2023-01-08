@@ -4,12 +4,13 @@ func _ready():
 	visible = false
 
 	var _success = $Restart.connect("button_down", self, "restart")
-	_success = $Quit.connect("button_down", self, "quit")
+	_success = $Fullscreen.connect("button_down", self, "toggle_fullscreen")
+	_success = $Menu.connect("button_down", self, "return_to_menu")
 
 
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_fullscreen"):
-		OS.window_fullscreen = !OS.window_fullscreen
+		toggle_fullscreen();
 	if event.is_action_pressed("pause"):
 		toggle_pause()
 	if event.is_action_pressed("restart"):
@@ -27,5 +28,9 @@ func restart():
 	get_tree().paused = false
 	var _success = get_tree().change_scene("res://scenes/game.tscn")
 
-func quit():
-	get_tree().quit()
+func toggle_fullscreen():
+	OS.window_fullscreen = !OS.window_fullscreen
+
+func return_to_menu():
+	get_tree().paused = false
+	var _success = get_tree().change_scene("res://scenes/title_screen.tscn")

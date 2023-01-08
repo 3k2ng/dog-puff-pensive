@@ -15,37 +15,54 @@ color = Color( 0, 0, 0, 0.784314 )
 
 [node name="Restart" type="Button" parent="."]
 anchor_right = 1.0
-margin_left = 80.0
-margin_top = 100.0
-margin_right = -80.0
-margin_bottom = 130.0
+margin_left = 90.0
+margin_top = 108.0
+margin_right = -70.0
+margin_bottom = 128.0
 focus_neighbour_top = NodePath("../Volumes/Sfx/Volume")
-focus_neighbour_bottom = NodePath("../Quit")
-focus_next = NodePath("../Quit")
+focus_neighbour_bottom = NodePath("../Menu")
+focus_next = NodePath("../Menu")
 focus_previous = NodePath("../Volumes/Sfx/Volume")
 custom_fonts/font = ExtResource( 3 )
 text = "Restart [r] (back)"
 
-[node name="Quit" type="Button" parent="."]
+[node name="Menu" type="Button" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 100.0
+margin_left = 214.0
 margin_top = 140.0
-margin_right = -100.0
-margin_bottom = -10.0
+margin_right = -46.0
+margin_bottom = -20.0
+focus_neighbour_left = NodePath("../Fullscreen")
 focus_neighbour_top = NodePath("../Restart")
+focus_neighbour_right = NodePath("../Fullscreen")
 focus_next = NodePath("../Volumes/Master/Volume")
 focus_previous = NodePath("../Restart")
 custom_fonts/font = ExtResource( 3 )
-text = "Quit"
+text = "Menu"
+
+[node name="Fullscreen" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 33.0
+margin_top = 140.0
+margin_right = -139.0
+margin_bottom = -20.0
+focus_neighbour_left = NodePath("../Menu")
+focus_neighbour_top = NodePath("../Restart")
+focus_neighbour_right = NodePath("../Menu")
+focus_next = NodePath("../Volumes/Master/Volume")
+focus_previous = NodePath("../Restart")
+custom_fonts/font = ExtResource( 3 )
+text = "Toggle Fullscreen"
 
 [node name="Volumes" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
-margin_top = 30.0
+margin_top = 28.0
 margin_right = -50.0
-margin_bottom = -80.0
+margin_bottom = -82.0
 
 [node name="Master" type="Control" parent="Volumes"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -68,7 +85,7 @@ anchor_bottom = 1.0
 margin_left = 70.0
 focus_neighbour_bottom = NodePath("../../Music/Volume")
 focus_next = NodePath("../../Music/Volume")
-focus_previous = NodePath("../../../Quit")
+focus_previous = NodePath("../../../Menu")
 max_value = 1.0
 step = 0.05
 value = 0.5
