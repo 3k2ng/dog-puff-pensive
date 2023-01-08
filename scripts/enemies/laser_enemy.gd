@@ -76,7 +76,7 @@ func _process(delta: float) -> void:
 		if to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding():
 			if attack_timer <= 0:
 				play_sound(EXPLODING_SOUND, true)
-				anim_playback.travel("explode")
+				anim_playback.travel("fire")
 				attack_timer = ATTACK_CD
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():

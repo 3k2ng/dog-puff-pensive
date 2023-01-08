@@ -1,12 +1,11 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=60 format=2]
 
-[ext_resource path="res://sprites/enemies/puff/puff launch.png" type="Texture" id=1]
-[ext_resource path="res://sprites/enemies/puff/puff notice.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemies/puff/laser puff launch.png" type="Texture" id=1]
+[ext_resource path="res://sprites/enemies/puff/laser puff notice.png" type="Texture" id=2]
 [ext_resource path="res://scripts/enemies/laser_enemy.gd" type="Script" id=3]
-[ext_resource path="res://sprites/enemies/puff/puff chase.png" type="Texture" id=4]
-[ext_resource path="res://sprites/enemies/puff/puff idle.png" type="Texture" id=5]
+[ext_resource path="res://sprites/enemies/puff/laser puff idle.png" type="Texture" id=4]
+[ext_resource path="res://sprites/enemies/puff/laser puff fire.png" type="Texture" id=5]
 [ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=7]
-[ext_resource path="res://sprites/enemies/puff/puff explode.png" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=33]
 resource_local_to_scene = true
@@ -14,142 +13,141 @@ shader = ExtResource( 7 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=61]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=62]
 atlas = ExtResource( 4 )
 region = Rect2( 28, 0, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=63]
 atlas = ExtResource( 4 )
-region = Rect2( 0, 28, 28, 28 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 4 )
-region = Rect2( 28, 28, 28, 28 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 56, 28, 28 )
-
-[sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 28, 28 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 5 )
-region = Rect2( 28, 0, 28, 28 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 5 )
 region = Rect2( 56, 0, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 5 )
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 4 )
 region = Rect2( 0, 28, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 5 )
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 4 )
 region = Rect2( 28, 28, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 5 )
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 4 )
 region = Rect2( 56, 28, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 5 )
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 4 )
 region = Rect2( 0, 56, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 5 )
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 4 )
 region = Rect2( 28, 56, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 5 )
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 4 )
 region = Rect2( 56, 56, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 5 )
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 4 )
 region = Rect2( 0, 84, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 8 )
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 8 )
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 5 )
 region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 8 )
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=74]
+atlas = ExtResource( 5 )
 region = Rect2( 0, 48, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 8 )
+[sub_resource type="AtlasTexture" id=75]
+atlas = ExtResource( 5 )
 region = Rect2( 48, 48, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 8 )
+[sub_resource type="AtlasTexture" id=76]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=77]
+atlas = ExtResource( 5 )
 region = Rect2( 0, 96, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=25]
+[sub_resource type="AtlasTexture" id=78]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 96, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=79]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 96, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=80]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 144, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=81]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 144, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=82]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=83]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 28, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=84]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=85]
 atlas = ExtResource( 2 )
 region = Rect2( 28, 0, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=86]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 28, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=87]
 atlas = ExtResource( 2 )
 region = Rect2( 28, 28, 28, 28 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=88]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 56, 28, 28 )
 
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
-"loop": true,
-"name": "chase",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 31 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ) ],
 "loop": true,
 "name": "default",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
+"frames": [ SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ) ],
 "loop": true,
-"name": "explode",
-"speed": 12.0
+"name": "fire",
+"speed": 5.0
 }, {
-"frames": [ SubResource( 25 ) ],
+"frames": [ SubResource( 82 ) ],
 "loop": true,
 "name": "hurt",
-"speed": 5.0
+"speed": 12.0
 }, {
-"frames": [ SubResource( 23 ) ],
+"frames": [ SubResource( 83 ) ],
 "loop": true,
 "name": "launch",
-"speed": 5.0
+"speed": 12.0
 }, {
-"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"frames": [ SubResource( 84 ), SubResource( 85 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ) ],
 "loop": true,
 "name": "notice",
 "speed": 12.0
@@ -158,37 +156,10 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=24]
 radius = 5.0
 
-[sub_resource type="Animation" id=37]
-resource_name = "chase"
-length = 0.25
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "chase" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0, 4 ]
-}
-
 [sub_resource type="Animation" id=39]
-resource_name = "explode"
+resource_name = "fire"
+length = 1.33333
+step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
 tracks/0/interp = 1
@@ -199,7 +170,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "explode" ]
+"values": [ "fire" ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimatedSprite:frame")
@@ -208,10 +179,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.25, 0.666667, 1.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0, 4 ]
+"values": [ 0, 3, 3, 10 ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -220,7 +191,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.7, 0.9 ),
+"times": PoolRealArray( 0.583333, 0.833333 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -261,8 +232,9 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=57]
 resource_name = "idle"
-length = 0.5
+length = 0.833333
 loop = true
+step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
 tracks/0/interp = 1
@@ -282,7 +254,7 @@ tracks/1/loop_wrap = false
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.45 ),
+"times": PoolRealArray( 0, 0.75 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 9 ]
@@ -319,6 +291,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=41]
 resource_name = "notice"
 length = 0.5
+step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
 tracks/0/interp = 1
@@ -375,11 +348,8 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=42]
-animation = "chase"
-
 [sub_resource type="AnimationNodeAnimation" id=43]
-animation = "explode"
+animation = "fire"
 
 [sub_resource type="AnimationNodeAnimation" id=50]
 animation = "hurt"
@@ -395,17 +365,7 @@ animation = "notice"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=46]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=47]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=48]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=49]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=52]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=53]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=54]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=58]
 
@@ -415,20 +375,24 @@ animation = "notice"
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=89]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=90]
+
 [sub_resource type="AnimationNodeStateMachine" id=35]
-states/chase/node = SubResource( 42 )
-states/chase/position = Vector2( 414, 35 )
-states/explode/node = SubResource( 43 )
-states/explode/position = Vector2( 414, 112 )
+states/fire/node = SubResource( 43 )
+states/fire/position = Vector2( 414.222, 112 )
 states/hurt/node = SubResource( 50 )
-states/hurt/position = Vector2( 414, -124 )
+states/hurt/position = Vector2( 235.556, -105.333 )
 states/idle/node = SubResource( 44 )
 states/idle/position = Vector2( 236, 112 )
 states/launch/node = SubResource( 51 )
-states/launch/position = Vector2( 610, -124 )
+states/launch/position = Vector2( 414.37, -1.33333 )
 states/notice/node = SubResource( 45 )
-states/notice/position = Vector2( 236, 35 )
-transitions = [ "idle", "notice", SubResource( 46 ), "notice", "chase", SubResource( 47 ), "chase", "explode", SubResource( 48 ), "explode", "chase", SubResource( 49 ), "chase", "hurt", SubResource( 52 ), "hurt", "launch", SubResource( 53 ), "chase", "idle", SubResource( 54 ), "idle", "hurt", SubResource( 58 ), "idle", "launch", SubResource( 59 ), "explode", "idle", SubResource( 60 ) ]
+states/notice/position = Vector2( 72.6667, 112.111 )
+transitions = [ "idle", "notice", SubResource( 46 ), "hurt", "launch", SubResource( 53 ), "idle", "hurt", SubResource( 58 ), "idle", "launch", SubResource( 59 ), "fire", "idle", SubResource( 60 ), "notice", "idle", SubResource( 89 ), "idle", "fire", SubResource( 90 ) ]
 start_node = "idle"
 graph_offset = Vector2( -257, -251 )
 
@@ -455,7 +419,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
 frames = SubResource( 11 )
-frame = 5
+frame = 8
 __meta__ = {
 "_edit_lock_": true
 }
@@ -473,8 +437,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/chase = SubResource( 37 )
-anims/explode = SubResource( 39 )
+anims/fire = SubResource( 39 )
 anims/hurt = SubResource( 38 )
 anims/idle = SubResource( 57 )
 anims/launch = SubResource( 40 )
