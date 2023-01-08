@@ -392,7 +392,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.498 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 3, 9 ]
@@ -428,7 +428,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.583333 ),
+"times": PoolRealArray( 0, 0.58 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -510,7 +510,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.583333 ),
+"times": PoolRealArray( 0, 0.58 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -1103,14 +1103,14 @@ states/run_up/node = SubResource( 69 )
 states/run_up/position = Vector2( 360, 665 )
 transitions = [ "idle", "roll_side", SubResource( 70 ), "idle", "run_up", SubResource( 71 ), "run_up", "idle_up", SubResource( 72 ), "run_side", "idle", SubResource( 73 ), "idle_up", "run_side", SubResource( 74 ), "run_side", "run_up", SubResource( 75 ), "run_up", "run_side", SubResource( 76 ), "idle", "roll_up", SubResource( 77 ), "idle_up", "roll_side", SubResource( 78 ), "idle_up", "roll_up", SubResource( 79 ), "roll_side", "run_side", SubResource( 80 ), "roll_side", "idle", SubResource( 81 ), "roll_side", "idle_up", SubResource( 82 ), "roll_side", "run_up", SubResource( 83 ), "roll_up", "run_side", SubResource( 84 ), "roll_up", "idle", SubResource( 85 ), "roll_up", "idle_up", SubResource( 86 ), "roll_up", "run_up", SubResource( 87 ), "idle", "dog_hurt", SubResource( 94 ), "idle_up", "dog_hurt", SubResource( 95 ), "run_up", "dog_hurt", SubResource( 96 ), "run_side", "dog_hurt", SubResource( 97 ), "roll_side", "dog_hurt", SubResource( 98 ), "roll_up", "dog_hurt", SubResource( 99 ), "dog_hurt", "run_up", SubResource( 100 ), "dog_hurt", "roll_up", SubResource( 101 ), "dog_hurt", "roll_side", SubResource( 102 ), "dog_hurt", "idle", SubResource( 103 ), "dog_hurt", "idle_up", SubResource( 104 ), "dog_hurt", "run_side", SubResource( 107 ), "run_up", "roll_up", SubResource( 108 ), "run_side", "roll_side", SubResource( 109 ) ]
 start_node = "idle"
-graph_offset = Vector2( -41, 102.302 )
+graph_offset = Vector2( -41, 125.282 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=63]
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 material = SubResource( 61 )
 collision_layer = 7
-collision_mask = 5
+collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
