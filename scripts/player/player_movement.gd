@@ -91,4 +91,4 @@ func die():
 	PlayerInfo.is_dead = true
 	velocity = Vector2.ZERO
 	yield(get_tree().create_timer(0.6), "timeout")
-	get_tree().change_scene("res://scenes/game_over.tscn")
+	var _success = get_tree().change_scene("res://scenes/game_over.tscn")

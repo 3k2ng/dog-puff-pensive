@@ -3,11 +3,10 @@ extends Area2D
 const SWINGING_SOUND: AudioStreamMP3 = preload("res://sfxs/whoosh-6316.mp3")
 const HITTING_SOUND: AudioStreamSample = preload("res://sfxs/06-hitting.wav")
 
-var alt_side: bool
+onready var anim_playback = $AnimationTree.get("parameters/playback")
 
 func _ready():
 	var _success = self.connect("body_entered", self, "_body_entered")
-	_success = $MeleePlayer.connect("animation_finished", self, "_swing_finish")
 
 func _body_entered(body: Node) -> void:
 	if body.is_in_group("enemy"):
@@ -24,15 +23,11 @@ func _process(_delta: float) -> void:
 	else: 
 		self.look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("melee_attack"):
-		if not $MeleePlayer.is_playing():
-			play_sound(SWINGING_SOUND, true)
-		$MeleePlayer.play("swing")
+		anim_playback.travel("swing")
 
-func _swing_finish(anim_name: String) -> void:
-	if anim_name == "swing":
-		alt_side = not alt_side
-		$AnimatedSprite.flip_v = alt_side
-		$AnimatedSprite.frame = 0
+func _swing_start() -> void:
+	play_sound(SWINGING_SOUND, true)
+	$AnimatedSprite.flip_v = not $AnimatedSprite.flip_v
 
 func play_sound(sfx: AudioStream, overriding: bool) -> void:
 	if overriding or not $MeleeAudio.playing:
