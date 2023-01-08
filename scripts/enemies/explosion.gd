@@ -11,7 +11,7 @@ func on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		body.damage_taken((body.position - position).normalized(), 1)
 	elif body.is_in_group("enemy"):
-		body.hurt((body.position - position).normalized(), 1)
+		body.hurt((body.position - position).normalized(), 2)
 	elif body.is_in_group("button"):
 		body.activate()
 
