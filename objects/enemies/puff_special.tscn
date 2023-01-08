@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://sprites/enemies/puff/laser puff launch.png" type="Texture" id=1]
 [ext_resource path="res://sprites/enemies/puff/laser puff notice.png" type="Texture" id=2]
@@ -381,6 +381,8 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=90]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=91]
+
 [sub_resource type="AnimationNodeStateMachine" id=35]
 states/fire/node = SubResource( 43 )
 states/fire/position = Vector2( 414.222, 112 )
@@ -392,7 +394,7 @@ states/launch/node = SubResource( 51 )
 states/launch/position = Vector2( 414.37, -1.33333 )
 states/notice/node = SubResource( 45 )
 states/notice/position = Vector2( 72.6667, 112.111 )
-transitions = [ "idle", "notice", SubResource( 46 ), "hurt", "launch", SubResource( 53 ), "idle", "hurt", SubResource( 58 ), "idle", "launch", SubResource( 59 ), "fire", "idle", SubResource( 60 ), "notice", "idle", SubResource( 89 ), "idle", "fire", SubResource( 90 ) ]
+transitions = [ "idle", "notice", SubResource( 46 ), "hurt", "launch", SubResource( 53 ), "idle", "hurt", SubResource( 58 ), "idle", "launch", SubResource( 59 ), "fire", "idle", SubResource( 60 ), "notice", "idle", SubResource( 89 ), "idle", "fire", SubResource( 90 ), "fire", "hurt", SubResource( 91 ) ]
 start_node = "idle"
 graph_offset = Vector2( -257, -251 )
 
@@ -419,7 +421,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
 frames = SubResource( 11 )
-frame = 8
+frame = 4
 __meta__ = {
 "_edit_lock_": true
 }
