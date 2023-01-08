@@ -17,6 +17,9 @@ func toggle_pause():
 	var tree = get_tree()
 	tree.paused = !tree.paused
 	visible = tree.paused
+	
+	if visible:
+		$Restart.grab_focus();
 
 func restart():
 	get_tree().paused = false
