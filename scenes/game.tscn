@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://tilesets/tile autotile.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://musics/overworld theme loop.wav" type="AudioStream" id=17]
 [ext_resource path="res://objects/enemies/macaron.tscn" type="PackedScene" id=18]
 [ext_resource path="res://objects/ui/pause_menu.tscn" type="PackedScene" id=19]
+[ext_resource path="res://fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://scripts/ui/ui_timer.gd" type="Script" id=21]
 
 [sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
@@ -244,6 +246,10 @@ resource_local_to_scene = true
 shader = ExtResource( 9 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
+
+[sub_resource type="DynamicFont" id=58]
+size = 8
+font_data = ExtResource( 20 )
 
 [node name="Game" type="Node"]
 
@@ -623,7 +629,7 @@ script = ExtResource( 15 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Field/Flag"]
 frames = SubResource( 44 )
-frame = 3
+frame = 2
 playing = true
 offset = Vector2( -4, -7 )
 
@@ -692,7 +698,16 @@ __meta__ = {
 
 [node name="Bone" parent="UI/Health" instance=ExtResource( 7 )]
 
+[node name="Timer" type="Label" parent="UI"]
+margin_right = 320.0
+margin_bottom = 180.0
+custom_fonts/font = SubResource( 58 )
+text = "Timer: "
+valign = 2
+script = ExtResource( 21 )
+
 [node name="Pause Menu" parent="." instance=ExtResource( 19 )]
+visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 offset = Vector2( 160, 96 )
