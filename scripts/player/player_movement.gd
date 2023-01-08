@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	if PlayerInfo.is_dead:
 		return
 
-	if(invulnerability_timer >= 0):
+	if (invulnerability_timer >= 0):
 		invulnerability_timer -= delta
 
 	if Input.is_action_just_pressed("dodge_roll") and not is_rolling:
@@ -51,8 +51,7 @@ func _process(delta: float) -> void:
 		# 	anim_playback.travel("roll_side")
 	# else:
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-		if direction != Vector2.ZERO:
-			roll_direction = direction
+		roll_direction = direction
 		
 		if direction.x > 0:
 			anim_sprite.flip_h = false
@@ -73,6 +72,10 @@ func _process(delta: float) -> void:
 				anim_playback.travel("idle_up")
 			else:
 				anim_playback.travel("idle")
+	elif roll_direction == Vector2.ZERO:
+		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+		roll_direction = direction
+		pass
 
 func _physics_process(delta: float) -> void:
 	if stun_timer > 0:
