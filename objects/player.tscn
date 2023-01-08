@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=2]
+[gd_scene load_steps=138 format=2]
 
 [ext_resource path="res://sprites/dog/dog up idle.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player/player_movement.gd" type="Script" id=2]
@@ -563,6 +563,10 @@ region = Rect2( 0, 42, 42, 42 )
 atlas = ExtResource( 3 )
 region = Rect2( 42, 42, 42, 42 )
 
+[sub_resource type="AtlasTexture" id=136]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 84, 42, 42 )
+
 [sub_resource type="SpriteFrames" id=55]
 animations = [ {
 "frames": [ SubResource( 110 ) ],
@@ -580,7 +584,7 @@ animations = [ {
 "name": "recover",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 132 ), SubResource( 133 ), SubResource( 134 ), SubResource( 135 ) ],
+"frames": [ SubResource( 132 ), SubResource( 133 ), SubResource( 134 ), SubResource( 135 ), SubResource( 136 ) ],
 "loop": false,
 "name": "swing",
 "speed": 12.0
@@ -738,7 +742,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.25 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 4 ]
+"values": [ 1, 4 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Shape2:disabled")
@@ -747,7 +751,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.0833333, 0.166667, 0.25 ),
+"times": PoolRealArray( 0, 0.0833333, 0.166667 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -972,7 +976,7 @@ script = ExtResource( 2 )
 use_parent_material = true
 position = Vector2( 0, -2 )
 frames = SubResource( 6 )
-frame = 3
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
