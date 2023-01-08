@@ -313,6 +313,7 @@ focus_next = NodePath("../../Sfx/Volume")
 focus_previous = NodePath("../../Master/Volume")
 max_value = 1.0
 step = 0.05
+value = 0.5
 script = ExtResource( 6 )
 bus_name = "Music"
 set_value_on_ready = true
