@@ -22,10 +22,14 @@ const LAUNCH_SPEED = 96.0
 const DETECTION_RANGE = 160 # 10 blocks
 const ATTACK_RANGE = 80
 
+const MAX_BOUNCE = 2
+const MAX_HEALTH = 2
+
 const STUN_TIME = 0.2
 
 var direction: Vector2
 var launch_direction: Vector2
+var bounce_left: int
 
 var target: KinematicBody2D
 var state: int
@@ -59,6 +63,8 @@ func _process(delta: float) -> void:
 		collision_layer = 2
 		collision_mask = 2
 		return
+	else:
+		trail.emitting = false
 	
 	if target:
 		to_player.clear_exceptions()
@@ -105,10 +111,17 @@ func _physics_process(delta: float) -> void:
 		if collision:
 			if collision.collider.is_in_group("player") or collision.collider.is_in_group("enemy") or health <= 0:
 				splash()
-			else:
+			elif bounce_left > 0:
 				launch_direction = (-direction).reflect(collision.normal)
 				hurt(launch_direction, 0)
+				bounce_left -= 1
+			else:
+				$FlashPlayer.play("flash")
+				play_sound(HURT_SOUND, true)
+				state = IDLE
 		return
+	else:
+		rotation = 0
 	if state != HIT:
 		._physics_process(delta)
 		velocity = direction * MOVEMENT_SPEED
@@ -119,11 +132,12 @@ func _physics_process(delta: float) -> void:
 
 func _ready() -> void:
 	get_player_as_target()
-	max_health = 2
+	max_health = MAX_HEALTH
 	._ready()
 
 func launch() -> void:
 	hurt(launch_direction, 0)
+	bounce_left = MAX_BOUNCE
 
 func update_launch_direction() -> void:
 	launch_direction = to_player.cast_to.normalized()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://sprites/enemies/puff/puff launch.png" type="Texture" id=1]
 [ext_resource path="res://sprites/enemies/puff/puff notice.png" type="Texture" id=2]
@@ -416,11 +416,13 @@ animation = "notice"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=59]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=96]
+
 [sub_resource type="AnimationNodeStateMachine" id=94]
 states/chase/node = SubResource( 42 )
-states/chase/position = Vector2( 414, 35 )
+states/chase/position = Vector2( 610, 35 )
 states/explode/node = SubResource( 43 )
-states/explode/position = Vector2( 414, 112 )
+states/explode/position = Vector2( 610, 112 )
 states/hurt/node = SubResource( 50 )
 states/hurt/position = Vector2( 414, -124 )
 states/idle/node = SubResource( 44 )
@@ -429,9 +431,9 @@ states/launch/node = SubResource( 51 )
 states/launch/position = Vector2( 610, -124 )
 states/notice/node = SubResource( 45 )
 states/notice/position = Vector2( 236, 35 )
-transitions = [ "idle", "notice", SubResource( 46 ), "notice", "chase", SubResource( 47 ), "chase", "explode", SubResource( 48 ), "explode", "chase", SubResource( 49 ), "chase", "hurt", SubResource( 52 ), "hurt", "launch", SubResource( 53 ), "chase", "idle", SubResource( 54 ), "idle", "hurt", SubResource( 58 ), "idle", "launch", SubResource( 59 ) ]
+transitions = [ "idle", "notice", SubResource( 46 ), "notice", "chase", SubResource( 47 ), "chase", "explode", SubResource( 48 ), "explode", "chase", SubResource( 49 ), "chase", "hurt", SubResource( 52 ), "hurt", "launch", SubResource( 53 ), "chase", "idle", SubResource( 54 ), "idle", "hurt", SubResource( 58 ), "idle", "launch", SubResource( 59 ), "launch", "idle", SubResource( 96 ) ]
 start_node = "idle"
-graph_offset = Vector2( -241, -72.704 )
+graph_offset = Vector2( -191, -266.704 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=95]
 
@@ -456,7 +458,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
 frames = SubResource( 93 )
-frame = 7
+frame = 5
 __meta__ = {
 "_edit_lock_": true
 }
