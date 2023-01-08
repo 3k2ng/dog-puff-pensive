@@ -284,6 +284,7 @@ step = 0.05
 value = 0.5
 script = ExtResource( 6 )
 bus_name = "Master"
+set_value_on_ready = true
 
 [node name="Music" type="Control" parent="Volumes"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -312,9 +313,9 @@ focus_next = NodePath("../../Sfx/Volume")
 focus_previous = NodePath("../../Master/Volume")
 max_value = 1.0
 step = 0.05
-value = 0.5
 script = ExtResource( 6 )
 bus_name = "Music"
+set_value_on_ready = true
 
 [node name="Sfx" type="Control" parent="Volumes"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -346,6 +347,7 @@ step = 0.05
 value = 0.5
 script = ExtResource( 6 )
 bus_name = "Sfx"
+set_value_on_ready = true
 
 [node name="Quit" type="Button" parent="."]
 margin_left = 138.0
