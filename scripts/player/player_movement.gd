@@ -88,7 +88,8 @@ func damage_taken(dir: Vector2, _damage: int):
 		return
 	if(invulnerability_timer > 0):
 		return
-
+	
+	is_rolling = false
 	$FlashPlayer.play("flash")
 	anim_playback.travel("dog_hurt")
 	stun_timer = stun_time
