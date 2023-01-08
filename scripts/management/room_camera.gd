@@ -14,7 +14,7 @@ func get_player_as_target() -> void:
 func _process(delta: float) -> void:
 	if target:
 		current_room_coord = Vector2(round(target.position.x / ROOM_WIDTH - 0.5), round(target.position.y / ROOM_HEIGHT - 0.5))
-		var target_position = Vector2(current_room_coord.x * ROOM_WIDTH, current_room_coord.y * ROOM_HEIGHT) + Vector2.DOWN * 4
+		var target_position = Vector2(current_room_coord.x * ROOM_WIDTH, current_room_coord.y * ROOM_HEIGHT)
 		position += (target_position - position) * delta * 4
 	else:
 		get_player_as_target()

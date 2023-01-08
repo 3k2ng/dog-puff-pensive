@@ -623,6 +623,7 @@ script = ExtResource( 15 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Field/Flag"]
 frames = SubResource( 44 )
+frame = 3
 playing = true
 offset = Vector2( -4, -7 )
 
@@ -694,7 +695,7 @@ __meta__ = {
 [node name="Pause Menu" parent="." instance=ExtResource( 19 )]
 
 [node name="Camera" type="Camera2D" parent="."]
-offset = Vector2( 160, 90 )
+offset = Vector2( 160, 96 )
 current = true
 script = ExtResource( 8 )
 __meta__ = {
