@@ -8,6 +8,8 @@ func _ready():
 
 
 func _unhandled_input(event):
+	if event.is_action_pressed("toggle_fullscreen"):
+		OS.window_fullscreen = !OS.window_fullscreen
 	if event.is_action_pressed("pause"):
 		toggle_pause()
 	if event.is_action_pressed("restart"):
