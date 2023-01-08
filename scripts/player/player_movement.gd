@@ -8,7 +8,7 @@ export var rolling_speed_multiplier: float = 2
 
 export var hurt_invulnerable_time: float = 2.0
 export var stun_time: float = 0.1
-const ROLL_TIME: float = 0.75
+const ROLL_TIME: float = 0.58
 
 var is_facing_up: bool
 
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	if PlayerInfo.is_dead:
 		return
 
-	if (invulnerability_timer >= 0):
+	if invulnerability_timer >= 0:
 		invulnerability_timer -= delta
 
 	if Input.is_action_just_pressed("dodge_roll") and not is_rolling:
@@ -40,16 +40,10 @@ func _process(delta: float) -> void:
 			anim_playback.travel("roll_up")
 		else:
 			anim_playback.travel("roll_side")
-		# roll_timer = ROLL_TIME
+		roll_timer = ROLL_TIME
 		is_rolling = true
 	
 	if not is_rolling:
-		# roll_timer -= delta
-		# if is_facing_up:
-		# 	anim_playback.travel("roll_up")
-		# else:
-		# 	anim_playback.travel("roll_side")
-	# else:
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 		roll_direction = direction
 		
@@ -72,10 +66,14 @@ func _process(delta: float) -> void:
 				anim_playback.travel("idle_up")
 			else:
 				anim_playback.travel("idle")
-	elif roll_direction == Vector2.ZERO:
-		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-		roll_direction = direction
-		pass
+	else:
+		if roll_timer > 0:
+			roll_timer -= delta
+		else:
+			is_rolling = false
+		if roll_direction == Vector2.ZERO:
+			direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+			roll_direction = direction
 
 func _physics_process(delta: float) -> void:
 	if stun_timer > 0:
@@ -89,7 +87,7 @@ func _physics_process(delta: float) -> void:
 func damage_taken(dir: Vector2, _damage: int):
 	if PlayerInfo.current_health <= 0:
 		return
-	if(invulnerability_timer > 0):
+	if invulnerability_timer > 0:
 		return
 	
 	is_rolling = false
