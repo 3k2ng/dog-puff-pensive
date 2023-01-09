@@ -16,47 +16,38 @@ shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id=86]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=87]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=88]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=89]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 48, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=90]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 48, 48, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=91]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 96, 48, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=92]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 96, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=93]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 48, 96, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=94]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 96, 96, 48, 48 )
 
@@ -77,22 +68,18 @@ atlas = ExtResource( 8 )
 region = Rect2( 48, 48, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=82]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=83]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=84]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 48, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=85]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 48, 48, 48, 48 )
 
@@ -251,7 +238,7 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.333333 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ 0, 3 ]
 }
 
@@ -445,6 +432,7 @@ script = ExtResource( 1 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 104 )
+frame = 2
 __meta__ = {
 "_edit_lock_": true
 }
