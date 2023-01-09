@@ -1140,7 +1140,6 @@ anims/run_side = SubResource( 45 )
 anims/run_up = SubResource( 47 )
 
 [node name="MeleeBox" type="Area2D" parent="."]
-position = Vector2( 0, -3 )
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 4 )
@@ -1153,7 +1152,7 @@ input_buffer_time = 0.15
 frames = SubResource( 55 )
 
 [node name="Shape2" type="CollisionPolygon2D" parent="MeleeBox"]
-polygon = PoolVector2Array( 0, 19, 16, 19, 24, 3, 16, -13, 0, -13, 8, 3 )
+polygon = PoolVector2Array( 0, 16, 16, 16, 22, 0, 16, -16, 0, -16, 8, 0 )
 disabled = true
 
 [node name="MeleePlayer" type="AnimationPlayer" parent="MeleeBox"]
