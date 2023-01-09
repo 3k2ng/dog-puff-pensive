@@ -16,19 +16,23 @@ enum {
 	ATTACK
 }
 
-const MOVEMENT_SPEED = 64
+const MOVEMENT_SPEED = 48.0
 const LAUNCH_SPEED = 96.0
 
 const DETECTION_RANGE = 160 # 10 blocks
 const ATTACK_RANGE = 16
 
+const MAX_HEALTH = 1
+
 const STUN_TIME = 0.2
+const ATTACK_MIN = 0.5 # time that the attack need to perform before check the player again
 
 var direction: Vector2
 
 var target: KinematicBody2D
 var state: int
 var stun_timer: float
+var attack_timer: float # timer for ATTACK_MIN
 
 onready var to_player: RayCast2D = $ToPlayer
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
@@ -58,6 +62,10 @@ func _process(delta: float) -> void:
 		collision_layer = 2
 		collision_mask = 2
 		return
+	else:
+		trail.emitting = false
+		collision_layer = 10
+		collision_mask = 10
 	
 	if target:
 		to_player.clear_exceptions()
@@ -65,8 +73,12 @@ func _process(delta: float) -> void:
 		for e in get_tree().get_nodes_in_group("enemy"):
 			to_player.add_exception(e)
 		to_player.cast_to = target.position - position
-		if to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding():
-			play_sound(EXPLODING_SOUND, false)
+		if attack_timer > 0 or (to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding()):
+			if not anim_playback.get_current_node() == "explode":
+				play_sound(EXPLODING_SOUND, false)
+				attack_timer = ATTACK_MIN
+			else:
+				attack_timer -= delta
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
 			state = IDLE
@@ -102,8 +114,15 @@ func _physics_process(delta: float) -> void:
 			rotation = Vector2.RIGHT.angle_to(direction)
 		var collision = move_and_collide(velocity * delta)
 		if collision:
-			splash()
+			if collision.collider.is_in_group("player") or collision.collider.is_in_group("enemy") or health <= 0:
+				splash()
+			else:
+				$FlashPlayer.play("flash")
+				play_sound(HURT_SOUND, true)
+				state = IDLE
 		return
+	else:
+		rotation = 0
 	if state != HIT:
 		._physics_process(delta)
 		velocity = direction * MOVEMENT_SPEED
@@ -114,6 +133,8 @@ func _physics_process(delta: float) -> void:
 
 func _ready() -> void:
 	get_player_as_target()
+	max_health = MAX_HEALTH
+	._ready()
 
 func splash() -> void:
 	var new_splash = SPLASH.instance()
@@ -124,7 +145,8 @@ func splash() -> void:
 	SignalBus.emit_signal("spawn_object", new_explosion)
 	queue_free()
 
-func hurt(dir: Vector2, _damage: int) -> void:
+func hurt(dir: Vector2, damage: int) -> void:
+	.hurt(dir, damage)
 	$FlashPlayer.play("flash")
 	play_sound(HURT_SOUND, true)
 	state = HIT
