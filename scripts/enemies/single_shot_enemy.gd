@@ -137,6 +137,7 @@ func shoot() -> void:
 	new_puff.collision_mask = 2
 	new_puff.direction = shoot_direction
 	SignalBus.emit_signal("spawn_object", new_puff)
+	new_puff.health = 0
 
 func update_shoot_aim() -> void:
 	shoot_direction = to_player.cast_to.normalized()
