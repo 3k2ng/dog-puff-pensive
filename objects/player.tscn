@@ -1153,8 +1153,7 @@ input_buffer_time = 0.15
 frames = SubResource( 55 )
 
 [node name="Shape2" type="CollisionPolygon2D" parent="MeleeBox"]
-position = Vector2( 8, -9 )
-polygon = PoolVector2Array( 4, 23, 13, 14, 12, -4, -1, -10, -12, -7, 0, 7 )
+polygon = PoolVector2Array( 0, 19, 16, 19, 24, 3, 16, -13, 0, -13, 8, 3 )
 disabled = true
 
 [node name="MeleePlayer" type="AnimationPlayer" parent="MeleeBox"]
