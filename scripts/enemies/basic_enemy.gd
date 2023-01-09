@@ -81,11 +81,17 @@ func _process(delta: float) -> void:
 				attack_timer = ATTACK_CD
 			state = ATTACK
 		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
+			if $Audio.stream != NOTICE_SOUND:
+				$Audio.stop()
 			anim_playback.travel("confused")
 			state = IDLE
 		else:
 			# yes player detected
 			anim_playback.travel("notice")
+			if to_player.cast_to.x < 0:
+				anim_sprite.flip_h = true
+			elif to_player.cast_to.x > 0:
+				anim_sprite.flip_h = false
 			if state != CHASE:
 				play_sound(NOTICE_SOUND, false)
 			state = CHASE
@@ -100,6 +106,9 @@ func _process(delta: float) -> void:
 			anim_playback.travel("melee_attack")
 			direction = Vector2.ZERO
 		CHASE:
+			if anim_playback.get_current_node() == "notice":
+				direction = Vector2.ZERO
+				return
 			anim_playback.travel("chase")
 			play_sound(SHOUTING_SOUND, false)
 			direction = to_player.cast_to.normalized()

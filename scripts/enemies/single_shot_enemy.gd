@@ -30,6 +30,7 @@ var target: KinematicBody2D
 var state: int
 var stun_timer: float
 var attack_timer: float
+var noticed: bool = false
 var dead: bool
 
 onready var to_player: RayCast2D = $ToPlayer
@@ -60,13 +61,10 @@ func _process(delta: float) -> void:
 	if dead:
 		return
 	
-	if state == HIT:
-		if stun_timer > 0:
-			stun_timer -= delta
-			anim_playback.travel("hurt")
-			return
-		else:
-			state = IDLE
+	if state == HIT and stun_timer > 0:
+		stun_timer -= delta
+		anim_playback.travel("hurt")
+		return
 	
 	if attack_timer > 0:
 		attack_timer -= delta
@@ -77,18 +75,23 @@ func _process(delta: float) -> void:
 		for e in get_tree().get_nodes_in_group("enemy"):
 			to_player.add_exception(e)
 		to_player.cast_to = target.position - position
-		if anim_playback.get_current_node() == "melee_attack" or (attack_timer <= 0 and to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding()):
+		if anim_playback.get_current_node() == "melee_attack" or (attack_timer <= 0 and noticed and to_player.cast_to.length() < ATTACK_RANGE and not to_player.is_colliding()):
+			if anim_playback.get_current_node() == "notice":
+				return
 			if attack_timer <= 0:
 				play_sound(STOMPING_SOUND, true)
 				attack_timer = ATTACK_CD
 			state = ATTACK
-		elif to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding():
+		elif (to_player.cast_to.length() > DETECTION_RANGE or to_player.is_colliding()):
+			if $Audio.stream != NOTICE_SOUND:
+				$Audio.stop()
+			noticed = false
 			anim_playback.travel("confused")
 			state = IDLE
 		else:
 			# yes player detected
-			anim_playback.travel("notice")
-			if state != CHASE:
+			if state != CHASE and state != ATTACK:
+				anim_playback.travel("notice")
 				play_sound(NOTICE_SOUND, false)
 			state = CHASE
 	else:
@@ -102,7 +105,11 @@ func _process(delta: float) -> void:
 			anim_playback.travel("melee_attack")
 			direction = Vector2.ZERO
 		CHASE:
-			anim_playback.travel("chase")
+			if anim_playback.get_current_node() == "notice":
+				direction = Vector2.ZERO
+				return
+			noticed = true
+#			anim_playback.travel("chase")
 			play_sound(SHOUTING_SOUND, false)
 			direction = to_player.cast_to.normalized()
 			$MeleeBox.rotation = Vector2.RIGHT.angle_to(direction)

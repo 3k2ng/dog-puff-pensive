@@ -400,7 +400,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=49]
 resource_name = "notice"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:animation")
 tracks/0/interp = 1
@@ -420,7 +420,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
+"times": PoolRealArray( 0, 0.35 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 5 ]
@@ -482,14 +482,12 @@ animation = "notice"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=56]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=60]
 priority = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=61]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=62]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=63]
 switch_mode = 2
@@ -499,29 +497,33 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=66]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=72]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=73]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=74]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=75]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=76]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=77]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=79]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=80]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=81]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=82]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=83]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=84]
+
 [sub_resource type="AnimationNodeStateMachine" id=51]
 states/chase/node = SubResource( 53 )
-states/chase/position = Vector2( 678, 28 )
+states/chase/position = Vector2( 1086, 28 )
 states/confused/node = SubResource( 58 )
-states/confused/position = Vector2( 678, 149 )
+states/confused/position = Vector2( 678, 367 )
 states/dead/node = SubResource( 70 )
 states/dead/position = Vector2( 250, -79 )
 states/hurt/node = SubResource( 71 )
@@ -529,12 +531,12 @@ states/hurt/position = Vector2( 678, -79 )
 states/idle/node = SubResource( 50 )
 states/idle/position = Vector2( 250, 244 )
 states/melee_attack/node = SubResource( 59 )
-states/melee_attack/position = Vector2( 1140, 149 )
+states/melee_attack/position = Vector2( 1086, 244 )
 states/notice/node = SubResource( 54 )
-states/notice/position = Vector2( 250, 22 )
-transitions = [ "idle", "notice", SubResource( 55 ), "notice", "chase", SubResource( 56 ), "chase", "confused", SubResource( 60 ), "chase", "melee_attack", SubResource( 61 ), "melee_attack", "idle", SubResource( 62 ), "confused", "idle", SubResource( 63 ), "melee_attack", "chase", SubResource( 64 ), "confused", "chase", SubResource( 66 ), "idle", "hurt", SubResource( 72 ), "hurt", "chase", SubResource( 73 ), "chase", "hurt", SubResource( 74 ), "hurt", "idle", SubResource( 75 ), "hurt", "dead", SubResource( 76 ), "melee_attack", "hurt", SubResource( 77 ), "notice", "melee_attack", SubResource( 79 ), "idle", "melee_attack", SubResource( 80 ) ]
+states/notice/position = Vector2( 250, 28 )
+transitions = [ "idle", "notice", SubResource( 55 ), "notice", "chase", SubResource( 56 ), "chase", "confused", SubResource( 60 ), "chase", "melee_attack", SubResource( 61 ), "confused", "idle", SubResource( 63 ), "melee_attack", "chase", SubResource( 64 ), "idle", "hurt", SubResource( 72 ), "chase", "hurt", SubResource( 74 ), "hurt", "dead", SubResource( 76 ), "melee_attack", "hurt", SubResource( 77 ), "notice", "melee_attack", SubResource( 79 ), "notice", "confused", SubResource( 80 ), "confused", "notice", SubResource( 81 ), "melee_attack", "confused", SubResource( 82 ), "hurt", "confused", SubResource( 83 ), "idle", "chase", SubResource( 84 ) ]
 start_node = "idle"
-graph_offset = Vector2( 7, -184 )
+graph_offset = Vector2( 128.295, -135.735 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=52]
 
@@ -548,6 +550,7 @@ script = ExtResource( 4 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 29 )
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }

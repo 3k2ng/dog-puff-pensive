@@ -99,6 +99,9 @@ func _process(delta: float) -> void:
 			anim_playback.travel("explode")
 			direction = Vector2.ZERO
 		CHASE:
+			if anim_playback.get_current_node() == "notice":
+				direction = Vector2.ZERO
+				return
 			anim_playback.travel("chase")
 			play_sound(SHOUTING_SOUND, false)
 			direction = to_player.cast_to.normalized()
