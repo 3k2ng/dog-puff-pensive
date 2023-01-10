@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://tilesets/tile autotile.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=20]
 [ext_resource path="res://scripts/ui/ui_timer.gd" type="Script" id=21]
 [ext_resource path="res://objects/props/horizontal_gate.tscn" type="PackedScene" id=22]
+[ext_resource path="res://objects/props/vertical_gate.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
@@ -511,7 +512,6 @@ script = ExtResource( 15 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Field/Flag"]
 frames = SubResource( 44 )
-frame = 2
 playing = true
 offset = Vector2( -4, -7 )
 
@@ -520,81 +520,75 @@ position = Vector2( 0, 1 )
 shape = SubResource( 57 )
 
 [node name="Gate" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 160, 184 )
+position = Vector2( 160, 192 )
 id = "1"
 
 [node name="Gate2" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 160, 376 )
+position = Vector2( 160, 384 )
 id = "2"
 
 [node name="Gate3" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 160, 568 )
+position = Vector2( 160, 576 )
 id = "3"
 
-[node name="Gate4" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 312, 672 )
-rotation = 1.5708
+[node name="Gate4" parent="Field" instance=ExtResource( 23 )]
+position = Vector2( 320, 672 )
 id = "4"
 
-[node name="Gate5" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 632, 672 )
-rotation = 1.5708
+[node name="Gate5" parent="Field" instance=ExtResource( 23 )]
+position = Vector2( 640, 672 )
 id = "5"
 
-[node name="Gate6" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 800, 760 )
-id = "6"
-
-[node name="Gate7" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 648, 864 )
-rotation = 1.5708
+[node name="Gate7" parent="Field" instance=ExtResource( 23 )]
+position = Vector2( 640, 864 )
 id = "7"
 
-[node name="Gate8" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 328, 864 )
-rotation = 1.5708
+[node name="Gate8" parent="Field" instance=ExtResource( 23 )]
+position = Vector2( 320, 864 )
 id = "8"
 
+[node name="Gate6" parent="Field" instance=ExtResource( 22 )]
+position = Vector2( 800, 768 )
+id = "6"
+
 [node name="Gate9" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 160, 952 )
+position = Vector2( 160, 960 )
 id = "9"
 
 [node name="Gate10" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 160, 1144 )
+position = Vector2( 160, 1152 )
 id = "10"
 
-[node name="SGate" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 312, 480 )
-rotation = 1.5708
+[node name="SGate1" parent="Field" instance=ExtResource( 23 )]
+position = Vector2( 320, 480 )
 id = "s1"
 
 [node name="SGate2" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 480, 392 )
+position = Vector2( 480, 384 )
 id = "s2"
 
 [node name="SGate3" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 480, 568 )
+position = Vector2( 480, 576 )
 id = "s2"
 
 [node name="SGate4" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 800, 584 )
+position = Vector2( 800, 576 )
 id = "s3"
 
 [node name="SGate5" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 800, 392 )
+position = Vector2( 800, 384 )
 id = "s4"
 
 [node name="SGate6" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 480, 952 )
+position = Vector2( 480, 960 )
 id = "s5"
 
 [node name="SGate7" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 480, 1144 )
+position = Vector2( 480, 1152 )
 id = "s6"
 
-[node name="SGate8" parent="Field" instance=ExtResource( 22 )]
-position = Vector2( 328, 1056 )
-rotation = 1.5708
+[node name="SGate8" parent="Field" instance=ExtResource( 23 )]
+position = Vector2( 320, 1056 )
 id = "s6"
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -634,7 +628,5 @@ stream = ExtResource( 17 )
 volume_db = -8.0
 autoplay = true
 bus = "Music"
-
-[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="Field/Flag" to="Field/Flag" method="_on_Flag_body_entered"]
