@@ -458,7 +458,6 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
 frames = SubResource( 93 )
-frame = 5
 __meta__ = {
 "_edit_lock_": true
 }
@@ -470,7 +469,7 @@ __meta__ = {
 }
 
 [node name="ToPlayer" type="RayCast2D" parent="."]
-collision_mask = 3
+collision_mask = 19
 __meta__ = {
 "_edit_lock_": true
 }

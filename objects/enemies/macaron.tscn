@@ -432,7 +432,6 @@ script = ExtResource( 1 )
 use_parent_material = true
 position = Vector2( 0, -3 )
 frames = SubResource( 104 )
-frame = 2
 __meta__ = {
 "_edit_lock_": true
 }
@@ -447,8 +446,8 @@ __meta__ = {
 collision_mask = 3
 
 [node name="MeleeBox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 19
+collision_mask = 19
 script = ExtResource( 5 )
 
 [node name="Shape" type="CollisionShape2D" parent="MeleeBox"]
