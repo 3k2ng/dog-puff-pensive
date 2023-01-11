@@ -47,7 +47,7 @@ func _die() -> void:
 
 func _ready() -> void:
 	get_player_as_target()
-	max_health = 6
+	max_health = 16
 	can_spawn = true;
 	._ready()
 

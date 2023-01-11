@@ -23,5 +23,6 @@ func _on_Coin_body_entered(body):
 		PlayerInfo.current_coin += 1
 		$Audio.stream = PICKUP_SOUND
 		$Audio.play()
+		$Shape.disabled = true
 		picked_up = true
 		lifetime = LIFETIME_AFTER_PICKUP
