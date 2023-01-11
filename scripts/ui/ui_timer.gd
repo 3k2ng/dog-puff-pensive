@@ -1,4 +1,4 @@
 extends Label
 
 func _process(_delta: float) -> void:
-	text = "Timer: %.2f sec" % PlayerInfo.current_timer
+	text = " %.2f secs" % PlayerInfo.current_timer
