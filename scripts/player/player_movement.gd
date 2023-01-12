@@ -8,9 +8,9 @@ export var rolling_speed_multiplier: float = 2
 
 export var hurt_invulnerable_time: float = 2.0
 export var stun_time: float = 0.1
-const ROLL_TIME: float = 0.58
+export var roll_time: float = 0.58
 
-var is_facing_up: bool
+var anim_direction_string: String = "_side"
 
 var direction: Vector2
 var velocity: Vector2
@@ -36,11 +36,9 @@ func _process(delta: float) -> void:
 		invulnerability_timer -= delta
 
 	if Input.is_action_just_pressed("dodge_roll") and not is_rolling:
-		if is_facing_up:
-			anim_playback.travel("roll_up")
-		else:
-			anim_playback.travel("roll_side")
-		roll_timer = ROLL_TIME
+		anim_playback.travel("roll")
+		set_animation("roll")
+		roll_timer = roll_time
 		is_rolling = true
 	
 	if not is_rolling:
@@ -53,19 +51,14 @@ func _process(delta: float) -> void:
 			anim_sprite.flip_h = true
 		
 		if direction.length() > 0:
-			if direction.y < -sqrt(0.5):
-				is_facing_up = true
-			else:
-				is_facing_up = false
-			if is_facing_up:
-				anim_playback.travel("run_up")
-			else:
-				anim_playback.travel("run_side")
+			get_anim_direction_string()
+
+			anim_playback.travel("run")
+			set_animation("run")
 		else:
-			if is_facing_up:
-				anim_playback.travel("idle_up")
-			else:
-				anim_playback.travel("idle")
+			anim_playback.travel("idle")
+			set_animation("idle")
+
 	else:
 		if roll_timer > 0:
 			roll_timer -= delta
@@ -74,6 +67,30 @@ func _process(delta: float) -> void:
 		if roll_direction == Vector2.ZERO:
 			direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 			roll_direction = direction
+			if(direction.length() > 0):
+				get_anim_direction_string()
+
+
+func get_anim_direction_string() -> void:
+	var direction_angle
+
+	if is_rolling:
+		direction_angle = roll_direction.angle() / PI
+	else:
+		direction_angle = direction.angle() / PI
+
+	if (direction_angle <= -3/8.0 and direction_angle >= -5/8.0):
+		anim_direction_string = "_vert"
+	elif (direction_angle >= 3/8.0 and direction_angle <= 5/8.0):
+		anim_direction_string = "_down"
+	elif (direction_angle <= -1/8.0 and direction_angle >= -7/8.0):
+		anim_direction_string = "_up"
+	else:
+		anim_direction_string = "_side"
+
+func set_animation(animation_root: String) -> void:
+	anim_sprite.animation = animation_root + anim_direction_string
+
 
 func _physics_process(delta: float) -> void:
 	if stun_timer > 0:
@@ -116,6 +133,3 @@ func die():
 
 func start_roll():
 	play_sound(ROLLING_SOUND, true)
-
-func end_roll():
-	is_rolling = false

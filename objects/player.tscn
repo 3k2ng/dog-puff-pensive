@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=2]
+[gd_scene load_steps=150 format=2]
 
 [ext_resource path="res://sprites/dog/dog up idle.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player/player_movement.gd" type="Script" id=2]
@@ -12,12 +12,46 @@
 [ext_resource path="res://scripts/shaders/flash.gdshader" type="Shader" id=10]
 [ext_resource path="res://sprites/dog/dog hurt.png" type="Texture" id=11]
 [ext_resource path="res://sprites/bone/bone swing recover.png" type="Texture" id=12]
+[ext_resource path="res://sprites/dog/dog down run.png" type="Texture" id=13]
+[ext_resource path="res://sprites/dog/dog vertical roll.png" type="Texture" id=14]
+[ext_resource path="res://sprites/dog/dog vertical run.png" type="Texture" id=15]
+[ext_resource path="res://sprites/dog/dog down idle.png" type="Texture" id=16]
+[ext_resource path="res://sprites/dog/dog down roll.png" type="Texture" id=17]
+[ext_resource path="res://sprites/dog/dog vertical idle.png" type="Texture" id=18]
 
 [sub_resource type="ShaderMaterial" id=61]
 resource_local_to_scene = true
 shader = ExtResource( 10 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id=105]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=106]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=153]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=154]
+atlas = ExtResource( 16 )
+region = Rect2( 22, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=155]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=156]
+atlas = ExtResource( 16 )
+region = Rect2( 22, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=157]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 44, 22, 22 )
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
@@ -39,14 +73,6 @@ region = Rect2( 22, 22, 22, 22 )
 atlas = ExtResource( 7 )
 region = Rect2( 0, 44, 22, 22 )
 
-[sub_resource type="AtlasTexture" id=105]
-atlas = ExtResource( 11 )
-region = Rect2( 0, 0, 22, 22 )
-
-[sub_resource type="AtlasTexture" id=106]
-atlas = ExtResource( 11 )
-region = Rect2( 0, 22, 22, 22 )
-
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 22, 22 )
@@ -67,17 +93,53 @@ region = Rect2( 22, 22, 22, 22 )
 atlas = ExtResource( 1 )
 region = Rect2( 0, 44, 22, 22 )
 
-[sub_resource type="AtlasTexture" id=137]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 32, 22 )
+[sub_resource type="AtlasTexture" id=158]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 22, 22 )
 
-[sub_resource type="AtlasTexture" id=138]
-atlas = ExtResource( 5 )
-region = Rect2( 32, 0, 32, 22 )
+[sub_resource type="AtlasTexture" id=159]
+atlas = ExtResource( 18 )
+region = Rect2( 22, 0, 22, 22 )
 
-[sub_resource type="AtlasTexture" id=139]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 0, 32, 22 )
+[sub_resource type="AtlasTexture" id=160]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=161]
+atlas = ExtResource( 18 )
+region = Rect2( 22, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=162]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 44, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=163]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=164]
+atlas = ExtResource( 17 )
+region = Rect2( 22, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=165]
+atlas = ExtResource( 17 )
+region = Rect2( 44, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=166]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=167]
+atlas = ExtResource( 17 )
+region = Rect2( 22, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=168]
+atlas = ExtResource( 17 )
+region = Rect2( 44, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=169]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 44, 22, 22 )
 
 [sub_resource type="AtlasTexture" id=140]
 atlas = ExtResource( 5 )
@@ -107,18 +169,6 @@ region = Rect2( 64, 44, 32, 22 )
 atlas = ExtResource( 5 )
 region = Rect2( 0, 66, 32, 22 )
 
-[sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 32, 22 )
-
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 9 )
-region = Rect2( 32, 0, 32, 22 )
-
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 9 )
-region = Rect2( 64, 0, 32, 22 )
-
 [sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 9 )
 region = Rect2( 0, 22, 32, 22 )
@@ -146,6 +196,54 @@ region = Rect2( 64, 44, 32, 22 )
 [sub_resource type="AtlasTexture" id=36]
 atlas = ExtResource( 9 )
 region = Rect2( 0, 66, 32, 22 )
+
+[sub_resource type="AtlasTexture" id=170]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=171]
+atlas = ExtResource( 14 )
+region = Rect2( 22, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=172]
+atlas = ExtResource( 14 )
+region = Rect2( 44, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=173]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=174]
+atlas = ExtResource( 14 )
+region = Rect2( 22, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=175]
+atlas = ExtResource( 14 )
+region = Rect2( 44, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=176]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 44, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=177]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=178]
+atlas = ExtResource( 13 )
+region = Rect2( 22, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=179]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=180]
+atlas = ExtResource( 13 )
+region = Rect2( 22, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=181]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 44, 22, 22 )
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 6 )
@@ -187,16 +285,41 @@ region = Rect2( 22, 22, 22, 22 )
 atlas = ExtResource( 8 )
 region = Rect2( 0, 44, 22, 22 )
 
+[sub_resource type="AtlasTexture" id=182]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=183]
+atlas = ExtResource( 15 )
+region = Rect2( 22, 0, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=184]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=185]
+atlas = ExtResource( 15 )
+region = Rect2( 22, 22, 22, 22 )
+
+[sub_resource type="AtlasTexture" id=186]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 44, 22, 22 )
+
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "default",
-"speed": 12.0
-}, {
 "frames": [ SubResource( 105 ), SubResource( 106 ) ],
 "loop": true,
 "name": "hurt",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 153 ), SubResource( 154 ), SubResource( 155 ), SubResource( 156 ), SubResource( 157 ) ],
+"loop": true,
+"name": "idle_down",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "idle_side",
 "speed": 12.0
 }, {
 "frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
@@ -204,14 +327,34 @@ animations = [ {
 "name": "idle_up",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 137 ), SubResource( 138 ), SubResource( 139 ), SubResource( 140 ), SubResource( 141 ), SubResource( 142 ), SubResource( 143 ), SubResource( 144 ), SubResource( 145 ), SubResource( 146 ) ],
+"frames": [ SubResource( 158 ), SubResource( 159 ), SubResource( 160 ), SubResource( 161 ), SubResource( 162 ) ],
+"loop": true,
+"name": "idle_vert",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 163 ), SubResource( 164 ), SubResource( 165 ), SubResource( 166 ), SubResource( 167 ), SubResource( 168 ), SubResource( 169 ) ],
+"loop": true,
+"name": "roll_down",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 140 ), SubResource( 141 ), SubResource( 142 ), SubResource( 143 ), SubResource( 144 ), SubResource( 145 ), SubResource( 146 ) ],
 "loop": false,
 "name": "roll_side",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
 "loop": false,
 "name": "roll_up",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 170 ), SubResource( 171 ), SubResource( 172 ), SubResource( 173 ), SubResource( 174 ), SubResource( 175 ), SubResource( 176 ) ],
+"loop": true,
+"name": "roll_vert",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 177 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 181 ) ],
+"loop": true,
+"name": "run_down",
 "speed": 12.0
 }, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
@@ -222,6 +365,11 @@ animations = [ {
 "frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
 "loop": true,
 "name": "run_up",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 182 ), SubResource( 183 ), SubResource( 184 ), SubResource( 185 ), SubResource( 186 ) ],
+"loop": true,
+"name": "run_vert",
 "speed": 12.0
 } ]
 
@@ -241,7 +389,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ "default" ]
+"values": [ "idle_side" ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimatedSprite:frame")
@@ -315,54 +463,12 @@ length = 0.416667
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "default" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.333333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0, 4 ]
-}
-
-[sub_resource type="Animation" id=46]
-resource_name = "idle_up"
-length = 0.416667
-loop = true
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "idle_up" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.333333 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -370,35 +476,35 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=147]
-resource_name = "roll_side"
+resource_name = "roll"
 length = 0.583333
 step = 0.0833333
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ "roll_side" ]
+"values": [ 0, 1, 2, 3, 4, 5, 9, 6 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/path = NodePath(".:collision_layer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.498 ),
+"times": PoolRealArray( 0, 0.333333 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 3, 9 ]
+"update": 1,
+"values": [ 5, 7 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:collision_layer")
+tracks/2/path = NodePath(".:collision_mask")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -409,124 +515,27 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 5, 7 ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath(".:collision_mask")
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.333333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 5, 7 ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.58 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "start_roll"
-}, {
-"args": [  ],
-"method": "end_roll"
-} ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath(".:rolling_speed_multiplier")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.333333, 0.416667, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 3.0, 1.0, 2.0, 0.5 ]
-}
-
-[sub_resource type="Animation" id=88]
-resource_name = "roll_up"
-length = 0.583333
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "roll_up" ]
+"values": [ {
+"args": [  ],
+"method": "start_roll"
+} ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 3, 9 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:collision_layer")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.333333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 5, 7 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath(".:collision_mask")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.333333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 5, 7 ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:rolling_speed_multiplier")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.58 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "start_roll"
-}, {
-"args": [  ],
-"method": "end_roll"
-} ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath(".:rolling_speed_multiplier")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "times": PoolRealArray( 0, 0.333333, 0.416667, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
@@ -534,59 +543,17 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=45]
-resource_name = "run_side"
+resource_name = "run"
 length = 0.416667
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "run_side" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.333333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0, 4 ]
-}
-
-[sub_resource type="Animation" id=47]
-resource_name = "run_up"
-length = 0.416667
-loop = true
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "run_up" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.333333 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -952,7 +919,7 @@ states/swing/node = SubResource( 121 )
 states/swing/position = Vector2( 851.667, 82.3333 )
 transitions = [ "idle", "swing", SubResource( 122 ), "post swing hang", "swing", SubResource( 124 ), "swing", "post swing hang", SubResource( 125 ), "post swing hang", "recovery", SubResource( 126 ), "recovery", "idle", SubResource( 127 ), "follow up swing", "post swing hang", SubResource( 150 ), "post swing hang", "follow up swing", SubResource( 151 ), "recovery", "swing", SubResource( 152 ) ]
 start_node = "idle"
-graph_offset = Vector2( 108, -169 )
+graph_offset = Vector2( 648, -146 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=129]
 
@@ -993,82 +960,28 @@ animation = "dog_hurt"
 [sub_resource type="AnimationNodeAnimation" id=64]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=65]
-animation = "idle_up"
-
 [sub_resource type="AnimationNodeAnimation" id=66]
-animation = "roll_side"
-
-[sub_resource type="AnimationNodeAnimation" id=67]
-animation = "roll_up"
+animation = "roll"
 
 [sub_resource type="AnimationNodeAnimation" id=68]
-animation = "run_side"
-
-[sub_resource type="AnimationNodeAnimation" id=69]
-animation = "run_up"
+animation = "run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=70]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=71]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=72]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=73]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=74]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=75]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=76]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=77]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=78]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=79]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=80]
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=81]
 switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=82]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=83]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=84]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=85]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=86]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=87]
-switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=94]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=95]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=96]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=97]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=98]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=99]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=100]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=101]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=102]
 switch_mode = 2
@@ -1076,34 +989,25 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=103]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=104]
-switch_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=107]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=108]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=109]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=187]
 
 [sub_resource type="AnimationNodeStateMachine" id=62]
 states/dog_hurt/node = SubResource( 93 )
-states/dog_hurt/position = Vector2( 871, 665 )
+states/dog_hurt/position = Vector2( 639.667, 515.667 )
 states/idle/node = SubResource( 64 )
-states/idle/position = Vector2( 124, 275 )
-states/idle_up/node = SubResource( 65 )
-states/idle_up/position = Vector2( 124, 554 )
-states/roll_side/node = SubResource( 66 )
-states/roll_side/position = Vector2( 871, 158 )
-states/roll_up/node = SubResource( 67 )
-states/roll_up/position = Vector2( 1075, 275 )
-states/run_side/node = SubResource( 68 )
-states/run_side/position = Vector2( 360, 158 )
-states/run_up/node = SubResource( 69 )
-states/run_up/position = Vector2( 360, 665 )
-transitions = [ "idle", "roll_side", SubResource( 70 ), "idle", "run_up", SubResource( 71 ), "run_up", "idle_up", SubResource( 72 ), "run_side", "idle", SubResource( 73 ), "idle_up", "run_side", SubResource( 74 ), "run_side", "run_up", SubResource( 75 ), "run_up", "run_side", SubResource( 76 ), "idle", "roll_up", SubResource( 77 ), "idle_up", "roll_side", SubResource( 78 ), "idle_up", "roll_up", SubResource( 79 ), "roll_side", "run_side", SubResource( 80 ), "roll_side", "idle", SubResource( 81 ), "roll_side", "idle_up", SubResource( 82 ), "roll_side", "run_up", SubResource( 83 ), "roll_up", "run_side", SubResource( 84 ), "roll_up", "idle", SubResource( 85 ), "roll_up", "idle_up", SubResource( 86 ), "roll_up", "run_up", SubResource( 87 ), "idle", "dog_hurt", SubResource( 94 ), "idle_up", "dog_hurt", SubResource( 95 ), "run_up", "dog_hurt", SubResource( 96 ), "run_side", "dog_hurt", SubResource( 97 ), "roll_side", "dog_hurt", SubResource( 98 ), "roll_up", "dog_hurt", SubResource( 99 ), "dog_hurt", "run_up", SubResource( 100 ), "dog_hurt", "roll_up", SubResource( 101 ), "dog_hurt", "roll_side", SubResource( 102 ), "dog_hurt", "idle", SubResource( 103 ), "dog_hurt", "idle_up", SubResource( 104 ), "dog_hurt", "run_side", SubResource( 107 ), "run_up", "roll_up", SubResource( 108 ), "run_side", "roll_side", SubResource( 109 ) ]
+states/idle/position = Vector2( 372, 515.667 )
+states/roll/node = SubResource( 66 )
+states/roll/position = Vector2( 657, 212.667 )
+states/run/node = SubResource( 68 )
+states/run/position = Vector2( 366.667, 212.741 )
+transitions = [ "idle", "roll", SubResource( 70 ), "run", "idle", SubResource( 73 ), "roll", "run", SubResource( 80 ), "roll", "idle", SubResource( 81 ), "idle", "dog_hurt", SubResource( 94 ), "run", "dog_hurt", SubResource( 97 ), "roll", "dog_hurt", SubResource( 98 ), "dog_hurt", "roll", SubResource( 102 ), "dog_hurt", "idle", SubResource( 103 ), "dog_hurt", "run", SubResource( 107 ), "run", "roll", SubResource( 109 ), "idle", "run", SubResource( 187 ) ]
 start_node = "idle"
-graph_offset = Vector2( -41, 125.282 )
+graph_offset = Vector2( 241, 76.282 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=63]
 
@@ -1117,6 +1021,7 @@ script = ExtResource( 2 )
 use_parent_material = true
 position = Vector2( 0, -2 )
 frames = SubResource( 6 )
+animation = "idle_side"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1129,15 +1034,11 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 0.2
 anims/RESET = SubResource( 43 )
 anims/dog_hurt = SubResource( 92 )
 anims/idle = SubResource( 44 )
-anims/idle_up = SubResource( 46 )
-anims/roll_side = SubResource( 147 )
-anims/roll_up = SubResource( 88 )
-anims/run_side = SubResource( 45 )
-anims/run_up = SubResource( 47 )
+anims/roll = SubResource( 147 )
+anims/run = SubResource( 45 )
 
 [node name="MeleeBox" type="Area2D" parent="."]
 collision_layer = 3
