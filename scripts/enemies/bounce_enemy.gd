@@ -20,7 +20,7 @@ const MOVEMENT_SPEED = 32
 const LAUNCH_SPEED = 96.0
 
 const DETECTION_RANGE = 160 # 10 blocks
-const ATTACK_RANGE = 80
+const ATTACK_RANGE = 120
 
 const MAX_BOUNCE = 2
 const MAX_HEALTH = 2
@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 			rotation = Vector2.RIGHT.angle_to(direction)
 		var collision = move_and_collide(velocity * delta)
 		if collision:
-			if collision.collider.is_in_group("player") or collision.collider.is_in_group("enemy") or health <= 0:
+			if collision.collider.is_in_group("player") or collision.collider.is_in_group("enemy") or collision.collider.is_in_group("button") or health <= 0:
 				splash()
 			elif bounce_left > 0:
 				launch_direction = (-direction).reflect(collision.normal)
