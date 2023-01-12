@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://tilesets/tile autotile.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://scripts/ui/ui_timer.gd" type="Script" id=21]
 [ext_resource path="res://objects/props/horizontal_gate.tscn" type="PackedScene" id=22]
 [ext_resource path="res://objects/props/vertical_gate.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scripts/ui/coint_count.gd" type="Script" id=24]
 
 [sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
@@ -509,7 +510,7 @@ script = ExtResource( 15 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Field/Flag"]
 frames = SubResource( 44 )
-frame = 3
+frame = 1
 playing = true
 offset = Vector2( -4, -7 )
 
@@ -605,9 +606,17 @@ __meta__ = {
 margin_right = 320.0
 margin_bottom = 180.0
 custom_fonts/font = SubResource( 58 )
-text = " 0.00 secs"
+text = "0.00 secs"
 valign = 2
 script = ExtResource( 21 )
+
+[node name="Coins" type="Label" parent="UI"]
+margin_right = 320.0
+margin_bottom = 180.0
+custom_fonts/font = SubResource( 58 )
+text = "Coins: 0"
+align = 2
+script = ExtResource( 24 )
 
 [node name="Pause Menu" parent="." instance=ExtResource( 19 )]
 visible = false

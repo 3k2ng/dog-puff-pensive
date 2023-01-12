@@ -18,11 +18,10 @@ func _process(delta: float) -> void:
 			queue_free()
 
 func _on_Coin_body_entered(body):
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and not picked_up:
 		$AnimatedSprite.play("collect")
 		PlayerInfo.current_coin += 1
 		$Audio.stream = PICKUP_SOUND
 		$Audio.play()
-		$Shape.disabled = true
 		picked_up = true
 		lifetime = LIFETIME_AFTER_PICKUP
