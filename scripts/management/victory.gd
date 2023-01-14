@@ -6,6 +6,7 @@ func _ready():
 		$Background/Coins.text = "Wow, you got all three coins, dude!"
 	else:
 		$Background/Coins.text = "Wow, you got %d coins!" % PlayerInfo.current_coin
+	$Background/Time.text = "You beated the game in %.2f secs!" % PlayerInfo.current_timer
 
 func _process(_delta):
 	if Input.is_action_pressed("ui_accept"):

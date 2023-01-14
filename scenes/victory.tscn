@@ -28,18 +28,27 @@ scale = Vector2( 0.533333, 0.524444 )
 texture = ExtResource( 4 )
 
 [node name="Retry" type="Label" parent="Background"]
-margin_top = 120.0
+margin_top = 128.0
 margin_right = 320.0
-margin_bottom = 174.0
+margin_bottom = 182.0
 custom_fonts/font = SubResource( 2 )
 text = "Press Enter (start) to Retry"
 align = 1
 autowrap = true
 
-[node name="Coins" type="Label" parent="Background"]
-margin_top = 136.0
+[node name="Time" type="Label" parent="Background"]
+margin_top = 80.0
 margin_right = 320.0
-margin_bottom = 174.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 2 )
+text = "You beated the game in 0.0 secs"
+align = 1
+autowrap = true
+
+[node name="Coins" type="Label" parent="Background"]
+margin_top = 96.0
+margin_right = 320.0
+margin_bottom = 128.0
 custom_fonts/font = SubResource( 2 )
 text = "You got 0 coins"
 align = 1

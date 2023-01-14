@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const GETTING_HIT_SOUND: AudioStreamSample = preload("res://sfxs/05-getting hit.wav")
-const ROLLING_SOUND: AudioStreamSample = preload("res://sfxs/12-rolling.wav")
+const ROLLING_SOUND: AudioStreamSample = preload("res://sfxs/dash.wav")
 
 export var movement_speed: float = 64.0
 export var rolling_speed_multiplier: float = 2

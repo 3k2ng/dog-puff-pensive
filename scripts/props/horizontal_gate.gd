@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+const OPENING_SOUND = preload("res://sfxs/gate open.wav")
+
 export var id: String
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
@@ -16,4 +18,6 @@ func _process(_delta: float) -> void:
 			if i.is_in_group("button") and not i.activated:
 				return
 	anim_player.play("open_gate")
+	$Audio.stream = OPENING_SOUND
+	$Audio.play()
 	is_open = true

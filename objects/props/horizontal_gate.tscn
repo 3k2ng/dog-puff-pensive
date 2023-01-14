@@ -102,3 +102,5 @@ anims/open_gate = SubResource( 2 )
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
