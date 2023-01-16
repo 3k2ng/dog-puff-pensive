@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://tilesets/tile autotile.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://objects/props/button.tscn" type="PackedScene" id=12]
 [ext_resource path="res://objects/enemies/puff_special.tscn" type="PackedScene" id=13]
 [ext_resource path="res://objects/props/flag.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scripts/management/music_area.gd" type="Script" id=15]
 [ext_resource path="res://objects/props/coin.tscn" type="PackedScene" id=16]
 [ext_resource path="res://musics/overworld theme loop.wav" type="AudioStream" id=17]
 [ext_resource path="res://objects/enemies/macaron.tscn" type="PackedScene" id=18]
@@ -373,6 +374,9 @@ shader = ExtResource( 9 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
+[sub_resource type="RectangleShape2D" id=94]
+extents = Vector2( 160, 96 )
+
 [sub_resource type="DynamicFont" id=58]
 size = 8
 font_data = ExtResource( 20 )
@@ -622,18 +626,22 @@ id = "10"
 
 [node name="Gate" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( 160, 192 )
+arrow_direction = 1
 id = "1"
 
 [node name="Gate2" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( 160, 384 )
+arrow_direction = 1
 id = "2"
 
 [node name="Gate3" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( 160, 576 )
+arrow_direction = 1
 id = "3"
 
 [node name="Gate4" parent="Field" instance=ExtResource( 23 )]
 position = Vector2( 320, 672 )
+arrow_direction = 3
 id = "4"
 
 [node name="Gate5" parent="Field" instance=ExtResource( 23 )]
@@ -642,26 +650,32 @@ id = "5"
 
 [node name="Gate7" parent="Field" instance=ExtResource( 23 )]
 position = Vector2( 640, 864 )
+arrow_direction = 2
 id = "7"
 
 [node name="Gate8" parent="Field" instance=ExtResource( 23 )]
 position = Vector2( 320, 864 )
+arrow_direction = 2
 id = "8"
 
 [node name="Gate6" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( 800, 768 )
+arrow_direction = 1
 id = "6"
 
 [node name="Gate9" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( 160, 960 )
+arrow_direction = 1
 id = "9"
 
 [node name="Gate10" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( 160, 1152 )
+arrow_direction = 1
 id = "10"
 
 [node name="SGate1" parent="Field" instance=ExtResource( 23 )]
 position = Vector2( 320, 480 )
+arrow_direction = 3
 id = "s1"
 
 [node name="SGate2" parent="Field" instance=ExtResource( 22 )]
@@ -670,6 +684,7 @@ id = "s2"
 
 [node name="SGate3" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( 480, 576 )
+arrow_direction = 1
 id = "s2"
 
 [node name="SGate4" parent="Field" instance=ExtResource( 22 )]
@@ -682,10 +697,12 @@ id = "s4"
 
 [node name="SGate6" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( 480, 960 )
+arrow_direction = 1
 id = "s5"
 
 [node name="SGate7" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( 480, 1152 )
+arrow_direction = 1
 id = "s6"
 
 [node name="ChocoBar7" parent="Field" groups=["id"] instance=ExtResource( 4 )]
@@ -818,10 +835,12 @@ id = "ss1"
 
 [node name="Gate11" parent="Field" instance=ExtResource( 23 )]
 position = Vector2( 640, 288 )
+arrow_direction = 2
 id = "ss2"
 
 [node name="Gate12" parent="Field" instance=ExtResource( 23 )]
 position = Vector2( 960, 288 )
+arrow_direction = 3
 id = "ss1"
 
 [node name="Gate13" parent="Field" instance=ExtResource( 22 )]
@@ -834,22 +853,27 @@ id = "ss4"
 
 [node name="Gate15" parent="Field" instance=ExtResource( 23 )]
 position = Vector2( 960, 672 )
+arrow_direction = 3
 id = "6"
 
 [node name="Gate16" parent="Field" instance=ExtResource( 23 )]
 position = Vector2( 0, 672 )
+arrow_direction = 2
 id = "4"
 
 [node name="Gate17" parent="Field" instance=ExtResource( 23 )]
 position = Vector2( 0, 864 )
+arrow_direction = 3
 id = "B"
 
 [node name="Gate18" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( -160, 768 )
+arrow_direction = 1
 id = "A"
 
 [node name="Gate19" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( -160, 960 )
+arrow_direction = 1
 id = "B"
 
 [node name="BPuff7" parent="Field" instance=ExtResource( 25 )]
@@ -858,10 +882,12 @@ position = Vector2( 1024, 608 )
 
 [node name="Gate20" parent="Field" instance=ExtResource( 22 )]
 position = Vector2( 800, 960 )
+arrow_direction = 1
 id = "7"
 
 [node name="Gate21" parent="Field" instance=ExtResource( 23 )]
 position = Vector2( 640, 1056 )
+arrow_direction = 2
 id = "s11"
 
 [node name="BPuff8" parent="Field" instance=ExtResource( 25 )]
@@ -871,6 +897,13 @@ position = Vector2( -280, 1000 )
 [node name="BPuff9" parent="Field" instance=ExtResource( 25 )]
 material = SubResource( 93 )
 position = Vector2( -40, 1000 )
+
+[node name="BossMusicArea" type="Area2D" parent="."]
+position = Vector2( 160, 1056 )
+script = ExtResource( 15 )
+
+[node name="Shape" type="CollisionShape2D" parent="BossMusicArea"]
+shape = SubResource( 94 )
 
 [node name="Flag" parent="." instance=ExtResource( 14 )]
 
@@ -913,7 +946,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 17 )
 volume_db = -8.0
