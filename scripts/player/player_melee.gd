@@ -22,7 +22,8 @@ func _body_entered(body: Node) -> void:
 
 func _process(delta: float) -> void:
 	if Input.get_connected_joypads().size() > 0:
-		rotation = Vector2.RIGHT.angle_to(Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down").normalized())
+		if Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down").normalized().length() > 0:
+			rotation = Vector2.RIGHT.angle_to(Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down").normalized())
 	else: 
 		self.look_at(get_global_mouse_position())
 
